@@ -246,3 +246,57 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 ## Assets
 
 ## Code
+
+### Bootstrap
+The application's front-end has been built using 
+[Bootstrap v5.3](https://getbootstrap.com/).
+
+CDN Links:
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+#### Start Bootstrap
+Code snippets from open-source templates found on
+[Start Bootstrap](https://startbootstrap.com/)
+have been used for the purposes of responsiveness, consistency and ease of development.
+These templates are:
+
+Blog Home
+- View the template page at:
+https://startbootstrap.com/template/blog-home
+- View a live preview at:
+https://startbootstrap.com/previews/blog-home
+- View the source code on the 'startbootstrap-blog-home' repository on GitHub at:
+https://github.com/StartBootstrap/startbootstrap-blog-home/tree/master
+
+Blog Post
+- View the template page at:
+https://startbootstrap.com/template/blog-post
+- View a live preview at:
+https://startbootstrap.com/previews/blog-post
+- View the source code on the 'startbootstrap-blog-post' repository on GitHub at:
+https://github.com/StartBootstrap/startbootstrap-blog-post
+
+### jQuery
+[jQuery](https://jquery.com/) v3.7.1 provided via Google CDN, has been used to provide fast and lightweight DOM traversal and manipulation.
+
+CDN Link:
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+### Font Awesome Icons
+Icons across the site have been provided by the Font Awesome v6.4.2 open-source library.
+
+CDN Link:
+
+    <script src="https://kit.fontawesome.com/abda6128c4.js" crossorigin="anonymous"></script>
+
+These icons are:
+
+| Icon                         | Source Code                                    | Link                                                             |
+| ---------------------------- | -----------------------------------------------| ---------------------------------------------------------------- |
+| fa-regular fa-star           | `<i class="fa-regular fa-star"></i>`           | https://fontawesome.com/icons/star?f=classic&s=regular           |
+| fa-solid fa-star             | `<i class="fa-solid fa-star"></i>`             | https://fontawesome.com/icons/star?f=classic&s=solid             |
+| fa-solid fa-star-half-stroke | `<i class="fa-solid fa-star-half-stroke"></i>` | https://fontawesome.com/icons/star-half-stroke?f=classic&s=solid |

@@ -11,3 +11,8 @@ def home():
 @app.route("/cuisine")
 def cuisine():
     return render_template("cuisine.html")
+
+
+@app.route("/recipe")
+def recipe():
+    return render_template("recipe.html")
