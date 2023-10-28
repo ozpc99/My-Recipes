@@ -298,5 +298,9 @@ These icons are:
 | Icon                         | Source Code                                    | Link                                                             |
 | ---------------------------- | -----------------------------------------------| ---------------------------------------------------------------- |
 | fa-regular fa-star           | `<i class="fa-regular fa-star"></i>`           | https://fontawesome.com/icons/star?f=classic&s=regular           |
+| fa-solid fa-magnifying-glass | `<i class="fa-solid fa-magnifying-glass"></i>` | https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid |
+| fa-solid fa-pencil           | `<i class="fa-solid fa-pencil"></i>`           | https://fontawesome.com/icons/pencil?f=classic&s=solid           |
+| fa-solid fa-plus             | `<i class="fa-solid fa-plus"></i>`             | https://fontawesome.com/icons/plus?f=classic&s=solid             |
 | fa-solid fa-star             | `<i class="fa-solid fa-star"></i>`             | https://fontawesome.com/icons/star?f=classic&s=solid             |
 | fa-solid fa-star-half-stroke | `<i class="fa-solid fa-star-half-stroke"></i>` | https://fontawesome.com/icons/star-half-stroke?f=classic&s=solid |
+| fa-solid fa-trash-can        | `<i class="fa-solid fa-trash-can"></i>`        | https://fontawesome.com/icons/trash-can?f=classic&s=solid        |

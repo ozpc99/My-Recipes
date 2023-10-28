@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 from recipe_site import app, db
 from recipe_site.models import Cuisine, Recipe
 
@@ -10,9 +10,24 @@ def home():
 
 @app.route("/cuisine")
 def cuisine():
-    return render_template("cuisine.html")
+    cuisines = Cuisine.query.order_by(Cuisine.cuisine_type).all()
+    return render_template("cuisine.html", cuisines=cuisines)
+
+
+@app.route("/add_cuisine", methods=["GET", "POST"])
+def add_cuisine():
+    if request.method == "POST":
+        cuisine = Cuisine(cuisine_type=request.form.get("cuisine_type"))
+        db.session.add(cuisine)
+        db.session.commit()
+        return redirect(url_for("cuisine"))
 
 
 @app.route("/recipe")
 def recipe():
     return render_template("recipe.html")
+
+
+@app.route("/recipes")
+def recipes():
+    return render_template("recipes.html")
