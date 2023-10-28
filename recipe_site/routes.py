@@ -23,6 +23,16 @@ def add_cuisine():
         return redirect(url_for("cuisine"))
 
 
+@app.route("/edit_cuisine/<int:cuisine_id>", methods=["GET", "POST"])
+def edit_cuisine(cuisine_id):
+    cuisine = Cuisine.query.get_or_404(cuisine_id)
+    if request.method == "POST":
+        cuisine.cuisine_type = request.form.get("cuisine_type")
+        db.session.commit()
+        return redirect(url_for("cuisine"))
+    return render_template("edit_cuisine.html", cuisine=cuisine)
+
+
 @app.route("/recipe")
 def recipe():
     return render_template("recipe.html")

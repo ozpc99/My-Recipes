@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="container">
+
+    <h3>Edit {{ cuisine.cuisine_type }}</h3>
+
+    <form method="POST" action="{{ url_for('edit_cuisine', cuisine_id=cuisine.id) }}">
+        <div class="input-group mb-3">
+            <input id="cuisine_type" name="cuisine_type" value="{{ cuisine.cuisine_type }}"
+                aria-placeholder="Edit Cuisine Category" minlength="3" maxlength="25" type="text"
+                class="form-control validate" required aria-label="Edit Cuisine Category"
+                aria-describedby="edit_cuisine_category">
+            <button type="submit" class="btn btn-primary" id="edit_cuisine_category">
+                <i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+    </form>
+
+</main>
+{% endblock %}
