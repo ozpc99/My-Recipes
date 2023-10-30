@@ -30,7 +30,6 @@ def edit_cuisine(cuisine_id):
         cuisine.cuisine_type = request.form.get("cuisine_type")
         db.session.commit()
         return redirect(url_for("cuisine"))
-    return render_template("edit_cuisine.html", cuisine=cuisine)
 
 
 @app.route("/delete_cuisine/<int:cuisine_id>")

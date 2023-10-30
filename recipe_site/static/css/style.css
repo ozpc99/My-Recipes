@@ -1,3 +1,12 @@
+/* Modal for Editing: Custom Styling */
+.modal-for-edit .modal-header {
+    background-color: var(--bs-success-bg-subtle);
+}
+
+.modal-for-edit .modal-content {
+    border: 5px solid var(--bs-success-border-subtle);
+}
+
 /* Modal for Deleting: Custom Styling */
 .modal-for-delete .modal-header {
         background-color: var(--bs-danger-bg-subtle);

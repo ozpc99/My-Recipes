@@ -52,18 +52,54 @@
                     </div>
 
                     <div class="card-body">
-                        <a href="{{ url_for('edit_cuisine', cuisine_id=cuisine.id) }}" class="btn btn-success">
-                            <i class="fa-solid fa-pencil"></i> Edit</a>
+                        <!--Button trigger modal to Rename Cuisine Category-->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#modal-for-edit-{{ cuisine.id }}">
+                            <i class="fa-solid fa-pencil"></i> Rename</a>
+                        </button>
                         <!-- Button trigger modal to Delete Cuisine Category-->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#modal-{{ cuisine.id }}">
+                            data-bs-target="#modal-for-delete-{{ cuisine.id }}">
                             <i class="fa-solid fa-trash-can"></i> Delete</a>
                         </button>
                     </div>
                 </div>
 
+                <!-- Modal to Rename Cuisine Category -->
+                <div class="modal fade modal-for-edit" id="modal-for-edit-{{ cuisine.id }}" tabindex="-1"
+                    data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-{{ cuisine.id }}"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modal-{{ cuisine.id }}">
+                                    <i class="fa-solid fa-pencil"></i> Rename: "{{ cuisine.cuisine_type }}"</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <!-- Form to Rename Cuisine Category -->
+                            <form method="POST" action="{{ url_for('edit_cuisine', cuisine_id=cuisine.id) }}">
+                                <div class="modal-body">
+                                    <input id="cuisine_type" name="cuisine_type"
+                                        placeholder="{{ cuisine.cuisine_type }}"
+                                        aria-placeholder="Edit Cuisine Category" minlength="3" maxlength="25"
+                                        type="text" class="form-control validate" required
+                                        aria-label="Edit Cuisine Category" aria-describedby="edit_cuisine_category">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" id="edit_cuisine_category">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal to Delete Cuisine Category -->
-                <div class="modal fade modal-for-delete" id="modal-{{ cuisine.id }}" tabindex="-1"
+                <div class="modal fade modal-for-delete" id="modal-for-delete-{{ cuisine.id }}" tabindex="-1"
                     data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-{{ cuisine.id }}"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -102,7 +138,8 @@
                                     </li>
                                     <li>
                                         <span class="fa-li"><i class="fa-solid fa-circle-exclamation"></i></span>
-                                        All recipes in the "{{ cuisine.cuisine_type }}" cuisine category will be deleted.
+                                        All recipes in the "{{ cuisine.cuisine_type }}" cuisine category will be
+                                        deleted.
                                     </li>
                                 </ul>
                             </div>
