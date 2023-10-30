@@ -33,6 +33,14 @@ def edit_cuisine(cuisine_id):
     return render_template("edit_cuisine.html", cuisine=cuisine)
 
 
+@app.route("/delete_cuisine/<int:cuisine_id>")
+def delete_cuisine(cuisine_id):
+    cuisine = Cuisine.query.get_or_404(cuisine_id)
+    db.session.delete(cuisine)
+    db.session.commit()
+    return redirect(url_for("cuisine"))
+
+
 @app.route("/recipe")
 def recipe():
     return render_template("recipe.html")
