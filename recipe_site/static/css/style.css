@@ -1,0 +1,8 @@
+/* Modal for Deleting: Custom Styling */
+.modal-for-delete .modal-header {
+        background-color: var(--bs-danger-bg-subtle);
+    }
+
+.modal-for-delete .modal-content {
+    border: 5px solid var(--bs-danger-border-subtle);
+}
