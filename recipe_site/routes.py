@@ -10,7 +10,7 @@ def home():
 
 @app.route("/cuisine")
 def cuisine():
-    cuisines = Cuisine.query.order_by(Cuisine.cuisine_type).all()
+    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
     return render_template("cuisine.html", cuisines=cuisines)
 
 
@@ -40,11 +40,17 @@ def delete_cuisine(cuisine_id):
     return redirect(url_for("cuisine"))
 
 
-@app.route("/recipe")
-def recipe():
-    return render_template("recipe.html")
-
-
 @app.route("/recipes")
 def recipes():
     return render_template("recipes.html")
+
+
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    return render_template("add_recipe.html", cuisines=cuisines)
+
+
+@app.route("/recipe")
+def recipe():
+    return render_template("recipe.html")
