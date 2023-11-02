@@ -185,14 +185,15 @@
         </div> 
         -->
 
-        <!-- Post Date ----------------------------------------------------------
-        ------ Date updates automatically via JS to display today's date.
-        ------ Date input is set to 'readonly' with pointer-events set to 'none'.
-        -->
-        <div class="mb-3">
+        <!-- Post Date --
+        -- Date updates automatically via JS to display today's date. --
+        -- Date input is hidden because the user doesn't need to fill out this field. 
+        -- Attributes: 'readonly' and 'required' and Style: 'pointer-events: none;' 
+        --- are included in case Bootstrap fails to load or that it is decided to include this input field on the form later. -->
+        <div class="mb-3 d-none">
             <label for="post_date" class="form-label"><i class="fa-solid fa-calendar-day"></i> Post Date:</label>
-            <input type="date" class="form-control" name="post_date" id="post_date" readonly required
-                style="pointer-events: none;">
+            <input type="date" class="form-control" name="post_date" id="post_date" 
+            readonly required style="pointer-events: none;">
         </div>
 
         <!-- Submit Button -->
