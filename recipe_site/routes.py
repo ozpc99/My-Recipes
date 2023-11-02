@@ -42,15 +42,35 @@ def delete_cuisine(cuisine_id):
 
 @app.route("/recipes")
 def recipes():
-    return render_template("recipes.html")
+    recipes = Recipe.query.order_by(Recipe.id).all()
+    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    if request.method == "POST":
+        recipe = Recipe(
+            recipe_name=request.form.get("recipe_name"),
+            cuisine_id=request.form.get("cuisine_id"),
+            recipe_description=request.form.get("recipe_description"),
+            recipe_serves = request.form.get("recipe_serves"),
+            recipe_ingredients = request.form.get("recipe_ingredients"),
+            recipe_method = request.form.get("recipe_method"),
+            # recipe_img = ,
+            # author_name = ,
+            post_date=request.form.get("post_date")
+            # is_featured=bool(True if request.form.get("is_featured") else False),
+        )
+        db.session.add(recipe)
+        db.session.commit()
+        return redirect(url_for("recipes"))
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
 @app.route("/recipe")
 def recipe():
-    return render_template("recipe.html")
+    recipes = Recipe.query.order_by(Recipe.id).all()
+    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    return render_template("recipe.html", recipes=recipes, cuisines=cuisines)
