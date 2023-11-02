@@ -30,8 +30,12 @@
                         <h5 class="card-title">{{ recipe.recipe_name }}</h5>
                         <a href="#" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> View</a>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">By: author_name</li>
-                            <li class="list-group-item">Posted On: dd/mm/yy</li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-user"></i> author_name
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa-solid fa-calendar-day"></i> {{ recipe.post_date.strftime('%d/%m/%Y') }}
+                            </li>
                             <li class="list-group-item">
                                 <!--Button trigger modal to Edit Recipe -->
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"

@@ -313,4 +313,5 @@ These icons are:
 | star               | `<i class="fa-solid fa-star"></i>`               | https://fontawesome.com/icons/star?f=classic&s=solid               |
 | star-half-stroke   | `<i class="fa-solid fa-star-half-stroke"></i>`   | https://fontawesome.com/icons/star-half-stroke?f=classic&s=solid   |
 | trash-can          | `<i class="fa-solid fa-trash-can"></i>`          | https://fontawesome.com/icons/trash-can?f=classic&s=solid          |
+| user               | `<i class="fa-solid fa-user"></i>`               | https://fontawesome.com/icons/user?f=classic&s=solid               |
 | utensils           | `<i class="fa-solid fa-utensils"></i>`           | https://fontawesome.com/icons/utensils?f=classic&s=solid           |
