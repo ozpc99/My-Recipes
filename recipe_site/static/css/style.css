@@ -1,4 +1,4 @@
-/* Modal for Editing: Custom Styling */
+/* Modal for Editing Cuisine/Recipe: Custom Styling */
 .modal-for-edit .modal-header {
     background-color: var(--bs-success-bg-subtle);
 }
@@ -7,11 +7,23 @@
     border: 5px solid var(--bs-success-border-subtle);
 }
 
-/* Modal for Deleting: Custom Styling */
+/* Modal for Deleting Cuisine/Recipe: Custom Styling */
 .modal-for-delete .modal-header {
-        background-color: var(--bs-danger-bg-subtle);
-    }
+    background-color: var(--bs-danger-bg-subtle);
+}
 
 .modal-for-delete .modal-content {
     border: 5px solid var(--bs-danger-border-subtle);
+}
+
+/* Recipe Ingredients and Method */
+.recipe {
+    /* Removes white space (the tab/indent) before first line and that above it */
+    white-space: pre-line;
+    margin-top: -1em;
+}
+
+.recipe.card-body {
+    /* Removes white space above first line even more to sit flush within card body */
+    margin-top: -2em;
 }

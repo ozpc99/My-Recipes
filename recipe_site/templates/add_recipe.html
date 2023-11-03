@@ -36,7 +36,8 @@
 
         <!-- Recipe Description -->
         <div class="mb-3">
-            <label for="recipe_description" class="form-label"><i class="fa-solid fa-bars-staggered"></i> Description:</label>
+            <label for="recipe_description" class="form-label"><i class="fa-solid fa-bars-staggered"></i>
+                Description:</label>
             <textarea class="form-control" id="recipe_description" name="recipe_description" rows="5"
                 aria-describedby="recipe_description" required></textarea>
         </div>
@@ -64,41 +65,37 @@
                 <a data-bs-toggle="modal" href="#ingredients-modal">
                     <i class="fa-solid fa-circle-info"></i>
                 </a>
+                <!-- Ingredients Input Textarea -->
+                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="10" required></textarea>
+            </div>
+        </div>
 
-                <!-- Ingredients Info Modal -->
-                <div class="modal fade" id="ingredients-modal" tabindex="-1" aria-labelledby="ingredients-modal"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5">Please Structure Like So:</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <ul style="list-style-type: none; padding: 0; margin: 0;">
-                                    <li>225g Self Raising Flour</li>
-                                    <li>225g Caster Sugar</li>
-                                    <li>225g Baking Margarine</li>
-                                    <li>1tsp Baking Powder</li>
-                                    <li>4 Eggs</li>
-                                    <li>Strawberry Jam</li>
-                                    <li>300ml Double Cream (whipped)</li>
-                                    <li>Icing Sugar</li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+        <!-- Ingredients Info Modal -->
+        <div class="modal fade" id="ingredients-modal" tabindex="-1" aria-labelledby="ingredients-modal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Please Structure Like So:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            <li>225g Self Raising Flour</li>
+                            <li>225g Caster Sugar</li>
+                            <li>225g Baking Margarine</li>
+                            <li>1tsp Baking Powder</li>
+                            <li>4 Eggs</li>
+                            <li>Strawberry Jam</li>
+                            <li>300ml Double Cream (whipped)</li>
+                            <li>Icing Sugar</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
-            <!-- Ingredients Input Textarea -->
-            <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" cols="30" rows="10"
-                aria-describedby="recipe_ingredients" required>
-            </textarea>
         </div>
 
         <!-- Method -->
@@ -112,66 +109,64 @@
                 <a data-bs-toggle="modal" href="#method-modal">
                     <i class="fa-solid fa-circle-info"></i>
                 </a>
+            </div>
+            <!-- Method Input Textarea -->
+            <textarea class="form-control" id="recipe_method" name="recipe_method" rows="10" required></textarea>
+        </div>
 
-                <!-- Method Info Modal -->
-                <div class="modal fade" id="method-modal" tabindex="-1" aria-labelledby="method-modal"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5">Please Structure Like So:</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <ul style="list-style-type: none; padding: 0; margin: 0;">
-                                    <li>
-                                        1. Preheat the oven to 180°C/160°C fan/Gas 4. Lightly grease two 20cm deep
-                                        loose-bottomed sandwich tins and line the bases with non-stick baking paper.
-                                    </li>
-                                    <br>
-                                    <li>
-                                        2. Measure the sponge ingredients into a large bowl or freestanding mixer and
-                                        beat for about 2 minutes with an electric whisk until beautifully smooth and
-                                        lighter in colour. The time will vary according to the efficiency of the mixer.
-                                    </li>
-                                    <br>
-                                    <li>
-                                        3. Divide the mixture between the tins and level the tops. Bake in the oven for
-                                        about 25 minutes, or until well risen and golden and the cakes are shrinking
-                                        away from the sides of the tins. The tops of the cakes should spring back when
-                                        pressed lightly with a finger.
-                                    </li>
-                                    <br>
-                                    <li>
-                                        4. Leave the cakes to cool in the tins for a few moments, then run a palette
-                                        knife around the edge of the tins to free the
-                                        sides. Turn the cakes out, then peel off the paper and leave to cool completely
-                                        on a wire rack.
-                                    </li>
-                                    <br>
-                                    <li>
-                                        5. Choose the cake with the best top and spread the underside with jam. Put the
-                                        other cake top downwards on a serving plate. Spread this cake carefully with the
-                                        whipped cream. Sit the other cake on top (jam side touching the cream).
-                                    </li>
-                                    <br>
-                                    <li>
-                                        6. Sprinkle with icing sugar and cut into slices to serve
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+        <!-- Method Info Modal -->
+        <div class="modal fade" id="method-modal" tabindex="-1" aria-labelledby="method-modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Please Structure Like So:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            <li>
+                                1. Preheat the oven to 180°C/160°C fan/Gas 4. Lightly grease two 20cm deep
+                                loose-bottomed sandwich tins and line the bases with non-stick baking paper.
+                            </li>
+                            <br>
+                            <li>
+                                2. Measure the sponge ingredients into a large bowl or free-standing mixer and
+                                beat for about 2 minutes with an electric whisk until beautifully smooth and
+                                lighter in colour. The time will vary according to the efficiency of the mixer.
+                            </li>
+                            <br>
+                            <li>
+                                3. Divide the mixture between the tins and level the tops. Bake in the oven for
+                                about 25 minutes, or until well risen and golden and the cakes are shrinking
+                                away from the sides of the tins. The tops of the cakes should spring back when
+                                pressed lightly with a finger.
+                            </li>
+                            <br>
+                            <li>
+                                4. Leave the cakes to cool in the tins for a few moments, then run a palette
+                                knife around the edge of the tins to free the
+                                sides. Turn the cakes out, then peel off the paper and leave to cool completely
+                                on a wire rack.
+                            </li>
+                            <br>
+                            <li>
+                                5. Choose the cake with the best top and spread the underside with jam. Put the
+                                other cake top downwards on a serving plate. Spread this cake carefully with the
+                                whipped cream. Sit the other cake on top (jam side touching the cream).
+                            </li>
+                            <br>
+                            <li>
+                                6. Sprinkle with icing sugar and cut into slices to serve
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-            <!-- Method Input Textarea -->
-            <textarea class="form-control" id="recipe_method" name="recipe_method" cols="30" rows="10"
-                aria-describedby="recipe_method" required></textarea>
         </div>
+
         <!-- Recipe Image -->
         <!--
         <label for="recipe_img">Image of Dish</label>
@@ -192,8 +187,8 @@
         --- are included in case Bootstrap fails to load or that it is decided to include this input field on the form later. -->
         <div class="mb-3 d-none">
             <label for="post_date" class="form-label"><i class="fa-solid fa-calendar-day"></i> Post Date:</label>
-            <input type="date" class="form-control" name="post_date" id="post_date" 
-            readonly required style="pointer-events: none;">
+            <input type="date" class="form-control" name="post_date" id="post_date" readonly required
+                style="pointer-events: none;">
         </div>
 
         <!-- Submit Button -->

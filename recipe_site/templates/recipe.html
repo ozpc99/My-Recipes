@@ -1,18 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+
 <main class="container mt-5">
-    {% for recipe in recipes %}
+
     <div class="row">
+        {% for recipe in recipes %}
         <div class="col-lg-8">
             <article>
                 <!-- Recipe Header -->
                 <header class="mb-4">
                     <!-- Recipe Name -->
-                    <h1 class="fw-bolder mb-1">{% recipe.recipe_name %}</h1>
+                    <h1 class="fw-bolder mb-1">{{ recipe.recipe_name }}</h1>
                     <!-- Recipe Post Date & Author (meta content) -->
-                    <div class="text-muted fst-italic mb-2">Posted on dd/mm/yy by author_name</div>
+                    <div class="text-muted fst-italic mb-2">
+                        Posted on {{ recipe.post_date.strftime('%d/%m/%Y') }}
+                        <br>
+                        By author_name
+                    </div>
                     <!-- Recipe Rating -->
-                    <div class="">
+                    <div>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -20,9 +26,11 @@
                         <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
                     <!-- Cuisine Category -->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Cuisine Type</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">
+                        Cuisine: {{ recipe.cuisine_type }}
+                    </a>
                 </header>
-                <h5>Serves: {% recipe.recipe_serves %}</h5>
+                <h5>Serves: {{ recipe.recipe_serves }}</h5>
                 <!-- Recipe Image -->
                 <figure class="mb-4"><img class="img-fluid rounded"
                         src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
@@ -30,26 +38,53 @@
                 <section class="mb-5">
                     <h2 class="fw-bolder mb-4 mt-5">About</h2>
                     <p class="fs-5 mb-4">
-                        {% recipe.recipe_description %}
+                        {{ recipe.recipe_description }}
                     </p>
                 </section>
                 <!-- Recipe Ingredients Section -->
                 <section class="mb-5">
-                    <h3 class="fw-bolder mb-4 mt-5">Ingredients</h3>
-                    <p class="fs-5 mb-4">
-                        {% recipe.recipe_ingredients %}
+                    <h2 class="fw-bolder mb-4 mt-5">Ingredients</h2>
+                    <p class="recipe fs-5 mb-4">
+                        {{ recipe.recipe_ingredients }}
                     </p>
                 </section>
                 <section class="mb-5">
-                    <h3 class="fw-bolder mb-4 mt-5">Method</h3>
-                    <p class="fs-5 mb-4">
-                        {% recipe.recipe_method %}
+                    <h2 class="fw-bolder mb-4 mt-5">Method</h2>
+                    <p class="recipe fs-5 mb-4">
+                        {{ recipe.recipe_method }}
                     </p>
                 </section>
             </article>
         </div>
+
+        <!-- Side Widgets -->
+        <div class="col-lg-4">
+            <!-- Rate This Recipe -->
+            <!-- DEV COMMENT: Ensure rate recipe widget is hidden/moved to bottom of page on mobile screens -->
+            <div class="card mb-4">
+                <div class="card-header">Rate This Recipe</div>
+                <div class="card-body">
+
+                    <!--Recipe Rating Form-->
+                    
+
+                </div>
+            </div>
+
+            <!-- Ingredients -->
+            <!-- DEV COMMENT: Ensure Ingredients widget is hidden on mobile screens -->
+            <div class="card mb-4">
+                <div class="card-header">Ingredients</div>
+                <div class="recipe card-body">
+                {{ recipe.recipe_ingredients }}
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
     </div>
-    {% endfor %}
+
 </main>
 
 {% endblock %}
