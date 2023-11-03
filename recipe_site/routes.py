@@ -51,7 +51,7 @@ def recipes():
 def add_recipe():
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
     if request.method == "POST":
-        recipe = Recipe(
+        recipes = Recipe(
             recipe_name=request.form.get("recipe_name"),
             cuisine_id=request.form.get("cuisine_id"),
             recipe_description=request.form.get("recipe_description"),
@@ -63,14 +63,13 @@ def add_recipe():
             post_date=request.form.get("post_date")
             # is_featured=bool(True if request.form.get("is_featured") else False),
         )
-        db.session.add(recipe)
+        db.session.add(recipes)
         db.session.commit()
         return redirect(url_for("recipes"))
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
-@app.route("/recipe")
-def recipe():
-    recipes = Recipe.query.order_by(Recipe.id).all()
-    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
-    return render_template("recipe.html", recipes=recipes, cuisines=cuisines)
+@app.route("/recipe<int:id>")
+def recipe(id):
+    recipe = Recipe.query.get(id)
+    return render_template("recipe.html", recipe=recipe)
