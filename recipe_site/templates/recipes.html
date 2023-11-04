@@ -6,13 +6,14 @@
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
             <div class="text-center my-5">
-                <h1 class="fw-bolder">{{cuisines.cuisine_type}} Recipes</h1>
+                <h1 class="fw-bolder">Recipes</h1>
             </div>
         </div>
     </header>
 
     <!-- Recipe Preview Displayed in Cards-->
     <div class="row mb-3">
+        {% for recipe in recipes %}
         <div class="col mb-3">
             <div class="card" style="width: 18rem;">
 
@@ -26,24 +27,24 @@
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="text-center">
                     <div class="card-body">
-                        <h5 class="card-title">{{ recipes.recipe_name }}</h5>
-                        <a href="{{ url_for('recipe', id=recipes.id) }}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> View</a>
+                        <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+                        <a href="{{ url_for('recipe', id=recipe.id) }}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> View</a>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <i class="fa-solid fa-user"></i> author_name
                             </li>
                             <li class="list-group-item">
-                                <i class="fa-solid fa-calendar-day"></i> {{ recipes.post_date.strftime('%d/%m/%Y') }}
+                                <i class="fa-solid fa-calendar-day"></i> {{ recipe.post_date.strftime('%d/%m/%Y') }}
                             </li>
                             <li class="list-group-item">
                                 <!--Button trigger modal to Edit Recipe -->
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#modal-for-edit-{{ recipes.id }}">
+                                    data-bs-target="#modal-for-edit-{{ recipe.id }}">
                                     <i class="fa-solid fa-pencil"></i> Edit</a>
                                 </button>
                                 <!-- Button trigger modal to Delete Recipe -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#modal-for-delete-{{ recipes.id }}">
+                                    data-bs-target="#modal-for-delete-{{ recipe.id }}">
                                     <i class="fa-solid fa-trash-can"></i> Delete</a>
                                 </button>
                             </li>
@@ -54,14 +55,14 @@
         </div>
 
         <!-- Modal to Edit Recipe -->
-        <div class="modal fade modal-for-edit" id="modal-for-edit-{{ recipes.id }}" tabindex="-1"
-            data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-for-edit-{{ recipes.id }}"
+        <div class="modal fade modal-for-edit" id="modal-for-edit-{{ recipe.id }}" tabindex="-1"
+            data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-for-edit-{{ recipe.id }}"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modal-{{ recipes.id }}">
-                            <i class="fa-solid fa-pencil"></i> Edit: "{{ recipes.recipe_name }}" Recipe</h1>
+                        <h1 class="modal-title fs-5" id="modal-{{ recipe.id }}">
+                            <i class="fa-solid fa-pencil"></i> Edit: "{{ recipe.recipe_name }}" Recipe</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -74,7 +75,7 @@
                                 <label for="recipe_name" class="form-label">
                                     <i class="fa-solid fa-utensils"></i> Recipe Name:
                                 </label>
-                                <input id="recipe_name" name="recipe_name" placeholder="{{ recipes.recipe_name }}"
+                                <input id="recipe_name" name="recipe_name" placeholder="{{ recipe.recipe_name }}"
                                     aria-placeholder="Edit Recipe" minlength="3" maxlength="25" type="text"
                                     class="form-control validate" required aria-label="Edit Recipe"
                                     aria-describedby="edit_recipe">
@@ -87,7 +88,9 @@
                                 </label>
                                 <select class="form-select" name="cuisine_id" id="cuisine_id" required>
                                     <option value="" disabled selected>Choose...</option>
-                                    <option value="{{ cuisines.id }}">{{ cuisines.cuisine_type}}</option>
+                                    {% for cuisine in cuisines %}
+                                    <option value="{{ cuisine.id }}">{{ cuisine.cuisine_type}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
 
@@ -170,14 +173,14 @@
 
 
         <!-- Modal to Delete Recipe -->
-        <div class="modal fade modal-for-delete" id="modal-for-delete-{{ recipes.id }}" tabindex="-1"
-            data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-{{ recipes.id }}"
+        <div class="modal fade modal-for-delete" id="modal-for-delete-{{ recipe.id }}" tabindex="-1"
+            data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-{{ recipe.id }}"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modal-{{ recipes.id }}">
-                            <i class="fa-solid fa-trash-can"></i> Delete: "{{ recipes.recipe_name }}"</h1>
+                        <h1 class="modal-title fs-5" id="modal-{{ recipe.id }}">
+                            <i class="fa-solid fa-trash-can"></i> Delete: "{{ recipe.recipe_name }}"</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -196,7 +199,7 @@
                             <!-- <img src="..." class="card-img-top" alt="..."> -->
 
                             <div class="card-body">
-                                <h5 class="card-title">{{ recipes.recipe_name }}?</h5>
+                                <h5 class="card-title">{{ recipe.recipe_name }}?</h5>
                             </div>
                         </div>
 
@@ -221,6 +224,7 @@
             </div>
         </div>
 
+        {% endfor %}
     </div>
 
 </main>

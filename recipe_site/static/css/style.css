@@ -1,4 +1,5 @@
-/* Modal for Editing Cuisine/Recipe: Custom Styling */
+/* Modal for Editing Cuisine/Recipe 
+=========================================================*/
 .modal-for-edit .modal-header {
     background-color: var(--bs-success-bg-subtle);
 }
@@ -7,7 +8,8 @@
     border: 5px solid var(--bs-success-border-subtle);
 }
 
-/* Modal for Deleting Cuisine/Recipe: Custom Styling */
+/* Modal for Deleting Cuisine/Recipe 
+=========================================================*/
 .modal-for-delete .modal-header {
     background-color: var(--bs-danger-bg-subtle);
 }
@@ -16,7 +18,8 @@
     border: 5px solid var(--bs-danger-border-subtle);
 }
 
-/* Recipe Ingredients and Method */
+/* Recipe Ingredients and Method 
+=========================================================*/
 .recipe {
     /* Removes white space (the tab/indent) before first line and that above it */
     white-space: pre-line;
