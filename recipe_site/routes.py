@@ -1,6 +1,12 @@
 from flask import render_template, request, redirect, url_for
+from datetime import datetime
 from recipe_site import app, db
 from recipe_site.models import Cuisine, Recipe
+
+
+def get_todays_date():
+        today = datetime.today()
+        return today
 
 
 @app.route("/")
@@ -55,12 +61,12 @@ def add_recipe():
             recipe_name=request.form.get("recipe_name"),
             cuisine_id=request.form.get("cuisine_id"),
             recipe_description=request.form.get("recipe_description"),
-            recipe_serves = request.form.get("recipe_serves"),
-            recipe_ingredients = request.form.get("recipe_ingredients"),
-            recipe_method = request.form.get("recipe_method"),
-            # recipe_img = ,
-            # author_name = ,
-            post_date=request.form.get("post_date")
+            recipe_serves=request.form.get("recipe_serves"),
+            recipe_ingredients=request.form.get("recipe_ingredients"),
+            recipe_method=request.form.get("recipe_method"),
+            # recipe_img= ,
+            # author_name= ,
+            post_date=get_todays_date()
             # is_featured=bool(True if request.form.get("is_featured") else False),
         )
         db.session.add(recipes)
@@ -69,7 +75,27 @@ def add_recipe():
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
-@app.route("/recipe<int:id>")
+@app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = Recipe.query.get_or_404(recipe_id)
+    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    if request.method == "POST":
+        recipe.recipe_name = request.form.get("recipe_name"),
+        recipe.cuisine_id = request.form.get("cuisine_id"),
+        recipe.recipe_description = request.form.get("recipe_description"),
+        recipe.recipe_serves = request.form.get("recipe_serves"),
+        recipe.recipe_ingredients = request.form.get("recipe_ingredients"),
+        recipe.recipe_method = request.form.get("recipe_method"),
+        # recipe.recipe_img = ,
+        # recipe.author_name = ,
+        recipe.post_date=get_todays_date()
+        # recipe.is_featured=bool(True if request.form.get("is_featured") else False),
+        db.session.commit()
+        return redirect(url_for("recipes"))
+
+
+# Displays Recipe Page Template inserted with data from recipe id
+@app.route("/recipe/<int:id>")
 def recipe(id):
     recipe = Recipe.query.get(id)
     return render_template("recipe.html", recipe=recipe)
