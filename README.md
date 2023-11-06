@@ -62,7 +62,9 @@ Further documentation is available on GitHub's website: [Cloning a Repository](h
         - Once Git is installed, you must restart your machine.
     
     - Further documentation on Git is available at: https://git-scm.com/doc
-    - For your reference: You can keep up to date with the latest development version of Git by typing this command into a Git Bash terminal in your IDE: `git clone https://github.com/git/git`
+    - For your reference: You can keep up to date with the latest development version of Git by typing this command into a Git Bash terminal in your IDE: 
+    
+            git clone https://github.com/git/git
 
 2. Navigate to the GitHub repository: [ozpc99/recipe-site](https://github.com/ozpc99/recipe-site)
 at: https://github.com/ozpc99/recipe-site
@@ -100,7 +102,11 @@ If you prefer to clone directly, then select 'HTTPS' and copy the link.
     - In VS Code, select 'Terminal' > 'New Terminal' from the top menu bar. On Windows, you can use the shortcut: Ctrl + Shift + `
     - To check the terminal is running Git Bash, refer to the icon in the right hand sidebar of the terminal. It should say 'bash'. If it does not, click the '+' icon and select 'Git Bash' from the dropdown menu.
 
-8. In the terminal type: `git clone` followed by a space and paste in the URL you copied earlier.
+8. In the terminal type: 
+
+        git clone
+
+followed by a space and paste in the URL you copied earlier.
 
 9. Press the Enter key and the repository will be cloned.
 
@@ -134,7 +140,7 @@ at: https://github.com/ozpc99/Allotment-Shop-UK
 
 - Further documentation is available on the GitHub website: [Creating a codespace for a repository](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository)
 
-### Initialising your Workspace
+## Initialising your Workspace
 This project workspace was created in GitPod (VS Code), using The [Code Institute GitPod Full Template](https://github.com/Code-Institute-Org/gitpod-full-p3). This template contains a dockerfile with the necessary commands needed to build this project.
 
 For this project to work, you will need to install some additional packages.
@@ -146,49 +152,85 @@ These are:
 - Flask-SQLAlchemy 2.5.1
 - Psycopg2
 
-To check which packages you have installed, open a new terminal and type the command:
+To check which packages you have installed, open a new Bash terminal and type the command:
 
-`pip list`
+    pip list
 
 If you have just created your workspace it is more than likely these packages are not installed.
-To install them, type the following commands:
+To install them, follow these instructions:
 
 1. PostgreSQL
 
-    If you are using GitPod and you cloned this repository or created a new repository from the 'Code Institute GitPod Full Template', PostgreSQL should already be installed. To check this, open a new terminal and type:
+    I. If you are using GitPod and you cloned this repository or created a new repository from the 'Code Institute GitPod Full Template', PostgreSQL should already be installed. To check this, in a Bash terminal, type the command:
 
-    `psql`
+        psql
 
-    And you should enter the postgres CLI which looks something like this:
+    II. You should enter the Postgres CLI which looks something like this:
 
         psql (12.16 (Ubuntu 12.16-1.pgdg22.04+1))
         Type "help" for help.
 
         postgres=#
 
-    If you receive an error message such as:
+    III. Exit the Postgres CLI by typing the command:
 
-        bash: psql: command not found
+        \q
+
+    ### Troubleshooting:
+    - If you receive an error message such as:
+
+            bash: psql: command not found
               
-    Install PostgreSQL like so,
-    type the command:
+    - Install PostgreSQL by typing the command:
 
-    `pip3 install postgres`
+            pip3 install postgres
+
+    ### *NB:* 
+    For help and a list of all commands, enter the Postgres CLI and type the command:
+
+        \?
+
+    - View documentation on the [PostgreSQL](https://www.postgresql.org/) site:
+    https://www.postgresql.org/docs/
+
+    - View a list of commonly used commands on the
+    [Command Prompt, Inc](https://www.commandprompt.com/) site:
+    https://www.commandprompt.com/education/postgresql-basic-psql-commands/
+
 
 2. Flask 2.0.1
-    - `pip3 install Flask==2.0.1`
+    
+    I. In a Bash terminal, type the command:
+
+        pip3 install Flask==2.0.1
+
 3. SQLAlchemy 1.4.18
-    - `pip3 install SQLAlchemy==1.4.18`
+
+    I. In a Bash terminal, type the command:
+
+        pip3 install SQLAlchemy==1.4.18
+
 4. Werkzeug 2.0.1
-    - `pip3 install Werkzeug==2.0.1`
+
+    I. In a Bash terminal, type the command:
+
+        pip3 install Werkzeug==2.0.1
+
 5. Flask-SQLAlchemy 2.5.1
-    - `pip3 install Flask-SQLAlchemy==2.5.1`
+
+    I. In a Bash terminal, type the command:
+
+        pip3 install Flask-SQLAlchemy==2.5.1
+
 6. Psycopg2
-    - `pip3 install psycopg2`
 
-To check you have all packages successfully installed, type the command:
+    I. In a Bash terminal, type the command:
 
-`pip list`
+        pip3 install psycopg2
+
+To check you have all packages successfully installed, in a Bash terminal type the command:
+
+    pip list
 
 The terminal should display each of the packages installed and their respective version:
 
@@ -204,6 +246,81 @@ The terminal should display each of the packages installed and their respective 
     SQLAlchemy       1.4.18
     Werkzeug         2.0.1
 
+
+### Initialising the Database with Postgres
+Once you have your database schemas set up using Python, you will want to connect it to Postgres.
+
+#### Creating the Postgres Database
+1. Enter the Postgres CLI. In a Bash terminal, type the command:
+
+        psql
+
+2. Create the Postgres Database by typing the command:
+
+        CREATE DATABASE: database_name_here;
+    
+    - Replace 'database_name_here' with the name you want to give your database.
+    - Remember to include the semicolon ( ; ) at the end of the command.
+
+3. Exit the Postgres CLI by typing the command:
+
+        \q
+
+#### Importing the Python Database Schema into Postgres
+
+1. Enter the Python3 CLI. In a Bash terminal, type the command:
+
+        python3
+
+2. Type the command:
+
+        from root_directory_name_here import db
+
+    - Replace 'root_directory_name_here' with the name of the root directory that holds your Python file containing the database schemas.
+
+3. Type the command:
+
+        db.create_all()
+
+4. Exit the Python3 CLI by typing the command:
+
+        exit()
+
+#### Check the database has been created and imported successfully
+
+1. Enter your Postgres database directory in Postgres CLI by typing the command:
+
+        psql -d database_name_here 
+        
+    - Replace 'database_name_here' with the name of your database.
+
+2. Run these commands to check the Python data schema has been populated in Postgres:
+
+    - To go back to the last entry, type:
+
+            q
+
+    I. To list tables, type:
+
+        \dt
+
+    II. To Describe tables, type:
+
+        \d
+
+#### Deleting the Database
+If at any time, you wish to update your Python database schemas such as adding new tables or columns, you will need to reimport your database into Postgres.
+
+1. Delete the old Postgres database by entering the Postgres CLI and typing the command:
+
+        DROP DATABASE database_name_here;
+
+    - Replace 'database_name_here' with the name of your database.
+    - Remember to include the semicolon ( ; ) at the end of the command.
+
+2. Repeat the steps to [Initialise the Database with Postgres](#initialising-the-database-with-postgres)
+
+
 ### Committing to GitHub
 Once your workspace is set up successfully and you're happy to push to GitHub:
 1. Open a new Git Bash terminal
@@ -211,13 +328,35 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
     On Windows, you can use the shortcut: Ctrl + Shift + `  
     - To check the terminal is running Git Bash, refer to the icon in the right hand sidebar of the terminal. It should say 'bash'. If it does not, click the '+' icon and select 'Git Bash' from the dropdown menu.
 
-2. Type the command: `git add .` and press the Enter key.
+2. Type the command: 
 
-3. To check the status of your changes you can type the command: `git status` followed by the Enter key and the terminal will list all changed or modified files.
+        git add .
 
-4. When you're happy to commit, type the command: `git commit -m ""` putting your commit message within the double parentheses and press the Enter key. Git will compile your files and list their changes.
+    and press the Enter key.
 
-5. Then type the command: `git push` and Git will now push your changes to GitHub via the Main branch. To commit via a different branch, simply type the command: `git push origin` followed by the name of the branch e.g. `main`
+3. To check the status of your changes you can type the command: 
+
+        git status
+
+    followed by the Enter key and the terminal will list all changed or modified files.
+
+4. When you're happy to commit, type the command: 
+
+        git commit -m ""
+
+    putting your commit message within the double parentheses and press the Enter key. Git will compile your files and list their changes.
+
+5. Then type the command:
+
+        git push 
+
+    and Git will now push your changes to GitHub via the Main branch.
+    
+    To commit via a different branch, simply type the command: 
+    
+        git push origin
+    
+    followed by the name of the branch e.g. main
 
 - For your reference, you can also commit to GitHub via GitHub Desktop, just launch the application and open your repository where you will be notified of any changes to your files. You can use the GUI from there to make your commits.
 

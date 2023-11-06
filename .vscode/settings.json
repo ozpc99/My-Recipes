@@ -25,6 +25,9 @@
    "editor.defaultFormatter": "HookyQR.beautify",
    "cSpell.language": "en-GB",
    "cSpell.ignoreWords": [
+      "Psycopg",
+      "Werkzeug",
+      "itsdangerous",
       "sqlalchemy",
       "todays"
    ]
