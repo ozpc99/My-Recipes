@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!--Styling for Rate Recipes Form-->
+<style>
+    .rating .btn {
+        border: none;
+    }
+
+    .rating .icon i {
+        color: black;
+    }
+
+    .rating .btn:hover .icon i,
+    .rating .btn.hover .icon i {
+        color: #ffc107;
+    }
+
+    .rating .btn.checked .icon i,
+    .rating .btn.checked .icon i~.icon i {
+        color: #ffc107;
+    }
+</style>
+
 <main class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
@@ -17,14 +38,17 @@
                     </div>
                     <!-- Recipe Rating -->
                     <div>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <span class="star-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </span>
                     </div>
                     <!-- Cuisine Category -->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
+                    <a class="badge bg-secondary text-decoration-none link-light"
+                        href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
                         {{ recipe.cuisine }}
                     </a>
                 </header>
@@ -64,7 +88,50 @@
                 <div class="card-body">
 
                     <!--Recipe Rating Form-->
-                    
+                    <form method="" action="">
+                        <div class="rating mb-3">
+                            <input type="radio" class="btn-check" name="options-base" id="option1" value="1"
+                                autocomplete="off">
+                            <label class="btn" for="option1">
+                                <span class="icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+
+                            <input type="radio" class="btn-check" name="options-base" id="option2" value="2"
+                                autocomplete="off">
+                            <label class="btn" for="option2">
+                                <span class="icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+
+                            <input type="radio" class="btn-check" name="options-base" id="option3" value="3"
+                                autocomplete="off">
+                            <label class="btn" for="option3">
+                                <span class="icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+
+                            <input type="radio" class="btn-check" name="options-base" id="option4" value="4"
+                                autocomplete="off">
+                            <label class="btn" for="option4">
+                                <span class="icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+
+                            <input type="radio" class="btn-check" name="options-base" id="option5" value="5"
+                                autocomplete="off">
+                            <label class="btn" for="option5">
+                                <span class="icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-warning">Rate!</button>
+                    </form>
 
                 </div>
             </div>
@@ -74,7 +141,7 @@
             <div class="card mb-4">
                 <div class="card-header">Ingredients</div>
                 <div class="recipe card-body">
-                {{ recipe.recipe_ingredients }}
+                    {{ recipe.recipe_ingredients }}
                 </div>
             </div>
         </div>
@@ -82,5 +149,35 @@
     </div>
 
 </main>
+
+<!--Script for Rate Recipe Form-->
+<script>
+    const labels = document.querySelectorAll('.rating .btn');
+    const submitButton = document.querySelector('.rating button[type="submit"]');
+
+    labels.forEach((label, index) => {
+        label.addEventListener('mouseover', () => {
+            for (let i = 0; i <= index; i++) {
+                labels[i].classList.add('hover');
+            }
+        });
+
+        label.addEventListener('mouseout', () => {
+            labels.forEach((label) => {
+                label.classList.remove('hover');
+            });
+        });
+
+        label.addEventListener('click', () => {
+            for (let i = 0; i <= index; i++) {
+                labels[i].classList.add('checked');
+            }
+
+            for (let i = index + 1; i < labels.length; i++) {
+                labels[i].classList.remove('checked');
+            }
+        });
+    });
+</script>
 
 {% endblock %}

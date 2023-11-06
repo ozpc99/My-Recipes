@@ -25,6 +25,7 @@ class Recipe(db.Model):
     # recipe_img = 
     # author_name = db.Column(db.String(25), nullable=False)
     post_date = db.Column(db.Date, nullable=False)
+    # rating = db.Column(db.Integer)
     # is_featured = db.Column(db.Boolean, default=False, nullable=False)
     
 

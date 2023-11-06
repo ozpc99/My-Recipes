@@ -28,7 +28,8 @@
                 <div class="text-center">
                     <div class="card-body">
                         <h5 class="card-title">{{ recipe.recipe_name }}</h5>
-                        <a href="{{ url_for('recipe', id=recipe.id) }}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> View</a>
+                        <a href="{{ url_for('recipe', id=recipe.id) }}" class="btn btn-primary">
+                            <i class="fa-solid fa-magnifying-glass"></i> View</a>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <i class="fa-solid fa-user"></i> author_name
@@ -126,7 +127,8 @@
                                     <i class="fa-solid fa-circle-info"></i> Please type each ingredient on a new row.
                                 </div>
 
-                                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="10" required></textarea>
+                                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients"
+                                    rows="10" required></textarea>
                             </div>
 
                             <!-- Method -->
@@ -140,7 +142,8 @@
                                     <i class="fa-solid fa-circle-info"></i> Prefix each step with a number, followed by
                                     a period: e.g. 1.
 
-                                    <textarea class="form-control" id="recipe_method" name="recipe_method" rows="10" required></textarea>
+                                    <textarea class="form-control" id="recipe_method" name="recipe_method" rows="10"
+                                        required></textarea>
                                 </div>
                             </div>
 
@@ -152,8 +155,8 @@
                             <div class="mb-3">
                                 <label for="post_date" class="form-label"><i class="fa-solid fa-calendar-day"></i> Post
                                     Date:</label>
-                                <input type="date" class="form-control" name="post_date" id="post_date" value="{{ recipe.post_date }}" readonly
-                                    required style="pointer-events: none;">
+                                <input type="date" class="form-control" name="post_date" id="post_date"
+                                    value="{{ recipe.post_date }}" readonly required style="pointer-events: none;">
                             </div>
 
                             <div class="modal-footer">
