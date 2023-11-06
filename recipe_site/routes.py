@@ -48,9 +48,17 @@ def delete_cuisine(cuisine_id):
 
 @app.route("/recipes")
 def recipes():
-    recipes = Recipe.query.order_by(Recipe.id).all()
+    cuisine_id = request.args.get('cuisine_id')
+    if cuisine_id:
+        recipes = Recipe.query.filter_by(cuisine_id=cuisine_id).order_by(Recipe.id).all()
+        cuisine = Cuisine.query.get(cuisine_id)
+        cuisine_type = cuisine.cuisine_type
+    else:
+        recipes = Recipe.query.order_by(Recipe.id).all()
+        cuisine_type = "All Cuisines"
+
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
-    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
+    return render_template("recipes.html", recipes=recipes, cuisines=cuisines, cuisine_type=cuisine_type)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
@@ -71,7 +79,7 @@ def add_recipe():
         )
         db.session.add(recipes)
         db.session.commit()
-        return redirect(url_for("recipes"))
+        return redirect(url_for("home"))
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
@@ -91,7 +99,7 @@ def edit_recipe(recipe_id):
         recipe.post_date=get_todays_date()
         # recipe.is_featured=bool(True if request.form.get("is_featured") else False),
         db.session.commit()
-        return redirect(url_for("recipes"))
+        return redirect(url_for("home"))
 
 
 @app.route("/delete_recipe/<int:recipe_id>")
@@ -99,7 +107,7 @@ def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
     db.session.delete(recipe)
     db.session.commit()
-    return redirect(url_for("recipes"))
+    return redirect(url_for("home"))
 
 
 # Displays Recipe Page Template inserted with data from recipe id

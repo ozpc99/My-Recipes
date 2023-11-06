@@ -24,7 +24,7 @@
                         <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
                     <!-- Cuisine Category -->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="{{ url_for('recipes') }}">
+                    <a class="badge bg-secondary text-decoration-none link-light" href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
                         {{ recipe.cuisine }}
                     </a>
                 </header>
