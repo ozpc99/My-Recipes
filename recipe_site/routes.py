@@ -13,7 +13,8 @@ def get_todays_date():
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    recipes = Recipe.query.order_by(Recipe.id).all()
+    return render_template("base.html", recipes=recipes)
 
 
 @app.route("/cuisine")
@@ -84,7 +85,6 @@ def add_recipe():
             # recipe_img= ,
             # author_name= ,
             post_date=get_todays_date()
-            # is_featured=bool(True if request.form.get("is_featured") else False),
         )
         db.session.add(recipes)
         db.session.commit()

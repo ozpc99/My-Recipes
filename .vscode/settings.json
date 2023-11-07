@@ -28,6 +28,7 @@
       "Psycopg",
       "Werkzeug",
       "itsdangerous",
+      "selectattr",
       "sqlalchemy",
       "todays"
    ]

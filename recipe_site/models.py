@@ -28,8 +28,6 @@ class Recipe(db.Model):
     post_date = db.Column(db.Date, nullable=False)
     rating = db.Column(ARRAY(db.Integer))
     average_rating = db.Column(db.Float)
-    # is_featured = db.Column(db.Boolean, default=False, nullable=False)
-
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
