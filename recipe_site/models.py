@@ -1,3 +1,4 @@
+from sqlalchemy.dialects.postgresql import ARRAY
 from recipe_site import db
 
 
@@ -25,12 +26,13 @@ class Recipe(db.Model):
     # recipe_img = 
     # author_name = db.Column(db.String(25), nullable=False)
     post_date = db.Column(db.Date, nullable=False)
-    # rating = db.Column(db.Integer)
+    rating = db.Column(ARRAY(db.Integer))
+    average_rating = db.Column(db.Float)
     # is_featured = db.Column(db.Boolean, default=False, nullable=False)
-    
+
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
-        return "{0}- Recipe: {1} | Cuisine: {2} | Description: {3} | Serves: {4} | Ingredients: {5} | Method: {6} | Date: {7}".format(
-            self.id, self.recipe_name, self.cuisine_id, self.recipe_description, self.recipe_serves, self.recipe_ingredients, self.recipe_method, self.post_date
+        return "{0}- Recipe: {1} | Cuisine: {2} | Description: {3} | Serves: {4} | Ingredients: {5} | Method: {6} | Date: {7} | Avg Rating: {8} |".format(
+            self.id, self.recipe_name, self.cuisine_id, self.recipe_description, self.recipe_serves, self.recipe_ingredients, self.recipe_method, self.post_date, self.average_rating
         )

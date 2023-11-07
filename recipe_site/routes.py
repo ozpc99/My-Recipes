@@ -1,4 +1,6 @@
 from flask import render_template, request, redirect, url_for
+from sqlalchemy import func
+from sqlalchemy.orm.attributes import flag_modified
 from datetime import datetime
 from recipe_site import app, db
 from recipe_site.models import Cuisine, Recipe
@@ -61,6 +63,13 @@ def recipes():
     return render_template("recipes.html", recipes=recipes, cuisines=cuisines, cuisine_type=cuisine_type)
 
 
+# Displays Recipe Page Template inserted with data from recipe id
+@app.route("/recipe/<int:id>")
+def recipe(id):
+    recipe = Recipe.query.get(id)
+    return render_template("recipe.html", recipe=recipe)
+
+
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
@@ -110,8 +119,26 @@ def delete_recipe(recipe_id):
     return redirect(url_for("home"))
 
 
-# Displays Recipe Page Template inserted with data from recipe id
-@app.route("/recipe/<int:id>")
-def recipe(id):
-    recipe = Recipe.query.get(id)
-    return render_template("recipe.html", recipe=recipe)
+# Rate Recipes Form
+@app.route("/rate_recipe/<int:id>", methods=["POST"])
+def rate_recipe(id):
+    recipe = Recipe.query.get_or_404(id)
+    if request.method == "POST":
+        rating = request.form.get("recipe_rating")
+        if rating is not None:
+            rating = int(rating)
+            if recipe.rating is None:
+                recipe.rating = [rating]
+            else:
+                recipe.rating.append(rating)
+            # updates the 'rating' column with the modified array so that each time the form is submitted, the array is modified accordingly.
+            flag_modified(recipe, "rating")
+            db.session.commit()
+            if recipe.rating:
+                # calculates the mean average of all values in the 'rating' array and updates the value in the'average_rating' column.
+                average_rating = sum(recipe.rating) / len(recipe.rating)
+                recipe.average_rating = average_rating
+            else:
+                recipe.average_rating = None
+            db.session.commit()
+    return redirect(url_for("recipe", id=id))

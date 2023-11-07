@@ -38,14 +38,63 @@
                     </div>
                     <!-- Recipe Rating -->
                     <div>
-                        <span class="star-rating">
+                    {% if recipe.average_rating is none or recipe.average_rating == 0 %}
+                    <span class="d-none">No Rating</span>
+                    {% else %}
+                        <!-- Display Average Rating As Stars -->
+                        {% if recipe.average_rating == 1 %}
+                            <!-- 1 Star -->
+                            <i class="fa-solid fa-star"></i>
+                        {% elif 1 < recipe.average_rating < 2 %}
+                            <!-- 1.5 Stars -->
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        {% elif recipe.average_rating == 2 %}
+                            <!-- 2 Stars -->
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        {% elif 2 < recipe.average_rating < 3 %}
+                            <!-- 2.5 Stars -->
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        {% elif recipe.average_rating == 3 %}
+                            <!-- 3 Stars -->
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        {% elif 3 < recipe.average_rating < 4 %}
+                            <!-- 3.5 Stars -->
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <!-- 4 Stars -->
+                        {% elif recipe.average_rating == 4 %}
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <!-- 4.5 Stars -->
+                        {% elif 4 < recipe.average_rating < 5 %}
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                        </span>
+                            <!-- 5 Stars -->
+                        {% elif recipe.average_rating == 5 %}
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        {% endif %}
+                        <!-- Display Average Rating As Float, rounded to 1 decimal place-->
+                        {{ recipe.average_rating|round(1) }}
+                    {% endif %}
                     </div>
+
                     <!-- Cuisine Category -->
                     <a class="badge bg-secondary text-decoration-none link-light"
                         href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
@@ -88,9 +137,10 @@
                 <div class="card-body">
 
                     <!--Recipe Rating Form-->
-                    <form method="" action="">
+                    <form method="POST" action="{{ url_for('rate_recipe', id=recipe.id) }}">
+                        <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
                         <div class="rating mb-3">
-                            <input type="radio" class="btn-check" name="options-base" id="option1" value="1"
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option1" value="1"
                                 autocomplete="off">
                             <label class="btn" for="option1">
                                 <span class="icon">
@@ -98,7 +148,7 @@
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="options-base" id="option2" value="2"
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option2" value="2"
                                 autocomplete="off">
                             <label class="btn" for="option2">
                                 <span class="icon">
@@ -106,7 +156,7 @@
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="options-base" id="option3" value="3"
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option3" value="3"
                                 autocomplete="off">
                             <label class="btn" for="option3">
                                 <span class="icon">
@@ -114,7 +164,7 @@
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="options-base" id="option4" value="4"
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option4" value="4"
                                 autocomplete="off">
                             <label class="btn" for="option4">
                                 <span class="icon">
@@ -122,7 +172,7 @@
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="options-base" id="option5" value="5"
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option5" value="5"
                                 autocomplete="off">
                             <label class="btn" for="option5">
                                 <span class="icon">

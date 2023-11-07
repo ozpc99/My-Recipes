@@ -41,15 +41,7 @@
         <!-- Recipe Serves -->
         <div class="mb-3">
             <label for="recipe_serves"><i class="fa-solid fa-people-group"></i> Serves how many?</label>
-            <select type="number" class="form-select" name="recipe_serves" id="recipe_serves" required>
-                <option value="" selected disabled>Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
+            <input type="number" class="form-control" name="recipe_serves" id="recipe_serves" min="1" max="12" required>
         </div>
 
         <!-- Ingredients -->
