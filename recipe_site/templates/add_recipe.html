@@ -54,7 +54,8 @@
                     <i class="fa-solid fa-circle-info"></i>
                 </a>
                 <!-- Ingredients Input Textarea -->
-                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="10" required></textarea>
+                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="10"
+                    required></textarea>
             </div>
         </div>
 
@@ -156,17 +157,14 @@
         </div>
 
         <!-- Recipe Image -->
-        <!--
         <label for="recipe_img">Image of Dish</label>
         <div id="recipe_ingredientsHelp" class="form-text">
             Please select a good quality image of your dish.
         </div>
-        <div class="input-group mb-3">
-            <input type="file" class="form-control" id="recipe_img" name="recipe_img"
-                aria-describedby="upload_recipe_img" aria-label="Upload" required>
-            <button class="btn btn-outline-secondary" type="button" id="upload_recipe_img">Upload</button>
-        </div> 
-        -->
+        <div class="mb-3">
+            <input type="text" name="recipe_img" id="recipe_img" placeholder="Image URL"
+                aria-placeholder="Recipe Image URL" aria-label="Recipe Image URL" class="form-control" required>
+        </div>
 
         <!-- Post Date --
         -- Date updates automatically via JS to display today's date. --

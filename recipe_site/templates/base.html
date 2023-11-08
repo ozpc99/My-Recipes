@@ -65,21 +65,19 @@
                                         <!-- Rating Badge -->
                                         <div class="badge bg-dark text-white position-absolute"
                                             style="top: 0.5rem; right: 0.5rem">
+                                            <!-- Star Rating -->
+                                            {% if recipe.average_rating is defined and recipe.average_rating == 4 %}
                                             <!-- Display Average Rating As Stars -->
-                                            <!-- 4 Stars -->
-                                            {% if recipe.average_rating == 4 %}
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
-                                            <!-- 4.5 Stars -->
-                                            {% elif 4 < recipe.average_rating < 5 %}
+                                            {% elif 5 > recipe.average_rating > 4 %}
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star-half-stroke"></i>
-                                            <!-- 5 Stars -->
                                             {% elif recipe.average_rating == 5 %}
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -87,10 +85,10 @@
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             {% endif %}
-                                            <!-- Display Average Rating As Float, rounded to 1 decimal place-->
+                                            <!-- Display Average Rating As Float, rounded to 1 decimal place -->
                                             {{ recipe.average_rating|round(1) }}
                                         </div>
-                                        <!-- Recipe Cuisine Type Badge -->
+                                        <!-- Cuisine Type -->
                                         <div class="badge bg-dark text-white position-absolute"
                                             style="top: 0.5rem; left: 0.5rem">
                                             <a class="text-decoration-none text-white" href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
@@ -98,14 +96,15 @@
                                             </a>
                                         </div>
                                         <!-- Recipe image -->
-                                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                                            alt="...">
+                                        <img class="card-img-top img-fluid" width="100%" height="180"
+                                            src="{{ recipe.recipe_img }}"
+                                            alt="Image for '{{recipe.recipe_name}}' Recipe">
                                         <div class="card-body p-4">
                                             <div class="text-center">
-                                                <!-- Recipe Name -->
+                                                <!-- Recipe name -->
                                                 <h5 class="fw-bolder">{{ recipe.recipe_name }}</h5>
                                                 <!-- Recipe Serves -->
-                                                    Serves: {{ recipe.recipe_serves }}
+                                                Serves: {{ recipe.recipe_serves }}
                                             </div>
                                         </div>
                                         <!-- View Recipe Button -->

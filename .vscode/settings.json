@@ -27,9 +27,14 @@
    "cSpell.ignoreWords": [
       "Psycopg",
       "Werkzeug",
+      "freepik",
+      "grmarc",
       "itsdangerous",
+      "jcomp",
+      "rawpixel",
       "selectattr",
       "sqlalchemy",
+      "tagline",
       "todays"
    ]
 }

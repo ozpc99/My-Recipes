@@ -17,14 +17,9 @@
         <div class="col mb-3">
             <div class="card" style="width: 18rem;">
 
-                <!-- Placeholder Image -->
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                </svg>
                 <!-- Recipe Image -->
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <img src="{{ recipe.recipe_img }}" width="100%" height="180" class="card-img-top img-fluid" alt="Image for '{{ recipe.recipe_name }}' Recipe">
+                <!--Recipe Content-->
                 <div class="text-center">
                     <div class="card-body">
                         <h5 class="card-title">{{ recipe.recipe_name }}</h5>

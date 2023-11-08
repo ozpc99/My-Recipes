@@ -14,6 +14,10 @@ def get_todays_date():
 @app.route("/")
 def home():
     recipes = Recipe.query.order_by(Recipe.id).all()
+    # Preprocess your data to set a default value for average_rating
+    for recipe in recipes:
+        if recipe.average_rating is None:
+            recipe.average_rating = 0
     return render_template("base.html", recipes=recipes)
 
 
@@ -26,7 +30,10 @@ def cuisine():
 @app.route("/add_cuisine", methods=["GET", "POST"])
 def add_cuisine():
     if request.method == "POST":
-        cuisine = Cuisine(cuisine_type=request.form.get("cuisine_type"))
+        cuisine = Cuisine(
+            cuisine_type=request.form.get("cuisine_type"),
+            cuisine_img=request.form.get("cuisine_img")
+        )
         db.session.add(cuisine)
         db.session.commit()
         return redirect(url_for("cuisine"))
@@ -82,7 +89,7 @@ def add_recipe():
             recipe_serves=request.form.get("recipe_serves"),
             recipe_ingredients=request.form.get("recipe_ingredients"),
             recipe_method=request.form.get("recipe_method"),
-            # recipe_img= ,
+            recipe_img=request.form.get("recipe_img"),
             # author_name= ,
             post_date=get_todays_date()
         )
@@ -103,10 +110,9 @@ def edit_recipe(recipe_id):
         recipe.recipe_serves = request.form.get("recipe_serves"),
         recipe.recipe_ingredients = request.form.get("recipe_ingredients"),
         recipe.recipe_method = request.form.get("recipe_method"),
-        # recipe.recipe_img = ,
+        recipe.recipe_img=request.form.get("recipe_img"),
         # recipe.author_name = ,
         recipe.post_date=get_todays_date()
-        # recipe.is_featured=bool(True if request.form.get("is_featured") else False),
         db.session.commit()
         return redirect(url_for("home"))
 

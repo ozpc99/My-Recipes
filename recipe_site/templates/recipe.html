@@ -103,8 +103,9 @@
                 </header>
                 <h5>Serves: {{ recipe.recipe_serves }}</h5>
                 <!-- Recipe Image -->
-                <figure class="mb-4"><img class="img-fluid rounded"
-                        src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                <figure class="mb-4">
+                    <img class="img-fluid rounded" height="400" width="900" src="{{ recipe.recipe_img }}" alt="Image for '{{ recipe.recipe_name }}' Recipe">
+                </figure>
                 <!-- Recipe About Description -->
                 <section class="mb-5">
                     <h2 class="fw-bolder mb-4 mt-5">About</h2>
