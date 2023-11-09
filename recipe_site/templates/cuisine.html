@@ -7,11 +7,13 @@
         <div class="container">
             <div class="text-center my-5">
                 <h1 class="fw-bolder">Cuisines</h1>
-                <p class="lead mb-3">Find recipes from cuisines all around the world!</p>
+                <p class="lead mb-3"></p>
+                {% if g.user %}
                 <button class="btn btn-lg btn-primary" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa-solid fa-plus"></i></a> Add Category
                 </button>
+                {% endif %}
                 <div class="collapse mt-3" id="collapseExample">
                     <div class="card card-body">
                         <!-- Form to Add Cuisine Category -->
@@ -52,18 +54,20 @@
                                         class="fa-solid fa-magnifying-glass"></i> Browse
                                     {{ cuisine.cuisine_type }}</a>
                             </li>
+                            {% if cuisine.user == g.user %}
                             <li class="list-group-item">
                                 <!--Button trigger modal to Rename Cuisine Category-->
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
                                     data-bs-target="#modal-for-edit-{{ cuisine.id }}">
                                     <i class="fa-solid fa-pencil"></i> Rename</a>
                                 </button>
                                 <!-- Button trigger modal to Delete Cuisine Category-->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal-for-delete-{{ cuisine.id }}">
                                     <i class="fa-solid fa-trash-can"></i> Delete</a>
                                 </button>
                             </li>
+                            {% endif %}
                     </div>
                 </div>
 
@@ -118,15 +122,8 @@
                                 <!--Cuisine Type Card Preview-->
                                 <div class="card text-center mx-auto mb-3" style="width: 18rem;">
 
-                                    <!-- Placeholder Image -->
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
-                                        xmlns="http://www.w3.org/2000/svg" role="img"
-                                        aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice"
-                                        focusable="false">
-                                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                                    </svg>
                                     <!-- Cuisine Type Image -->
-                                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                                    <img src="{{ cuisine.cuisine_img }}" class="card-img-top" width="100%" height="180" alt="Image for {{cuisine.cuisine_type}} Category">
 
                                     <div class="card-body">
                                         <h5 class="card-title">{{ cuisine.cuisine_type }}?</h5>

@@ -34,7 +34,7 @@
                     <div class="text-muted fst-italic mb-2">
                         Posted on {{ recipe.post_date.strftime('%d/%m/%Y') }}
                         <br>
-                        By author_name
+                        By {{ recipe.user.username }}
                     </div>
                     <!-- Recipe Rating -->
                     <div>
@@ -133,6 +133,7 @@
         <div class="col-lg-4">
             <!-- Rate This Recipe -->
             <!-- DEV COMMENT: Ensure rate recipe widget is hidden/moved to bottom of page on mobile screens -->
+            {% if recipe.user != g.user %}
             <div class="card mb-4">
                 <div class="card-header">Rate This Recipe</div>
                 <div class="card-body">
@@ -186,6 +187,7 @@
 
                 </div>
             </div>
+            {% endif %}
 
             <!-- Ingredients -->
             <!-- DEV COMMENT: Ensure Ingredients widget is hidden on mobile screens -->

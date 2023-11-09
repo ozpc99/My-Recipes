@@ -27,11 +27,12 @@
                             <i class="fa-solid fa-magnifying-glass"></i> View</a>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <i class="fa-solid fa-user"></i> author_name
+                                <i class="fa-solid fa-user"></i> {{ recipe.user.username }}
                             </li>
                             <li class="list-group-item">
                                 <i class="fa-solid fa-calendar-day"></i> {{ recipe.post_date.strftime('%d/%m/%Y') }}
                             </li>
+                            {% if recipe.user == g.user %}
                             <li class="list-group-item">
                                 <!--Button trigger modal to Edit Recipe -->
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
@@ -44,6 +45,7 @@
                                     <i class="fa-solid fa-trash-can"></i> Delete</a>
                                 </button>
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -183,14 +185,7 @@
                         <!-- Recipe Card Preview-->
                         <div class="card text-center mx-auto mb-3" style="width: 18rem;">
 
-                            <!-- Placeholder Image -->
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                                preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <rect width="100%" height="100%" fill="#868e96"></rect>
-                            </svg>
-                            <!-- Recipe Image -->
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <img src="{{ recipe.recipe_img }}" class="card-img-top" width="100%" height="180" alt="Image for {{ recipe.recipe_name }} Recipe">
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ recipe.recipe_name }}?</h5>

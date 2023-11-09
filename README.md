@@ -444,23 +444,24 @@ CDN Link:
 
 These icons are:
 
-| Icon Name          | HTML Source Code                                 | Link                                                               |
-| ------------------ | ------------------------------------------------ | ------------------------------------------------------------------ |
-| bars-staggered     | `<i class="fa-solid fa-bars-staggered"></i>`     | https://fontawesome.com/icons/bars-staggered?f=classic&s=solid     |
-| calendar-day       | `<i class="fa-solid fa-calendar-day"></i>`       | https://fontawesome.com/icons/calendar-day?f=classic&s=solid       |
-| circle-exclamation | `<i class="fa-solid fa-circle-exclamation"></i>` | https://fontawesome.com/icons/circle-exclamation?f=classic&s=solid |
-| circle-info        | `<i class="fa-solid fa-circle-info"></i>`        | https://fontawesome.com/icons/circle-info?f=classic&s=solid        |
-| floppy-disk        | `<i class="fa-solid fa-floppy-disk"></i>`        | https://fontawesome.com/icons/floppy-disk?f=classic&s=solid        |
-| kitchen-set        | `<i class="fa-solid fa-kitchen-set"></i>`        | https://fontawesome.com/icons/kitchen-set?f=classic&s=solid        |
-| list-ol            | `<i class="fa-solid fa-list-ol"></i>`            | https://fontawesome.com/icons/list-ol?f=classic&s=solid            |
-| list-ul            | `<i class="fa-solid fa-list-ul"></i>`            | https://fontawesome.com/icons/list-ul?f=classic&s=solid            |
-| magnifying-glass   | `<i class="fa-solid fa-magnifying-glass"></i>`   | https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid   |
-| pencil             | `<i class="fa-solid fa-pencil"></i>`             | https://fontawesome.com/icons/pencil?f=classic&s=solid             |
-| people-group       | `<i class="fa-solid fa-people-group"></i>`       | https://fontawesome.com/icons/people-group?f=classic&s=solid       |
-| plus               | `<i class="fa-solid fa-plus"></i>`               | https://fontawesome.com/icons/plus?f=classic&s=solid               |
-| star               | `<i class="fa-regular fa-star"></i>`             | https://fontawesome.com/icons/star?f=classic&s=regular             |
-| star               | `<i class="fa-solid fa-star"></i>`               | https://fontawesome.com/icons/star?f=classic&s=solid               |
-| star-half-stroke   | `<i class="fa-solid fa-star-half-stroke"></i>`   | https://fontawesome.com/icons/star-half-stroke?f=classic&s=solid   |
-| trash-can          | `<i class="fa-solid fa-trash-can"></i>`          | https://fontawesome.com/icons/trash-can?f=classic&s=solid          |
-| user               | `<i class="fa-solid fa-user"></i>`               | https://fontawesome.com/icons/user?f=classic&s=solid               |
-| utensils           | `<i class="fa-solid fa-utensils"></i>`           | https://fontawesome.com/icons/utensils?f=classic&s=solid           |
+| Icon Name            | HTML Source Code                                   | Link                                                                 |
+| -------------------- | -------------------------------------------------- | -------------------------------------------------------------------- |
+| bars-staggered       | `<i class="fa-solid fa-bars-staggered"></i>`       | https://fontawesome.com/icons/bars-staggered?f=classic&s=solid       |
+| calendar-day         | `<i class="fa-solid fa-calendar-day"></i>`         | https://fontawesome.com/icons/calendar-day?f=classic&s=solid         |
+| circle-exclamation   | `<i class="fa-solid fa-circle-exclamation"></i>`   | https://fontawesome.com/icons/circle-exclamation?f=classic&s=solid   |
+| circle-info          | `<i class="fa-solid fa-circle-info"></i>`          | https://fontawesome.com/icons/circle-info?f=classic&s=solid          |
+| floppy-disk          | `<i class="fa-solid fa-floppy-disk"></i>`          | https://fontawesome.com/icons/floppy-disk?f=classic&s=solid          |
+| kitchen-set          | `<i class="fa-solid fa-kitchen-set"></i>`          | https://fontawesome.com/icons/kitchen-set?f=classic&s=solid          |
+| list-ol              | `<i class="fa-solid fa-list-ol"></i>`              | https://fontawesome.com/icons/list-ol?f=classic&s=solid              |
+| list-ul              | `<i class="fa-solid fa-list-ul"></i>`              | https://fontawesome.com/icons/list-ul?f=classic&s=solid              |
+| magnifying-glass     | `<i class="fa-solid fa-magnifying-glass"></i>`     | https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid     |
+| pencil               | `<i class="fa-solid fa-pencil"></i>`               | https://fontawesome.com/icons/pencil?f=classic&s=solid               |
+| people-group         | `<i class="fa-solid fa-people-group"></i>`         | https://fontawesome.com/icons/people-group?f=classic&s=solid         |
+| plus                 | `<i class="fa-solid fa-plus"></i>`                 | https://fontawesome.com/icons/plus?f=classic&s=solid                 |
+| star                 | `<i class="fa-regular fa-star"></i>`               | https://fontawesome.com/icons/star?f=classic&s=regular               |
+| star                 | `<i class="fa-solid fa-star"></i>`                 | https://fontawesome.com/icons/star?f=classic&s=solid                 |
+| star-half-stroke     | `<i class="fa-solid fa-star-half-stroke"></i>`     | https://fontawesome.com/icons/star-half-stroke?f=classic&s=solid     |
+| trash-can            | `<i class="fa-solid fa-trash-can"></i>`            | https://fontawesome.com/icons/trash-can?f=classic&s=solid            |
+| triangle-exclamation | `<i class="fa-solid fa-triangle-exclamation"></i>` | https://fontawesome.com/icons/triangle-exclamation?f=classic&s=solid |
+| user                 | `<i class="fa-solid fa-user"></i>`                 | https://fontawesome.com/icons/user?f=classic&s=solid                 |
+| utensils             | `<i class="fa-solid fa-utensils"></i>`             | https://fontawesome.com/icons/utensils?f=classic&s=solid             |
