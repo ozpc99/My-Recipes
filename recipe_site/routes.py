@@ -76,9 +76,9 @@ def sign_in():
             return redirect(url_for("home"))
         else:
             # flash("Invalid username or password", "error")
-            return redirect(url_for("sign_in"))
-
-    return render_template("sign_in.html")
+            return redirect(url_for("home"))
+            
+    return redirect(url_for("home"))
 
 
 @app.route("/sign_out")
