@@ -1,50 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
 
-<main class="container">
-    <!-- Page header with logo and tagline-->
-    <header class="py-5 bg-light border-bottom mb-4">
-        <div class="container">
-            <div class="text-center my-5">
-                <h1 class="fw-bolder">Cuisines</h1>
-                <p class="lead mb-3"></p>
-                {% if g.user %}
-                <button class="btn btn-lg btn-primary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fa-solid fa-plus"></i></a> Add Category
-                </button>
-                {% endif %}
-                <div class="collapse mt-3" id="collapseExample">
-                    <div class="card card-body">
-                        <!-- Form to Add Cuisine Category -->
-                        <form method="POST" action="{{ url_for('add_cuisine') }}">
-                            <div class="mb-3">
-                                <input type="text" id="cuisine_type" name="cuisine_type" placeholder="Name"
-                                    aria-placeholder="Category Name" aria-label="Category Name" minlength="3"
-                                    maxlength="25" class="form-control validate" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" name="cuisine_img" id="cuisine_img" placeholder="Image URL"
-                                    aria-placeholder="Category Image URL" aria-label="Category Image URL"
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Cuisines</h1>
+            <p class="lead mb-3"></p>
+            {% if g.user %}
+            <button class="btn btn-lg btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-plus"></i></a> Add Category
+            </button>
+            {% endif %}
+            <div class="collapse mt-3" id="collapseExample">
+                <div class="card card-body">
+                    <!-- Form to Add Cuisine Category -->
+                    <form method="POST" action="{{ url_for('add_cuisine') }}">
+                        <div class="mb-3">
+                            <input type="text" id="cuisine_type" name="cuisine_type" placeholder="Name"
+                                aria-placeholder="Category Name" aria-label="Category Name" minlength="3" maxlength="25"
+                                class="form-control validate" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="cuisine_img" id="cuisine_img" placeholder="Image URL"
+                                aria-placeholder="Category Image URL" aria-label="Category Image URL"
                                 class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="add_cuisine_category"><i
-                                    class="fa-solid fa-plus"></i> Add</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="add_cuisine_category"><i
+                                class="fa-solid fa-plus"></i> Add</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!--Cuisine Type Categories-->
+<!--Cuisine Type Categories-->
+<main class="container">
     <div class="row mb-3">
         {% for cuisine in cuisines %}
         <div class="col mb-3">
             <div class="card" style="width: 18rem;">
 
                 <!-- Cuisine Type Image -->
-                <img src="{{ cuisine.cuisine_img }}" class="card-img-top img-fluid" width="100%" height="180" alt="Image for '{{ cuisine.cuisine_type }}' Category">
+                <img src="{{ cuisine.cuisine_img }}" class="card-img-top img-fluid" width="100%" height="180"
+                    alt="Image for '{{ cuisine.cuisine_type }}' Category">
                 <div class="text-center">
                     <div class="card-body">
                         <h5 class="card-title">{{ cuisine.cuisine_type }}</h5>
@@ -123,7 +124,8 @@
                                 <div class="card text-center mx-auto mb-3" style="width: 18rem;">
 
                                     <!-- Cuisine Type Image -->
-                                    <img src="{{ cuisine.cuisine_img }}" class="card-img-top" width="100%" height="180" alt="Image for {{cuisine.cuisine_type}} Category">
+                                    <img src="{{ cuisine.cuisine_img }}" class="card-img-top" width="100%" height="180"
+                                        alt="Image for {{cuisine.cuisine_type}} Category">
 
                                     <div class="card-body">
                                         <h5 class="card-title">{{ cuisine.cuisine_type }}?</h5>
@@ -156,6 +158,5 @@
         </div>
         {% endfor %}
     </div>
-
 </main>
 {% endblock %}

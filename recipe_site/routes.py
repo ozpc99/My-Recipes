@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort, g, session, flash
 from functools import wraps
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from sqlalchemy.orm.attributes import flag_modified
 from datetime import datetime
 from recipe_site import app, db
@@ -28,6 +28,13 @@ def home():
     return render_template("base.html", recipes=recipes)
 
 
+@app.route("/results", methods=["GET"])
+def results():
+    search_value = request.args.get('search_value')
+    matching_recipes = Recipe.query.filter(or_(Recipe.recipe_name.ilike(f"%{search_value}%"), Recipe.recipe_description.ilike(f"%{search_value}%"))).all()
+    return render_template("results.html", recipes=matching_recipes)
+
+
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -37,7 +44,7 @@ def sign_up():
         username = request.form.get("username")
         password = request.form.get("password")
         confirm_password = request.form.get("confirm_password")
-        mailing_list = request.form.get("mailing_list") == 'on'
+        mailing_list = request.form.get("mailing_list") == "on"
         # checks if 'password' matches 'confirm_password'
         if password != confirm_password:
             # flash("Passwords must match", "error")
@@ -69,7 +76,7 @@ def sign_in():
         user = User.query.filter_by(username=username, password=password).first()
 
         if user:
-            session['user_id'] = user.id
+            session["user_id"] = user.id
             g.user = user
             print(f"sign_in - g.user: {g.user}")
             # flash("Login successful!", "success")
@@ -83,7 +90,7 @@ def sign_in():
 
 @app.route("/sign_out")
 def sign_out():
-    session.pop('user_id', None)
+    session.pop("user_id", None)
     return redirect(url_for("home"))
 
 
@@ -99,7 +106,7 @@ def add_cuisine():
         cuisine = Cuisine(
             cuisine_type=request.form.get("cuisine_type"),
             cuisine_img=request.form.get("cuisine_img"),
-            user_id = session.get('user_id')
+            user_id = session.get("user_id")
         )
         db.session.add(cuisine)
         db.session.commit()
@@ -125,7 +132,7 @@ def delete_cuisine(cuisine_id):
 
 @app.route("/recipes")
 def recipes():
-    cuisine_id = request.args.get('cuisine_id')
+    cuisine_id = request.args.get("cuisine_id")
     if cuisine_id:
         recipes = Recipe.query.filter_by(cuisine_id=cuisine_id).order_by(Recipe.id).all()
         cuisine = Cuisine.query.get(cuisine_id)
@@ -156,7 +163,7 @@ def add_recipe():
             recipe_ingredients=request.form.get("recipe_ingredients"),
             recipe_method=request.form.get("recipe_method"),
             recipe_img=request.form.get("recipe_img"),
-            user_id = session.get('user_id'),
+            user_id = session.get("user_id"),
             post_date=get_todays_date()
         )
         db.session.add(recipes)
@@ -177,7 +184,7 @@ def edit_recipe(recipe_id):
         recipe.recipe_ingredients = request.form.get("recipe_ingredients"),
         recipe.recipe_method = request.form.get("recipe_method"),
         recipe.recipe_img=request.form.get("recipe_img"),
-        user_id = session.get('user_id'),
+        user_id = session.get("user_id"),
         recipe.post_date=get_todays_date()
         db.session.commit()
         return redirect(url_for("home"))

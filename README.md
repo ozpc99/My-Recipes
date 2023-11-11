@@ -446,6 +446,7 @@ These icons are:
 | circle-exclamation   | `<i class="fa-solid fa-circle-exclamation"></i>`   | https://fontawesome.com/icons/circle-exclamation?f=classic&s=solid   |
 | circle-info          | `<i class="fa-solid fa-circle-info"></i>`          | https://fontawesome.com/icons/circle-info?f=classic&s=solid          |
 | floppy-disk          | `<i class="fa-solid fa-floppy-disk"></i>`          | https://fontawesome.com/icons/floppy-disk?f=classic&s=solid          |
+| hashtag              | `<i class="fa-solid fa-hashtag"></i>`              | https://fontawesome.com/icons/hashtag?f=classic&s=solid              |
 | kitchen-set          | `<i class="fa-solid fa-kitchen-set"></i>`          | https://fontawesome.com/icons/kitchen-set?f=classic&s=solid          |
 | list-ol              | `<i class="fa-solid fa-list-ol"></i>`              | https://fontawesome.com/icons/list-ol?f=classic&s=solid              |
 | list-ul              | `<i class="fa-solid fa-list-ul"></i>`              | https://fontawesome.com/icons/list-ul?f=classic&s=solid              |

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="container">
+    <!-- Page header with logo and tagline-->
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Results</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Displayed in List Group -->
+    <ol class="list-group list-group-flush list-group-numbered">
+        {% for recipe in recipes %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div>
+                    <a href="{{ url_for('recipe', id=recipe.id) }}" class="fw-bold" style="text-decoration: none;">
+                        {{ recipe.recipe_name }}
+                    </a>
+                    <!-- Star Rating -->
+                    {% if recipe.average_rating is none or recipe.average_rating == 0 %}
+                    <span class="d-none">No Rating</span>
+                    {% else %}
+                    <span class="badge bg-dark text-white rounded-pill">
+                        <!-- Display Average Rating As Stars -->
+                        {% if recipe.average_rating == 1 %}
+                        <!-- 1 Star -->
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 1 < recipe.average_rating < 2 %}
+                        <!-- 1.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {% elif recipe.average_rating == 2 %}
+                        <!-- 2 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 2 < recipe.average_rating < 3 %}
+                        <!-- 2.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        {% elif recipe.average_rating == 3 %}
+                        <!-- 3 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 3 < recipe.average_rating < 4 %}
+                        <!-- 3.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 4 Stars -->
+                        {% elif recipe.average_rating == 4 %}
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <!-- 4.5 Stars -->
+                        {% elif 4 < recipe.average_rating < 5 %}
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 5 Stars -->
+                        {% elif recipe.average_rating == 5 %}
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        {% endif %}
+                        <!-- Display Average Rating As Float, rounded to 1 decimal place-->
+                        {{ recipe.average_rating|round(1) }}
+                        {% endif %}
+                    </span>
+                </div>
+                <small>
+                    <em>
+                        By {{ recipe.user.username }}
+                    </em>
+                </small>
+            </div>
+            <a href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
+                <span class="badge bg-dark text-white rounded-pill" style="text-decoration: none;">
+                    <i class="fa-solid fa-hashtag"></i> {{ recipe.cuisine }}
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
+
+    <!-- <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Sorry, we couldn't find what you were looking for
+        </h4>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-secondary py-3">
+                <form class="d-flex" role="search" action="{{ url_for('results') }}" method="GET">
+                    <div class="input-group">
+                        <input class="form-control" type="search" id="search_value" name="search_value"
+                            placeholder="Search for another recipe" aria-label="Search">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+            </li>
+            <li class="list-group-item list-group-item-secondary py-3">
+                <a href="{{ url_for('cuisine') }}" class="btn btn-primary">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Browse Cuisine Categories
+                </a>
+            </li>
+            {% if g.user == None %}
+            <li class="list-group-item list-group-item-secondary py-3">
+                <a href="{{ url_for('sign_up') }}" class="btn btn-sm btn-primary mb-3">Sign up today!</a>
+                <br>
+                <small>
+                    Add your own recipes, save your favourites &amp; more&hellip;
+                </small>
+            </li>
+            {% endif %}
+        </ul>
+    </div> -->
+
+
+</main>
+{% endblock %}

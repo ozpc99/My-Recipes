@@ -20,7 +20,7 @@
 
 <body>
     <!-- Responsive Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('home') }}">
                 <!-- <img src="#" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
@@ -49,9 +49,9 @@
                     {% endif %}
                 </ul>
 
-                <form class="d-flex" role="search">
+                <form class="d-flex" role="search" action="{{ url_for('results') }}" method="GET">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" type="search" id="search_value" name="search_value" placeholder="Search" aria-label="Search">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -65,7 +65,7 @@
     <main>
 
         <!-- Hero -->
-        <section class="hero">
+        <section class="hero" style="height: 100vh;">
             <div class="container col-xl-10 col-xxl-8 px-4 py-5">
                 <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-7 text-center text-lg-start">
@@ -120,6 +120,7 @@
                 background-image: url("{{ url_for('static', filename='/assets/images/hero.jpg') }}");
                 background-size: cover;
                 background-position: center;
+                background-attachment: fixed;
                 /* color: #fff;  Set text color to white or another contrasting color */
             }
         </style>
@@ -130,6 +131,7 @@
                 {% for batch in recipes|batch(4) %}
                 {% set filtered_recipes = batch|selectattr('average_rating', 'ge', 4)|list %}
                 {% if filtered_recipes %}
+                <h2 class="text-center mt-5">Top Rated</h2>
                 <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
                     <div class="py-5">
                         <div class="container px-4 px-lg-5 mt-5">
@@ -168,7 +170,7 @@
                                             style="top: 0.5rem; left: 0.5rem">
                                             <a class="text-decoration-none text-white"
                                                 href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
-                                                {{ recipe.cuisine }}
+                                                <i class="fa-solid fa-hashtag"></i> {{ recipe.cuisine }}
                                             </a>
                                         </div>
                                         <!-- Recipe image -->

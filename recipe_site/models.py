@@ -26,7 +26,7 @@ class Recipe(db.Model):
     recipe_serves = db.Column(db.Integer, nullable=False)
     recipe_ingredients = db.Column(db.Text, nullable=False)
     recipe_method = db.Column(db.Text, nullable=False)
-    recipe_img = db.Column(db.Text, unique=True, nullable=False)
+    recipe_img = db.Column(db.Text, nullable=False)
     post_date = db.Column(db.Date, nullable=False)
     rating = db.Column(ARRAY(db.Integer))
     average_rating = db.Column(db.Float)

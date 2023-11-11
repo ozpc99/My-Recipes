@@ -27,7 +27,7 @@
         <div class="col-lg-8">
             <article>
                 <!-- Recipe Header -->
-                <header class="mb-4">
+                <header class="mb-4 py-5">
                     <!-- Recipe Name -->
                     <h1 class="fw-bolder mb-1">{{ recipe.recipe_name }}</h1>
                     <!-- Recipe Post Date & Author (meta content) -->
@@ -98,7 +98,7 @@
                     <!-- Cuisine Category -->
                     <a class="badge bg-secondary text-decoration-none link-light"
                         href="{{ url_for('recipes', cuisine_id=recipe.cuisine_id) }}">
-                        {{ recipe.cuisine }}
+                        <i class="fa-solid fa-hashtag"></i> {{ recipe.cuisine }}
                     </a>
                 </header>
                 <h5>Serves: {{ recipe.recipe_serves }}</h5>
@@ -130,7 +130,7 @@
         </div>
 
         <!-- Side Widgets -->
-        <div class="col-lg-4">
+        <div class="col-lg-4 py-5">
             <!-- Rate This Recipe -->
             <!-- DEV COMMENT: Ensure rate recipe widget is hidden/moved to bottom of page on mobile screens -->
             {% if recipe.user != g.user %}

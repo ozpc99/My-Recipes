@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Sign Up Today!</h1>
+      <p class="lead mb-3"></p>
+    </div>
+  </div>
+</header>
 
-<main class="container d-flex align-items-center py-4 bg-body-tertiary">
-
+<main class="container">
   <div class="form-signin w-100 m-auto">
     <form method="POST" action="{{ url_for('sign_up') }}">
       <!-- <img class="mb-4" src="" alt="" width="72" height="57"> -->
-      <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
-
+      
       <div class="form-floating w-50 mb-3">
         <input type="text" class="form-control" id="floatingInput" name="f_name" placeholder="First Name" required>
         <label for="floatingInput">First Name</label>
