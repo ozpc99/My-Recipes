@@ -7,6 +7,13 @@ from recipe_site import app, db
 from recipe_site.models import Cuisine, Recipe, User
 
 
+# Gets today's date and returns value as date
+def get_todays_date():
+        today = datetime.today()
+        return today
+
+
+# Gets session user's id and assigns it to the 'g.user' global variable
 @app.before_request
 def load_user():
     user_id = session.get('user_id')
@@ -14,11 +21,8 @@ def load_user():
     print(f"load_user - g.user: {g.user}")
 
 
-def get_todays_date():
-        today = datetime.today()
-        return today
-
-
+# === Home Page === 
+# (renders template: 'base.html' + home page block content)
 @app.route("/")
 def home():
     recipes = Recipe.query.order_by(Recipe.id).all()
@@ -28,6 +32,8 @@ def home():
     return render_template("base.html", recipes=recipes)
 
 
+# === Search Results ===
+# (renders template: 'results.html')
 @app.route("/results", methods=["GET"])
 def results():
     search_value = request.args.get('search_value')
@@ -35,6 +41,8 @@ def results():
     return render_template("results.html", recipes=matching_recipes)
 
 
+# === Sign Up Form === 
+# (renders template: 'sign_up.html')
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -68,6 +76,7 @@ def sign_up():
     return render_template("sign_up.html")  
 
 
+# === Sign In Form ===
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
@@ -88,18 +97,51 @@ def sign_in():
     return redirect(url_for("home"))
 
 
+# === Sign Out Button ===
 @app.route("/sign_out")
 def sign_out():
     session.pop("user_id", None)
     return redirect(url_for("home"))
 
 
+# === Reset Password Form ===
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password():
+    if request.method == "POST":
+        email = request.form.get("email")
+        username = request.form.get("username")
+        new_password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+
+        # Check if passwords match
+        if new_password != confirm_password:
+            # flash("Passwords do not match", "error")
+            return redirect(url_for("reset_password"))
+
+        # Find the user by email or username
+        user = User.query.filter((User.email == email) | (User.username == username)).first()
+
+        if user:
+            # Update the user's password
+            user.password = new_password
+            db.session.commit()
+            return redirect(url_for("home"))
+            # flash("Password successfully reset", "success")
+        # else:
+            # flash("Username or email does not match our records", "error")
+    
+    return render_template("reset_password.html")
+
+
+# === Cuisine Categories ===
+# (returns template: 'cuisine.html')
 @app.route("/cuisine")
 def cuisine():
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
     return render_template("cuisine.html", cuisines=cuisines)
 
 
+# === Add Cuisine Form ===
 @app.route("/add_cuisine", methods=["GET", "POST"])
 def add_cuisine():
     if request.method == "POST":
@@ -113,6 +155,7 @@ def add_cuisine():
         return redirect(url_for("cuisine"))
 
 
+# === Edit Cuisine Form ===
 @app.route("/edit_cuisine/<int:cuisine_id>", methods=["GET", "POST"])
 def edit_cuisine(cuisine_id):
     cuisine = Cuisine.query.get_or_404(cuisine_id)
@@ -122,6 +165,7 @@ def edit_cuisine(cuisine_id):
         return redirect(url_for("cuisine"))
 
 
+# === Delete Cuisine Form ===
 @app.route("/delete_cuisine/<int:cuisine_id>")
 def delete_cuisine(cuisine_id):
     cuisine = Cuisine.query.get_or_404(cuisine_id)
@@ -130,6 +174,9 @@ def delete_cuisine(cuisine_id):
     return redirect(url_for("cuisine"))
 
 
+# === Recipes ===
+# (returns template: 'recipes.html')
+# Displays recipes based on cuisine_type: 'recipe.cuisine'
 @app.route("/recipes")
 def recipes():
     cuisine_id = request.args.get("cuisine_id")
@@ -145,12 +192,17 @@ def recipes():
     return render_template("recipes.html", recipes=recipes, cuisines=cuisines, cuisine_type=cuisine_type)
 
 
+# === Recipe ===
+# (returns template: 'recipe.html')
+# Displays recipe for recipe_id: 'recipe.id'
 @app.route("/recipe/<int:id>")
 def recipe(id):
     recipe = Recipe.query.get(id)
     return render_template("recipe.html", recipe=recipe)
 
 
+# === Add Recipe Form ===
+# (returns template: 'add_recipe.html')
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
@@ -172,6 +224,7 @@ def add_recipe():
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
+# === Edit Recipe Form ===
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
@@ -190,6 +243,7 @@ def edit_recipe(recipe_id):
         return redirect(url_for("home"))
 
 
+# === Delete Recipe Form ===
 @app.route("/delete_recipe/<int:recipe_id>")
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
@@ -198,6 +252,7 @@ def delete_recipe(recipe_id):
     return redirect(url_for("home"))
 
 
+# === Rate Recipe Form ===
 @app.route("/rate_recipe/<int:id>", methods=["POST"])
 def rate_recipe(id):
     recipe = Recipe.query.get_or_404(id)

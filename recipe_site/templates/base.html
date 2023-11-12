@@ -81,6 +81,7 @@
                             Browse recipes, upload your own &amp; more!
                         </p>
                         {% endif %}
+                        <a href="#carouselExampleDark" class="btn btn-lg btn-primary">Get Started <i class="fa-solid fa-angle-down"></i></a>
                     </div>
                     <div class="col-md-10 mx-auto col-lg-5">
                         <!-- Sign In Form -->
@@ -102,11 +103,11 @@
                                 <label for="floatingPassword">Password</label>
                             </div>
                             <div class="mb-3">
-                                <button class="w-50 btn btn-lg btn-primary" type="submit">Sign In</button>
-                                <a class="btn btn-secondary mx-3" href="{{ url_for('sign_up') }}">Sign Up</a>
+                                <button class="w-50 btn btn-primary" type="submit">Sign In</button>
+                                <a class="btn btn-sm btn-secondary mx-3" href="{{ url_for('sign_up') }}">Sign Up</a>
                             </div>
                             <small>
-                                <a href="#">Forgotten Password?</a>
+                                <a href="{{ url_for('reset_password') }}">Forgotten Password?</a>
                             </small>
                         </form>
                         {% endif %}
