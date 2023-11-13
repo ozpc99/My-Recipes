@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    header {
+        height: 50vh;
+        background-image: url("{{ url_for('static', filename='/assets/images/add_recipe_hero.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-start" style="margin-top: 10%; margin-bottom: 10%;">
+            <h1 class="fw-bolder text-white">Add Recipe</h1>
+        </div>
+    </div>
+</header>
 
 <main class="container">
-    <!-- Page header with logo and tagline-->
-    <header class="py-5 bg-light border-bottom mb-4">
-        <div class="container">
-            <div class="text-center my-5">
-                <h1 class="fw-bolder">Add Recipe</h1>
-            </div>
-        </div>
-    </header>
-
     <!-- Form to Add Recipe -->
     <form method="POST" action="{{ url_for('add_recipe') }}">
         <!-- Recipe Name -->

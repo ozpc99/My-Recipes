@@ -12,7 +12,7 @@
         - [Cloning to a Virtual IDE](#cloning-to-a-virtual-ide)
             - [Cloning to a GitPod Workspace](#cloning-to-a-gitpod-workspace)
             - [Cloning to a Codespaces Workspace](#cloning-to-a-codespaces-workspace)
-    - [Initialising your Workspace]()
+    - [Initialising your Workspace](#initialising-your-workspace)
     - [Committing to GitHub](#committing-to-github)
 2. [UX](#ux)
     - [Application Goals](#application-goals)
@@ -185,6 +185,13 @@ To install them, follow these instructions:
 
             pip3 install postgres
 
+    - If working on a local machine, ensure you have PostgreSQL installed before trying again.
+    
+        Visit: https://www.postgresql.org/download/
+
+    - Follow the instructions in the installation wizard.
+    - Set the Port to 5000  
+
     ### *NB:* 
     For help and a list of all commands, enter the Postgres CLI and type the command:
 
@@ -248,9 +255,31 @@ The terminal should display each of the packages installed and their respective 
 
 
 ### Initialising the Database with Postgres
-Once you have your database schemas set up using Python, you will want to connect it to Postgres.
+
+#### Setting up the Postgres Server Environment
+To set up an environment:
+1. Create a new Python file at root directory level (this could be called 'env.py')
+
+*NB-* If committing to GitHub, ensure you have .gitignore file at root directory level. This ensures any secret keys or passwords are not made publicly available. Within this file, add the name of your Python file (env.py) to the list of files for Git to ignore.
+
+2. Within your Python file, set up the server properties like so:
+
+        import os
+
+        os.environ.setdefault("IP", "0.0.0.0")
+        os.environ.setdefault("PORT", "5000")
+        os.environ.setdefault("SECRET_KEY", "insert secret key here")
+        os.environ.setdefault("DEBUG", "True")
+        os.environ.setdefault("DEVELOPMENT", "True")
+        os.environ.setdefault("DB_URL", "postgresql:///recipe_site")
+
+    Replacing 'insert secret key here' with your secret key. It can be any string you like.
+
+    *NB-* Remember to set DEBUG and DEVELOPMENT to False, prior to deployment.
 
 #### Creating the Postgres Database
+Once you have your database schemas set up within a Python file (this could be called 'models.py'), you will want to connect it to Postgres.
+
 1. Enter the Postgres CLI. In a Bash terminal, type the command:
 
         psql
@@ -387,6 +416,12 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 
 - [hero.jpg](https://www.freepik.com/free-photo/wooden-table-product-background_4138763.htm#query=kitchen&position=3&from_view=search&track=sph)
 by rawpixel.com on Freepik
+
+- [cuisine-hero.jpg](https://www.freepik.com/free-photo/pots-vegetables-harvest_1440232.htm#query=ingredients&position=29&from_view=search&track=sph)
+by Freepik on Freepik
+
+- [add_recipe_hero.jpg](https://www.freepik.com/free-photo/assortment-vegetables-herbs-spices-black-background-top-view-copy-space_27272953.htm#query=ingredients&position=34&from_view=search&track=sph)
+by chandlervid85 on Freepik
 
 
 ## Code

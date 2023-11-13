@@ -1,35 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+    header {
+        height: 50vh;
+        background-image: url("{{ url_for('static', filename='/assets/images/cuisine_hero.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
 <!-- Page header with logo and tagline-->
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">Cuisines</h1>
-            <p class="lead mb-3"></p>
+        <div class="text-start" style="margin-top: 10%; margin-bottom: 10%;">
+            <h1 class="fw-bolder text-white">Cuisines</h1>
             {% if g.user %}
-            <button class="btn btn-lg btn-primary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa-solid fa-plus"></i></a> Add Category
+            <button class="btn btn-lg btn-primary" type="button" data-bs-toggle="modal"
+                data-bs-target="#addCuisineModal">
+                <i class="fa-solid fa-plus"></i> Add Category
             </button>
             {% endif %}
-            <div class="collapse mt-3" id="collapseExample">
-                <div class="card card-body">
-                    <!-- Form to Add Cuisine Category -->
-                    <form method="POST" action="{{ url_for('add_cuisine') }}">
-                        <div class="mb-3">
-                            <input type="text" id="cuisine_type" name="cuisine_type" placeholder="Name"
-                                aria-placeholder="Category Name" aria-label="Category Name" minlength="3" maxlength="25"
-                                class="form-control validate" required>
+
+            <!-- Add Cuisine Modal -->
+            <div class="modal fade" id="addCuisineModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="addCuisineModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addCuisineModalLabel">Add Category</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" name="cuisine_img" id="cuisine_img" placeholder="Image URL"
-                                aria-placeholder="Category Image URL" aria-label="Category Image URL"
-                                class="form-control" required>
+                        <div class="modal-body">
+                            <!-- Form to Add Cuisine Category -->
+                            <form method="POST" action="{{ url_for('add_cuisine') }}">
+                                <div class="mb-3">
+                                    <input type="text" id="cuisine_type" name="cuisine_type" placeholder="Name"
+                                        aria-placeholder="Category Name" aria-label="Category Name" minlength="3"
+                                        maxlength="25" class="form-control validate" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="cuisine_img" id="cuisine_img" placeholder="Image URL"
+                                        aria-placeholder="Category Image URL" aria-label="Category Image URL"
+                                        class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="add_cuisine_category">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="add_cuisine_category"><i
-                                class="fa-solid fa-plus"></i> Add</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

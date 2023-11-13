@@ -1,3 +1,13 @@
+/* Modal for Adding Cuisine 
+=========================================================*/
+#addCuisineModal .modal-header {
+    background-color: var(--bs-primary-bg-subtle);
+}
+
+#addCuisineModal .modal-content {
+    border: 5px solid var(--bs-primary-border-subtle);
+}
+
 /* Modal for Editing Cuisine/Recipe 
 =========================================================*/
 .modal-for-edit .modal-header {

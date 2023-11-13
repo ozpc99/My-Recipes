@@ -65,10 +65,10 @@
     <main>
 
         <!-- Hero -->
-        <section class="hero" style="height: 100vh;">
+        <section class="hero">
             <div class="container col-xl-10 col-xxl-8 px-4 py-5">
                 <div class="row align-items-center g-lg-5 py-5">
-                    <div class="col-lg-7 text-center text-lg-start">
+                    <div class="col-lg-7 text-center text-lg-start" style="margin-top: 10%; margin-bottom: 10%;">
                         {% if g.user %}
                         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
                             Welcome {{ g.user.f_name }}!
@@ -118,6 +118,7 @@
 
         <style>
             .hero {
+                height: 100vh;
                 background-image: url("{{ url_for('static', filename='/assets/images/hero.jpg') }}");
                 background-size: cover;
                 background-position: center;
