@@ -25,6 +25,7 @@
    "editor.defaultFormatter": "HookyQR.beautify",
    "cSpell.language": "en-GB",
    "cSpell.ignoreWords": [
+      "Fonticon",
       "Psycopg",
       "Werkzeug",
       "chandlervid",

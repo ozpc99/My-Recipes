@@ -423,6 +423,11 @@ by Freepik on Freepik
 - [add_recipe_hero.jpg](https://www.freepik.com/free-photo/assortment-vegetables-herbs-spices-black-background-top-view-copy-space_27272953.htm#query=ingredients&position=34&from_view=search&track=sph)
 by chandlervid85 on Freepik
 
+### Favicon
+The favicon was created using Fonticon by https://gauger.io/fonticon/
+
+It uses a Font Awesome icon to generate a favicon.
+The icon used was 'utensils'.
 
 ## Code
 
