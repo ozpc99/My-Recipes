@@ -417,11 +417,8 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 - [hero.jpg](https://www.freepik.com/free-photo/wooden-table-product-background_4138763.htm#query=kitchen&position=3&from_view=search&track=sph)
 by rawpixel.com on Freepik
 
-- [cuisine-hero.jpg](https://www.freepik.com/free-photo/pots-vegetables-harvest_1440232.htm#query=ingredients&position=29&from_view=search&track=sph)
+- [hero_2.jpg](https://www.freepik.com/free-photo/pots-vegetables-harvest_1440232.htm#query=ingredients&position=29&from_view=search&track=sph)
 by Freepik on Freepik
-
-- [add_recipe_hero.jpg](https://www.freepik.com/free-photo/assortment-vegetables-herbs-spices-black-background-top-view-copy-space_27272953.htm#query=ingredients&position=34&from_view=search&track=sph)
-by chandlervid85 on Freepik
 
 ### Favicon
 The favicon was created using Fonticon by https://gauger.io/fonticon/
