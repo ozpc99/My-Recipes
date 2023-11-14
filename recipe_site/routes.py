@@ -74,7 +74,7 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         # flash("Account created successfully! You can now log in.", "success")
-        return redirect(url_for("sign_in"))
+        return redirect(url_for("home"))
     return render_template("sign_up.html")  
 
 
@@ -207,22 +207,36 @@ def recipe(id):
 # (returns template: 'add_recipe.html')
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    cuisines = Cuisine.query.order_by(Cuisine.cuisine_type).all()
     if request.method == "POST":
-        recipes = Recipe(
-            recipe_name=request.form.get("recipe_name"),
-            cuisine_id=request.form.get("cuisine_id"),
-            recipe_description=request.form.get("recipe_description"),
-            recipe_serves=request.form.get("recipe_serves"),
-            recipe_ingredients=request.form.get("recipe_ingredients"),
-            recipe_method=request.form.get("recipe_method"),
-            recipe_img=request.form.get("recipe_img"),
-            user_id = session.get("user_id"),
-            post_date=get_todays_date()
+        recipe_name = request.form.get("recipe_name")
+        cuisine_id = request.form.get("cuisine_id")
+        recipe_description = request.form.get("recipe_description")
+        recipe_serves = request.form.get("recipe_serves")
+        recipe_ingredients = request.form.get("recipe_ingredients")
+        recipe_method = request.form.get("recipe_method")
+        recipe_img = request.form.get("recipe_img")
+        user_id = session.get("user_id")
+        post_date = get_todays_date()
+        
+        recipe = Recipe(
+            recipe_name=recipe_name,
+            cuisine_id=cuisine_id,
+            recipe_description=recipe_description,
+            recipe_serves=recipe_serves,
+            recipe_ingredients=recipe_ingredients,
+            recipe_method=recipe_method,
+            recipe_img=recipe_img,
+            user_id=user_id,
+            post_date=post_date
         )
-        db.session.add(recipes)
+        
+        db.session.add(recipe)
         db.session.commit()
-        return redirect(url_for("home"))
+        
+        # redirects to the recipes page and displays only the recipes matching the cuisine_id
+        return redirect(url_for("recipes", cuisine_id=cuisine_id))
+        
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
@@ -230,28 +244,37 @@ def add_recipe():
 @app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
+    cuisines = Cuisine.query.order_by(Cuisine.cuisine_type).all()
+
     if request.method == "POST":
-        recipe.recipe_name = request.form.get("recipe_name"),
-        recipe.cuisine_id = request.form.get("cuisine_id"),
-        recipe.recipe_description = request.form.get("recipe_description"),
-        recipe.recipe_serves = request.form.get("recipe_serves"),
-        recipe.recipe_ingredients = request.form.get("recipe_ingredients"),
-        recipe.recipe_method = request.form.get("recipe_method"),
-        recipe.recipe_img=request.form.get("recipe_img"),
-        user_id = session.get("user_id"),
-        recipe.post_date=get_todays_date()
+        recipe.recipe_name = request.form.get("recipe_name")
+        recipe.cuisine_id = request.form.get("cuisine_id")
+        recipe.recipe_description = request.form.get("recipe_description")
+        recipe.recipe_serves = request.form.get("recipe_serves")
+        recipe.recipe_ingredients = request.form.get("recipe_ingredients")
+        recipe.recipe_method = request.form.get("recipe_method")
+        recipe.recipe_img = request.form.get("recipe_img")
+        user_id = session.get("user_id")
+        recipe.post_date = get_todays_date()
+
         db.session.commit()
-        return redirect(url_for("home"))
+
+        # redirects to the recipes page and displays only the recipes matching the cuisine_id
+        return redirect(url_for("recipes", cuisine_id=recipe.cuisine_id))
+
+    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
 
 
-# === Delete Recipe Form ===
 @app.route("/delete_recipe/<int:recipe_id>")
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
+    cuisine_id = recipe.cuisine_id 
+
     db.session.delete(recipe)
     db.session.commit()
-    return redirect(url_for("home"))
+
+    # redirects to the recipes page and displays only the recipes matching the cuisine_id
+    return redirect(url_for("recipes", cuisine_id=cuisine_id))
 
 
 # === Rate Recipe Form ===
