@@ -62,30 +62,41 @@
     </nav>
 
     {% block content %}
+    <style>
+        #default_hero {
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='/assets/images/hero.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #user_hero {
+            height: 50vh;
+            background-image: url("{{ url_for('static', filename='/assets/images/hero_2.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+
     <main>
 
-        <!-- Hero -->
-        <section class="hero">
+        <!-- Hero for when user is NOT signed in -->
+        {% if g.user == None %}
+        <section id="default_hero">
             <div class="container col-xl-10 col-xxl-8 px-4 py-5">
                 <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-7 text-center text-lg-start" style="margin-top: 10%; margin-bottom: 10%;">
-                        {% if g.user %}
-                        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-                            Welcome {{ g.user.f_name }}!
-                        </h1>
-                        {% else %}
                         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
                             Welcome to Recipe Site
                         </h1>
                         <p class="col-lg-10 fs-4">
                             Browse recipes, upload your own &amp; more!
                         </p>
-                        {% endif %}
-                        <a href="#carouselExampleDark" class="btn btn-lg btn-primary">Get Started <i class="fa-solid fa-angle-down"></i></a>
                     </div>
                     <div class="col-md-10 mx-auto col-lg-5">
                         <!-- Sign In Form -->
-                        {% if g.user == None %}
                         <form method="POST" action="{{ url_for('sign_in') }}"
                             class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
                             <h4>
@@ -110,22 +121,20 @@
                                 <a href="{{ url_for('reset_password') }}">Forgotten Password?</a>
                             </small>
                         </form>
-                        {% endif %}
                     </div>
                 </div>
             </div>
         </section>
-
-        <style>
-            .hero {
-                height: 100vh;
-                background-image: url("{{ url_for('static', filename='/assets/images/hero.jpg') }}");
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                /* color: #fff;  Set text color to white or another contrasting color */
-            }
-        </style>
+        {% else %}
+        <!-- Hero for when user IS signed in -->
+        <section id="user_hero" class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-start" style="margin-top: 10%; margin-bottom: 10%;">
+                    <h1 class="text-white display-4 fw-bold">Welcome {{ g.user.f_name }}!</h1>
+                </div>
+            </div>
+        </section>
+        {% endif %}
 
         <!-- Carousel to display recipes rated 4 stars or more -->
         <section id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -133,7 +142,7 @@
                 {% for batch in recipes|batch(4) %}
                 {% set filtered_recipes = batch|selectattr('average_rating', 'ge', 4)|list %}
                 {% if filtered_recipes %}
-                <h2 class="text-center mt-5">Top Rated</h2>
+                <h2 class="text-center display-5 mt-5">Top Rated</h2>
                 <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
                     <div class="py-5">
                         <div class="container px-4 px-lg-5 mt-5">

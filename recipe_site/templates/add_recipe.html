@@ -14,7 +14,7 @@
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
         <div class="text-start" style="margin-top: 10%; margin-bottom: 10%;">
-            <h1 class="fw-bolder text-white">Add Recipe</h1>
+            <h1 class="text-white display-4 fw-bold">Add Recipe</h1>
         </div>
     </div>
 </header>
@@ -166,13 +166,63 @@
         </div>
 
         <!-- Recipe Image -->
-        <label for="recipe_img">Image of Dish</label>
+        <label for="recipe_img">
+            <i class="fa-solid fa-camera"></i> Image of Dish:
+        </label>
         <div id="recipe_ingredientsHelp" class="form-text">
             Please select a good quality image of your dish.
+            <br>
+            You must ensure you have permission to use this image.
+            <br>
+            Paste the URL for your image below.
+            <!-- Button trigger modal -->
+            <a data-bs-toggle="modal" href="#image-modal">
+                <i class="fa-solid fa-circle-info"></i>
+            </a>
         </div>
         <div class="mb-3">
             <input type="text" name="recipe_img" id="recipe_img" placeholder="Image URL"
                 aria-placeholder="Recipe Image URL" aria-label="Recipe Image URL" class="form-control" required>
+        </div>
+        <!-- Method Info Modal -->
+        <div class="modal fade" id="image-modal" tabindex="-1" aria-labelledby="image-modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Instructions:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation"></i> <em>Currently, Recipe Site can only accept image uploads via URL.</em>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <p>
+                            <strong>
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                The image you choose must either be your own, or you must have permission to use it.
+                            </strong>
+                        </p>
+                        <u>If uploading from Google Photos:</u>
+                        <small>(Desktop Only)</small>
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            <li>1. Navigate to Google Photos and select your chosen image.</li>
+                            <li>2. Right-Click on the image and select: 'Open image in new tab'.</li>
+                            <li>3. Copy the entire URL from the address bar and paste it into the form.</li>
+                        </ul>
+                        <br>
+                        <u>If uploading from another site:</u>
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            <li>1. Within your browser, navigate to your chosen image.</li>
+                            <li>2. Right-Click on the image and select: 'Open image in new tab'.</li>
+                            <li>3. Copy the entire URL from the address bar and paste it into the form.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Post Date --

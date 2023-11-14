@@ -39,7 +39,7 @@ def results():
     search_value = request.args.get('search_value')
     matching_recipes = Recipe.query.filter(or_(Recipe.recipe_name.ilike(f"%{search_value}%"), Recipe.recipe_description.ilike(f"%{search_value}%"))).all()
     if not matching_recipes:
-        flash("Sorry, we couldn't find what you were looking for", "info")
+        flash("Sorry, we couldn't find what you were looking for", "secondary")
     return render_template("results.html", recipes=matching_recipes)
 
 

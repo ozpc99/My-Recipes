@@ -480,6 +480,7 @@ These icons are:
 | -------------------- | -------------------------------------------------- | -------------------------------------------------------------------- |
 | bars-staggered       | `<i class="fa-solid fa-bars-staggered"></i>`       | https://fontawesome.com/icons/bars-staggered?f=classic&s=solid       |
 | calendar-day         | `<i class="fa-solid fa-calendar-day"></i>`         | https://fontawesome.com/icons/calendar-day?f=classic&s=solid         |
+| camera               | `<i class="fa-solid fa-camera"></i>`               | https://fontawesome.com/icons/camera?f=classic&s=solid               |
 | circle-exclamation   | `<i class="fa-solid fa-circle-exclamation"></i>`   | https://fontawesome.com/icons/circle-exclamation?f=classic&s=solid   |
 | circle-info          | `<i class="fa-solid fa-circle-info"></i>`          | https://fontawesome.com/icons/circle-info?f=classic&s=solid          |
 | floppy-disk          | `<i class="fa-solid fa-floppy-disk"></i>`          | https://fontawesome.com/icons/floppy-disk?f=classic&s=solid          |
