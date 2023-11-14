@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon/favicon.ico') }}">
-    <title>Recipe Site</title>
+    <title>myRecipes</title>
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         type="text/css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -23,8 +23,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('home') }}">
-                <!-- <img src="#" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
-                Recipe Site
+                <i class="fa-solid fa-utensils"></i> myRecipes
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -63,6 +62,10 @@
 
     {% block content %}
     <style>
+        #welcome {
+            background-color: rgba(255, 255, 255, 0.801);
+        }
+
         #default_hero {
             height: 100vh;
             background-image: url("{{ url_for('static', filename='/assets/images/hero.jpg') }}");
@@ -87,9 +90,9 @@
         <section id="default_hero">
             <div class="container col-xl-10 col-xxl-8 px-4 py-5">
                 <div class="row align-items-center g-lg-5 py-5">
-                    <div class="col-lg-7 text-center text-lg-start" style="margin-top: 10%; margin-bottom: 10%;">
+                    <div id="welcome" class="col-lg-7 text-center text-lg-start rounded" style="margin-top: 10%; margin-bottom: 10%;">
                         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-                            Welcome to Recipe Site
+                            Welcome!
                         </h1>
                         <p class="col-lg-10 fs-4">
                             Browse recipes, upload your own &amp; more!
@@ -98,7 +101,7 @@
                     <div class="col-md-10 mx-auto col-lg-5">
                         <!-- Sign In Form -->
                         <form method="POST" action="{{ url_for('sign_in') }}"
-                            class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                            class="p-4 p-md-5 border rounded-3" style="background-color: rgba(255, 255, 255, 0.801);">
                             <h4>
                                 Sign In
                             </h4>
@@ -227,13 +230,6 @@
 
     </main>
     {% endblock %}
-
-    <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Recipe Site <span id="copyright"></span></p>
-        </div>
-    </footer>
 
     <!-- Bootstrap CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
