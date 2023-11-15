@@ -1,6 +1,16 @@
 # myRecipes
 
 # About
+myRecipes is my submission for the Unit 3: Back-End Development Project for the Level 5 Diploma in Web Application Development.
+
+It is a recipe database platform which allows users to search for recipes, browse by cuisine category, upload recipes of their own and rate others.
+
+Users can use the search bar to search for a particular recipe or browse by cuisine category as well as rate other user's recipes out of 5 stars without an account.
+If they sign up for an account, they can create cuisine categories and post their own recipes as well as being able to edit, or delete their entries.
+
+The site works off a PostgreSQL relational database which stores data in tables for 'Cuisine', 'Recipe' and 'User'. This data is called upon using SQLAlchemy, Psycopg2 and Flask imported into Python. The data is displayed in the front-end via the 'routes.py' file and Jinja templating within the HTML.
+
+The site achieves full CRUD (Create, Read, Update, Delete) functionality via SQLAlchemy and Psycopg2 to allow users to create cuisine categories or recipes, view them on the page, update/edit their entries and delete them.
 
 # Contents
 1. [Instructions](#instructions)
@@ -347,7 +357,7 @@ If at any time, you wish to update your Python database schemas such as adding n
     - Replace 'database_name_here' with the name of your database.
     - Remember to include the semicolon ( ; ) at the end of the command.
 
-2. Repeat the steps to [Initialise the Database with Postgres](#initialising-the-database-with-postgres)
+2. Repeat the steps to [Create the Postgres Database](#creating-the-postgres-database)
 
 
 ### Committing to GitHub
@@ -391,29 +401,385 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 
 - For your reference: If at any time you are experiencing problems committing to GitHub, you can check the server status at https://www.githubstatus.com/
 
-# UX
+# UX Design
 ## Application Goals
-## User Stories
+### 1. Implement a Relational Database to Store Site Data
+<ol type="I">
+    <h4>
+        <li>
+            Design & Implement a Relational Database
+        </li>
+    </h4>
+    <ul>
+    <li>
+        Put careful thought into designing a relational database to store data within separate tables for:
+        <ul>
+            <li>Cuisine Category Data</li>
+            <li>Recipe Data</li>
+            <li>User Data</li>
+        </ul>
+    </li>
+    <li>
+        Think carefully about the relationships between these types of data. Using 'backref' and dot notation appropriately. 
+    </li>
+    </ul>
+    <h4>
+        <li>
+            Create User Functionality via CRUD
+        </li>
+    </h4>
+    <ul>
+        <li>
+            Implement CRUD (Create, Update, Read, Delete) functionality to allow users to create, view, edit and delete their own:
+            <ul>
+                <li>Cuisine Categories</li>
+                <li>Recipes</li>
+                <li>User Account</li>
+            </ul>
+        </li>
+        <li>
+            This functionality must also meet the brief of User-Centric, Interactive, Intuitive & Accessible UI Design.
+        </li>
+    </ul>
+</ol>
+
+
+### 2. Implement a User-Centric, Interactive, Intuitive & Accessible UI
+<ol type="I">
+    <h4>
+        <li>
+            Ensure the site is fully responsive and developed with a mobile-first approach in mind.
+        </li>
+    </h4>
+    <ul>
+        <li>
+            The site will be built using a framework for responsive design such as Bootstrap and will also make use of pre-made templates from StartBootstrap.   
+        </li>
+        <li>
+            Custom CSS media queries may be used on top of this to aid responsiveness where necessary.
+        </li>
+        <li>
+            Tests will be ran throughout the development process to check for responsiveness. This will be executed with Google Chrome Developer Tools to view a preview of the site on multiple mobile devices.
+        </li>
+    </ul>
+    <h4>
+        <li>
+            Implement intuitive site navigation.
+        </li>
+    </h4>
+    <ul>
+        <li>
+            A navigation bar will be used for navigating between pages. It will be positioned in an intuitive place at the top of the screen.
+        </li>
+        <li>
+            Ensure all links and buttons on the site work correctly and correspond to the correct page.
+        </li>
+        <li>
+            It would be good practice to prove user feedback such as when a button/link is hovered over or clicked, it changes colour or becomes underlined. This could be achieved using Bootstrap classes or custom CSS.
+        </li>
+        <li>
+            Any external links should open in a new tab so the user does not lose their place on the current page and their attention is not diverted away from the site.
+        </li>
+    </ul>
+    <h4>
+        <li>
+            Preserve user-initiated control and interaction.
+        </li>
+    </h4>
+    <ul>
+        <li>
+            The user must be in control at all times, the site should not do anything unless the user has requested it to do so or interacted with its content.
+        </li>
+        <li>
+            The site must not do anything unintended, uninitiated or unexpected. Testing and de-bugging on a range of web browsers and devices will commence prior to deployment to prevent this. Werkzeug will be used for debugging Python files.
+            The testing process will be well planned out and documented for future reference.
+        </li>
+        <li>
+            There should be no unexpected pop ups or page jumps. All content must load and scroll into view correctly, without errors, bugs or delay. Code must be formatted correctly without errors and pass a thorough testing, linting and de-bugging process prior to deployment. File sizes for assets such as images and videos must be minimised as much as is possible without impacting quality to improve loading times. Any scripts must be linked at the end of the HTML body to improve loading times unless it is absolutely necessary for them to load before the HTML body.
+        </li>
+    </ul>
+    <h4>
+        <li>
+            Ensure appropriate user feedback/confirmation is provided for all user interactions.
+        </li>
+    </h4>
+    <ul>
+        <li>
+            Buttons and links should provide user feedback such as changing colour when hovered over or in the case of the navigation bar links, becoming underlined and staying underlined when the the page is being viewed.
+        </li>
+        <li>
+            All links must redirect to the correct address and provide the corresponding content the user has selected to view.
+        </li>
+        <li>
+            All forms on the site should provide user feedback in the form of flash messages within dismissible Bootstrap alerts. Appropriate error handling must be included to provide helpful messages in the event of user or server error.
+        </li>
+    </ul>
+    <h4>
+        <li>
+            Meet accessibility criteria.
+        </li>
+    </h4>
+    <ul>
+        <li>
+            Text must be displayed in an appropriate size font and colour that is clearly legible and remains legible when the page is resized within a browser.
+        </li>
+        <li>
+            Background colours must be chosen carefully to ensure that text in front of it remains legible against the contrast of colours.
+        </li>
+        <li>
+            Images must be of appropriate size and quality and contain descriptive alt attributes for the benefit of visually impaired users and/or should the image fail to load.
+        </li>
+        <li>
+            ARIA roles can be incorporated to allow dynamic content to be more accessible.
+        </li>
+        <li>
+            Pages can be checked for accessibility using dev tools such as Lighthouse Viewer.
+        </li>
+    </ul>
+</ol>
+
+### 3. Meet the Briefs of the User Stories:
+### User Stories
+#### As a User, I Want To...
+- Search for recipes using an intuitive search bar that provides the results I need or in the case of no results found, provides an appropriate error message.
+- Browse for recipes based on cuisine category if I'm not sure on the exact recipe I want and I'm just looking for ideas on what to cook.
+- See descriptive images, attributes and ratings of the recipes so I can quickly and intuitively find what I'm looking for and know if the recipe is worth trying.
+    - These attributes should include:
+        - Recipe Name
+        - Recipe Image
+        - What kind of cuisine it is
+        - How many people it serves
+        - When it was posted to the site
+        - Who posted it
+        - A rating out of 5 stars
+- Create an account with the site so I can post my own recipes.
+- Edit/update and delete any data for any cuisine categories or recipes I create.
+- Rate others' recipes to provide feedback for other users.
+
+#### As the Site Administrator, I Want To...
+- Provide a platform for users to share recipes.
+
 
 # The Design Phase
-## Wireframes
-## Flowcharts
-## Mockups
+## Back-End
+### Database Schema Flowchart:
+Flowchart was produced using [Lucidchart](https://www.lucidchart.com/pages)
+
+A PDF version of the flowchart can be accessed: 
+[HERE](/docs/flowcharts/database_flowchart.pdf)
+
+![Database Schema](/docs/flowcharts/database_flowchart.png)
+
+## Front-End
+### Wireframes
+Wireframes were produced using [Balsamiq Wireframes](https://balsamiq.com/wireframes/?gad_source=1&gclid=CjwKCAiA9dGqBhAqEiwAmRpTC3-D82ls_R7ESV3cn6haV3y9znxvRr5iIpq4eccsVtvlglwc8LWWBRoCFHMQAvD_BwE)
+
+A PDF version of the wireframes can be accessed:
+[HERE](/docs/wireframes/wireframes.pdf) 
+
+##### Home Page When User Is NOT Signed In
+![Home Page Default](/docs/wireframes/Home%20Default.png)
+
+##### Home Page When User IS Signed In
+![Home Page When User Signed In](/docs/wireframes/Home%20When%20User%20Signed%20In.png)
+
+##### Search Results When Results Found
+![Search Results When Results Found](/docs/wireframes/Search%20Results.png)
+
+##### Search Results When NO Results Found
+![Search Results When No Results Found](/docs/wireframes/Search%20Results%20if%20no%20results.png)
+
+##### Sign Up Page with Form
+![Sign Up Page with Form](/docs/wireframes/Sign%20Up%20Form.png)
+
+##### Reset Password Page with Form
+![Reset Password Page with Form](/docs/wireframes/Reset%20Password.png)
+
+##### Cuisines Page
+![Cuisines Page](/docs/wireframes/Cuisines%20Default.png)
+
+##### Cuisines Page If User Owns Categories
+![Cuisines Page If User Owns Categories](/docs/wireframes/Cuisines%20If%20User%20Owns%20Categories.png)
+
+##### Add Cuisine Category Modal with Add Category Form
+![Add Cuisine Category Modal](/docs/wireframes/Add%20Category%20Modal.png)
+
+##### Rename Cuisine Category Modal with Rename Category Form
+![Rename Cuisine Category Modal](/docs/wireframes/Rename%20Category%20Modal.png)
+
+##### Delete Cuisine Category Modal with Delete Category Button
+![Delete Cuisine Category Modal](/docs/wireframes/Delete%20Category%20Modal.png)
+
+##### Add Recipe Page with Form
+![Add Recipe Page with Form](/docs/wireframes/Add%20Recipe%20Form.png)
+
+##### Recipes Page Displaying Recipes Based Off Cuisine Type
+![Recipes Page Displaying Recipes Based Off Cuisine Type](/docs/wireframes/Recipes%20Based%20off%20Cuisine%20Type.png)
+
+##### Recipes Page If User Owns Recipes
+![Recipes Page If User Owns Recipes](/docs/wireframes/Recipes%20if%20User%20owns%20them.png)
+
+##### Edit Recipe Modal with Edit Recipe Form
+![Edit Recipe Modal with Edit Recipe Form](/docs/wireframes/Edit%20Recipe%20Modal.png)
+
+##### Delete Recipe Modal with Delete Recipe Button
+![Delete Recipe Modal with Delete Recipe Button](/docs/wireframes/Delete%20Recipe%20Modal.png)
+
+##### Recipe Page Displaying Recipe Based Off ID
+![Recipe Page Displaying Recipe Based Off ID](/docs/wireframes/Recipe.png)
 
 # Design Choices
-
-# UI
+# UI Design
 ## Application Features
 
+### Navbar Prior To User Sign-In
+![Navbar Prior To User Sign-In](/docs/screenshots/navbar.png)
+The default navbar, prior to a user signing in, displays nav-links for 'Home' and 'Cuisines' alongside the search bar.
+
+### Navbar Post User Sign-In
+![Navbar Post User Sign-In](/docs/screenshots/navbar_user.png)
+The navbar displayed after a user has signed in displays nav-links for 'Home', 'Cuisines', 'Add Recipe' and 'Sign Out' alongside the search bar.
+
+### Home Page Prior To User Sign-In
+![Home Page Default](/docs/screenshots/home_default.png)
+
+The default Home Page, prior to a user signing in, displays a full-screen hero image of a kitchen counter with a Welcome message and the sign-in form.
+
+The sign in form, when submitted, gets the data from the form where it is handled by the load session function and the page will redirect to the Home Page for post user sign in.
+
+### Home Page Post User Sign-In
+![Home Page Post User Sign-In](/docs/screenshots/home_user.png)
+The Home page for when a user has signed in is displayed using a Jinja conditional check of {% if g.user %} to check if there is a user signed in. 
+It displays a 50% viewport height hero image of vegetables with a Welcome message containing a Jinja template of {{ g.user.f_name }} displaying the user's first name.
+
+### Search Results If Results Found
+![Search Results If Results Found](/docs/screenshots/search_if_results.png)
+The search bar works as a form which upon submission, gets the user's input and queries the database for recipe names and descriptions that have a similar likeness to the user's inputted value. If a match has been found, it will display the results in a Bootstrap ordered list group. The results are displayed with the recipe name providing a hyperlink to the recipe based on that recipe's ID as well as the star rating and the cuisine type displayed in Bootstrap badges. The cuisine type badge is contained within a link tag to link to the cuisine paged based on that recipes cuisine type.
+
+### Search Results If No Results Found
+![Search Results If No Results Found](/docs/screenshots/search_if_no_results.png)
+Error handling has been included within the Python route for the search form. This means that in the event a result can not be found, a flash message will appear within a Bootstrap alert. The message hints to the user to search for another recipe or browse the cuisine categories- to which a hyperlink is provided.
+
+### Sign Up Page | Sign Up Form
+![Sign Up Page, Sign Up Form](/docs/screenshots/sign_up.png)
+The sign up page is accessed from the Sign Up button on the default home page underneath the sign in form. It features text field inputs for the user to input their name, email address, desired username and password. It also features a Bootstrap toggle switch which allows users to opt into the mailing list.
+
+*NB- As of yet, the mailing list has not been set up so the user will not receive an email like they were expecting. In future, this will be implemented using an API or Email Delivery Engine such as MailJet.*
+
+When the sign up button is clicked, the form gets the data and posts it to the User database. The user is redirected back to the default home page where they can sign in and the session will load.
+
+### Reset Password Page | Reset Password Form
+![Reset Password Page, Reset Password Form](/docs/screenshots/reset_password.png)
+This page is accessed via the Forgotten Password hyperlink on the default home page underneath the sign-in form. When clicked, it allows users to reset their password if they have forgotten it.
+The form asks the user to input their email address and username. This is so that passwords can only be reset if the username matches the associated email address for that user id. Once the user has inputted their new password and submitted the form, the reset password app route function will get data from the form and commit it to the database, overwriting the old password with the new one.
+
+### Cuisine Categories Page
+![Cuisine Categories Page](/docs/screenshots/cuisine.png)
+The Cuisine Categories page displays all cuisine categories created by all users in alphabetical order. Each category is displayed using Bootstrap cards within a grid system.
+
+### Cuisine Categories Page If User Owns Categories
+![Cuisine Categories Page If User Owns Categories](/docs/screenshots/cuisine_user.png)
+If a user is signed in and they own one of these categories, they are able to rename or delete the category using the buttons displayed at the bottom of the card.
+
+*NB- Currently, even if a user owns that category and chooses to delete it, it will delete all recipes in that category even if they are not their own. So if other users have posted recipes to that category they will too, be deleted.* 
+
+### Add Cuisine Category Modal
+![Add Cuisine Category Modal](/docs/screenshots/add_cuisine.png)
+When a user is signed in, the Add Category button is displayed to allow users to add cuisine categories.
+When the button is clicked, it triggers a Bootstrap modal containing a form. Users can input the category name as well as a URL for the image they choose for that category.
+When the add button is clicked, the add_category app route function gets the data from the form and posts it to the database, giving it a unique cuisine_id primary key.
+
+*NB- Currently, users can only upload images via URL and not files.*
+
+### Rename Cuisine Category Modal
+![Rename Cuisine Category Modal](/docs/screenshots/rename_cuisine.png)
+When a user is signed in and they own the category, they can rename it by clicking the rename button.
+This triggers a Bootstrap modal containing a form where users can input a new name. When the rename button is clicked, the edit_category app route function gets the data from the form and commits the new name to the Cuisine database for that cuisine_id, overwriting the previous name.
+
+### Delete Cuisine Category Modal
+![Delete Cuisine Category Modal](/docs/screenshots/delete_cuisine.png)
+When a user is signed in and they own the category, they can delete it by clicking the delete button.
+This triggers a Bootstrap modal containing a message and a preview of their category within a Bootstrap card, asking the user if they are sure they want to proceed. 
+When the delete button is clicked, the delete_category app route function deletes the entry for that id from the database.
+
+### Add Recipe Page | Add Recipe Form
+![Add Recipe Page, Add Recipe Form](/docs/screenshots/add_recipe.jpg)
+When a user is signed in, the add recipe page containing the add recipe form is accessed via the nav-link in the nav-bar. Here, they can fill out the form to add a new recipe.
+The cuisine category select field uses a Jinja for loop to list all categories within the Cuisine database.
+Instructions are provided to the user on how to structure their entry for ingredients and method. This is because the database structure for these columns is text so when rendered to the page will display the same as how the user inputted it. These instructions are accessed via the circle info icon and trigger a Bootstrap modal with instructions listed when clicked.
+
+*NB- Currently, users can only upload images via URL and not files.*
+
+When the add recipe button is clicked, the add_recipe app route function gets the data from the form and posts it to the Recipe database, creating a new entry with a unique recipe_id primary key as well as assigning it the foreign key of cuisine_id for the cuisine category type the user selected.
+
+### Recipes Page
+![Recipes Page](/docs/screenshots/recipes.png)
+The recipes page displays recipes based off the cuisine type selected by the user on the cuisines page.
+The recipes are displayed in Bootstrap cards on a grid layout and their data is rendered using Jinja templates which insert data based on the cuisine_id foreign key assigned to the recipes in the Recipe database.
+
+### Recipes Page If User Owns Recipes
+![Recipes Page If User Owns Recipes](/docs/screenshots/recipes_user.png)
+When a user is signed in and owns the recipe, the edit and delete buttons are displayed using a Jinja conditional check to see if the user logged in is the user who created the recipe.
+
+### Edit Recipe Modal
+![Edit Recipe Modal](/docs/screenshots/edit_recipe.jpg)
+When the edit button is clicked, a Bootstrap modal appears with the same form used to add recipes only routed to the edit_recipe app route function. When submitted, it commits the new data to the Recipe database overwriting the previous entry for the recipe with that recipe_id primary key.
+
+### Delete Recipe Modal
+![Delete Recipe Modal](/docs/screenshots/delete_recipe.png)
+When the delete button is clicked, a Bootstrap modal appears asking the user if they are sure they wish to proceed. A preview of the recipe is displayed within a Bootstrap card. When the delete button is clicked, the delete_recipe app route function deletes the recipe with that recipe_id primary key from the Recipe database.
+
+### Recipe Page
+![Recipe Page](/docs/screenshots/recipe.png)
+The Recipe page displays a recipe based off the recipe_id primary key. This is so that when a user clicks the 'View' button on the recipes page, they are redirected to the recipe page with the data for that specific recipe inserted into the template via Jinja. The template features the recipe name, it's image, information about when it was posted and by who. If the recipe is *not* owned by the current user logged in, the rate recipes form is displayed via a Jinja conditional check to see if the user logged in is not the user who created the recipe.
+
+### Rate Recipe Form
+![Rate Recipe Form](/docs/screenshots/rate_recipe.png)
+
+The Rate Recipe form allows users to rate other users' recipes out of 5 stars.
+The form works by using Bootstrap 'btn-check' styled radio inputs with FontAwesome star icons each assigned a corresponding value 1-5. Custom CSS and JavaScript allow for user feedback and interactivity. When the stars are hovered over or selected, they turn yellow (Bootstrap variable: 'warning'). Users can reselect these inputs before submitting in case they change their mind and their changes are displayed instantly.
+
+The 'Rate!' button gets the value selected from the form and posts it to the rating column in the Recipe database. Each time the form is submitted, a new integer is added onto the rating array. This creates a list of numbers. A function queries this array and calculates the mean average. This average is then posted to the average_rating column in the Recipe database as a float.
+
+The average_rating is displayed across the site using Jinja templates. The star rating makes use of conditional checks in the form of a for loop to display the float in the form of FontAwesome star and star-half-stroke icons. The float is displayed next to this, rounded to one decimal place.
+
 # Testing
+## Manual Testing
+A thorough manual testing process has been carried out on all features of the application. This is to ensure the application behaves and functions as was intended in the design phase and that each feature achieves the application goals and meets the brief of the user stories upon deployment.
+
+In order to pass each test, each feature must meet the exact expectations in all of the following browsers:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+
+See documentation of the manual testing process below:
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expectation</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Passed?</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+## Automated Testing with Selenium.dev
 
 # Deployment
 
 # Acknowledgements
-
 ## Assets
-### Images
 
+### Images
 - [hero.jpg](https://www.freepik.com/free-photo/wooden-table-product-background_4138763.htm#query=kitchen&position=3&from_view=search&track=sph)
 by rawpixel.com on Freepik
 
