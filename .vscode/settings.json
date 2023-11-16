@@ -32,6 +32,7 @@
       "Mockups",
       "Procfile",
       "Psycopg",
+      "Vars",
       "Werkzeug",
       "backref",
       "chandlervid",

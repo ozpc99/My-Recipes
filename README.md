@@ -40,9 +40,9 @@ The site achieves full CRUD (Create, Read, Update, Delete) functionality via SQL
 
 # Instructions
 ## Viewing a Live Preview
-To view a live preview of the site, simply navigate to the domain address: 
+To view a live preview of the site, simply navigate to the domain address hosted by Heroku:
 
-[--insert link here--](#)
+https://ozpc99-my-recipes-d50dcd065b34.herokuapp.com/
 
 The link is also shown in the 'About' section of the GitHub repository: 
 
@@ -787,15 +787,15 @@ The steps taken to deploy this application are as follows:
 
 1. Navigate to [ElephantSQL.com](https://www.elephantsql.com/) and click "Get a managed database today".
 
-![ElephantSQL](/docs/screenshots/deployment/elephantsql_1.png)
+    ![ElephantSQL](/docs/screenshots/deployment/elephantsql_1.png)
 
 2. Select the 'Tiny Turtle' 'Try now for FREE' option.
 
-![Tiny Turtle](/docs/screenshots/deployment/elephantsql_2.png)
+    ![Tiny Turtle](/docs/screenshots/deployment/elephantsql_2.png)
 
 3. At the sign-in page, select 'Sign In With GitHub'
 
-![Sign In With GitHub](/docs/screenshots/deployment/elephantsql_3.png)
+    ![Sign In With GitHub](/docs/screenshots/deployment/elephantsql_3.png)
 
 4. If this is your first time signing up to ElephantSQL, you will need to create a new team.
 
@@ -820,7 +820,7 @@ The steps taken to deploy this application are as follows:
 
 5. From the Instances Dashboard, click 'Create New Instance'
 
-![Create New Instance](/docs/screenshots/deployment/elephantsql_7.png)
+    ![Create New Instance](/docs/screenshots/deployment/elephantsql_7.png)
 
 6. Set Up Your Plan
 
@@ -854,12 +854,12 @@ The steps taken to deploy this application are as follows:
 
 7. In the Instances Dashboard, click in the database instance name for your project.
 
-![Database Instance Name](/docs/screenshots/deployment/elephantsql_14.png)
+    ![Database Instance Name](/docs/screenshots/deployment/elephantsql_14.png)
 
 8. In the URL section, click the clipboard icon to copy the database URL to your clipboard.
 Keep this tab open, you will refer back to it later.
 
-![Database URL](/docs/screenshots/deployment/elephantsql_15.png)
+    ![Database URL](/docs/screenshots/deployment/elephantsql_15.png)
 
 
 ## Preparing The Code For Deployment
@@ -913,8 +913,137 @@ Your code should look like this:
 III. Save all files then add, commit and push your changes to GitHub.
 
 ## Connecting the Database to Heroku
+#### Preliminaries:
 
+Sign up for a Heroku account if you haven't already at [Heroku.com](https://www.heroku.com)
 
+- You will need to link this account to your GitHub account.
+
+- You will also need to download and set up
+[Salesforce Authenticator](https://www.salesforce.com/solutions/mobile/app-suite/security/)
+on your smartphone to allow for Heroku's two-factor log-in authentication.
+
+-  Heroku no longer offer free plans, so ensure you have sufficient credit on your account.
+
+Once this criteria is met:
+
+1. Log into [Heroku.com](https://www.heroku.com) and click 'Create New App'.
+
+    ![Create New App Button](/docs/screenshots/deployment/heroku_1.png)
+
+2. Choose a unique name for your app. Select the region closest to you and click "Create App". (If the name you want is already taken, why not try prefixing it with your GitHub username.)
+
+    ![Create App](/docs/screenshots/deployment/heroku_2.png)
+
+3. Navigate to the 'Settings' tab of your new app.
+
+    ![Settings Tab](/docs/screenshots/deployment/heroku_3.png)
+
+4. Click 'Reveal Config Vars'
+
+    ![Config Vars](/docs/screenshots/deployment/heroku_4.png)
+
+5. Return to the ElephantSQL tab and copy the database URL
+
+    ![ElephantSQL Database URL](/docs/screenshots/deployment/elephantsql_15.png)
+
+6. Go back to Heroku and add a Config Var called 'DATABASE_URL' and paste in your ElephantSQL database URL in as the value. Then click 'Add'
+
+    ![Config Vars URL](/docs/screenshots/deployment/heroku_6.png)
+
+7. In your IDE, open the env.py file for viewing.
+
+    In the Config Vars on Heroku, add each of your other environment variables __except:__ 'DEVELOPMENT' and 'DB_URL'.
+
+    It should look something like this:
+
+    ![Other Config Vars](/docs/screenshots/deployment/heroku_7.png)
+
+    - DEBUG is only set to True temporarily in case errors are encountered during deployment.
+
+        __DEBUG will be set to False prior to finalised version__
+
+    - Do not wrap strings in quotes when adding them as values to Heroku Config Vars.
+
+8. Navigate to the 'Deploy' tab.
+
+    ![Deploy Tab](/docs/screenshots/deployment/heroku_8.png)
+
+9. In the 'Deployment Method' section, select 'Connect to GitHub'
+
+    ![Connect to GitHub](/docs/screenshots/deployment/heroku_9.png)
+
+10. Authorise Heroku Dashboard by signing in to GitHub
+
+    ![Authorise Heroku Dashboard](/docs/screenshots/deployment/heroku_10.png)
+
+11. Search for your GitHub repository and click 'Connect'
+
+    ![Search for GitHub Repo](/docs/screenshots/deployment/heroku_11.png)
+
+    You should receive confirmation like so:
+
+    ![Connection Confirmed](/docs/screenshots/deployment/heroku_11(1).png)
+
+12. Enable Automatic Deploys
+
+    This ensures any time code is pushed to GitHub, Heroku will deploy the latest version. Click the 'Enable Automatic Deploys' button.
+
+    ![Automatic Deploys](/docs/screenshots/deployment/heroku_12.png)
+
+    You will receive confirmation like so:
+
+    ![Automatic Deploys Confirmed](/docs/screenshots/deployment/heroku_12(1).png)
+
+13. In the 'Manual Deploy' section, click the 'Deploy Branch' button.
+
+    ![Deploy Branch](/docs/screenshots/deployment/heroku_13.png)
+
+14. To add tables to the database, click the 'More' button and select 'Run Console'
+
+    ![Run Console](/docs/screenshots/deployment/heroku_14.png)
+
+15. With the console open, type the command:
+
+        python3
+
+    And click 'Run'
+
+    ![python3](/docs/screenshots/deployment/heroku_15.png)
+
+16. To create the tables, type the command:
+
+        from recipe_site import db
+        
+    Then:
+
+        db.create_all()
+
+    Exit the Python terminal by typing:
+
+        exit()
+
+    *NB- Whenever changes are made to the database Models (in models.py), these migrations will have to be made again.*
+
+17. Click the 'Open App' button to launch the app.
+
+    ![Open App](/docs/screenshots/deployment/heroku_17.png)
+
+    The app will load but will not display any information yet from the database.
+
+    It is important to run a series of tests before deploying the final version of the application.
+
+    Click: [HERE](#testing) to view the testing procedure carried out on this application.
+
+    Once tests have sufficed and any changes made added, committed and pushed to GitHub:
+
+    I. Navigate to the Heroku App.
+
+    II. Navigate to the 'Settings' tab.
+
+    III. In the 'Config Vars' section, click the 'Reveal Config Vars' button.
+
+    VI. In the 'DEBUG' var, change the value from 'True' to 'False' and save the changes.
 
 # Acknowledgements
 ## Assets
