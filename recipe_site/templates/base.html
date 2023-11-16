@@ -140,12 +140,12 @@
         {% endif %}
 
         <!-- Carousel to display recipes rated 4 stars or more -->
+        <h2 class="text-center display-5 mt-5">Top Rated</h2>
         <section id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 {% for batch in recipes|batch(4) %}
                 {% set filtered_recipes = batch|selectattr('average_rating', 'ge', 4)|list %}
                 {% if filtered_recipes %}
-                <h2 class="text-center display-5 mt-5">Top Rated</h2>
                 <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
                     <div class="py-5">
                         <div class="container px-4 px-lg-5 mt-5">
