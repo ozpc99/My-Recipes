@@ -597,84 +597,94 @@ Wireframes were produced using [Balsamiq Wireframes](https://balsamiq.com/wirefr
 A PDF version of the wireframes can be accessed:
 [HERE](/docs/wireframes/wireframes.pdf) 
 
-##### Home Page When User Is NOT Signed In
+#### Home Page When User Is NOT Signed In
 ![Home Page Default](/docs/wireframes/Home%20Default.png)
 
-##### Home Page When User IS Signed In
+#### Home Page When User IS Signed In
 ![Home Page When User Signed In](/docs/wireframes/Home%20When%20User%20Signed%20In.png)
 
-##### Search Results When Results Found
+#### Search Results When Results Found
 ![Search Results When Results Found](/docs/wireframes/Search%20Results.png)
 
-##### Search Results When NO Results Found
+#### Search Results When NO Results Found
 ![Search Results When No Results Found](/docs/wireframes/Search%20Results%20if%20no%20results.png)
 
-##### Sign Up Page with Form
+#### Sign Up Page with Form
 ![Sign Up Page with Form](/docs/wireframes/Sign%20Up%20Form.png)
 
-##### Reset Password Page with Form
+#### Reset Password Page with Form
 ![Reset Password Page with Form](/docs/wireframes/Reset%20Password.png)
 
-##### Cuisines Page
+#### Cuisines Page
 ![Cuisines Page](/docs/wireframes/Cuisines%20Default.png)
 
-##### Cuisines Page If User Owns Categories
+#### Cuisines Page If User Owns Categories
 ![Cuisines Page If User Owns Categories](/docs/wireframes/Cuisines%20If%20User%20Owns%20Categories.png)
 
-##### Add Cuisine Category Modal with Add Category Form
+#### Add Cuisine Category Modal with Add Category Form
 ![Add Cuisine Category Modal](/docs/wireframes/Add%20Category%20Modal.png)
 
-##### Rename Cuisine Category Modal with Rename Category Form
+#### Rename Cuisine Category Modal with Rename Category Form
 ![Rename Cuisine Category Modal](/docs/wireframes/Rename%20Category%20Modal.png)
 
-##### Delete Cuisine Category Modal with Delete Category Button
+#### Delete Cuisine Category Modal with Delete Category Button
 ![Delete Cuisine Category Modal](/docs/wireframes/Delete%20Category%20Modal.png)
 
-##### Add Recipe Page with Form
+#### Add Recipe Page with Form
 ![Add Recipe Page with Form](/docs/wireframes/Add%20Recipe%20Form.png)
 
-##### Recipes Page Displaying Recipes Based Off Cuisine Type
+#### Recipes Page Displaying Recipes Based Off Cuisine Type
 ![Recipes Page Displaying Recipes Based Off Cuisine Type](/docs/wireframes/Recipes%20Based%20off%20Cuisine%20Type.png)
 
-##### Recipes Page If User Owns Recipes
+#### Recipes Page If User Owns Recipes
 ![Recipes Page If User Owns Recipes](/docs/wireframes/Recipes%20if%20User%20owns%20them.png)
 
-##### Edit Recipe Modal with Edit Recipe Form
+#### Edit Recipe Modal with Edit Recipe Form
 ![Edit Recipe Modal with Edit Recipe Form](/docs/wireframes/Edit%20Recipe%20Modal.png)
 
-##### Delete Recipe Modal with Delete Recipe Button
+#### Delete Recipe Modal with Delete Recipe Button
 ![Delete Recipe Modal with Delete Recipe Button](/docs/wireframes/Delete%20Recipe%20Modal.png)
 
-##### Recipe Page Displaying Recipe Based Off ID
+#### Recipe Page Displaying Recipe Based Off ID
 ![Recipe Page Displaying Recipe Based Off ID](/docs/wireframes/Recipe.png)
 
 # Design Choices
+The site has been built using Bootstrap, a framework for responsive design. StartBootstrap templates have been used for ease of development.
+
+The default Bootstrap theme colours have been left default as the black navbar provides a modern look and ensures the content is accessible. 
+
+The hero images all have a fixed background. When the page is scrolled, the content scrolls with it while the image remains static. This provides a sleek and modern appearance to the site.
+
+The hero_2.jpg image of vegetables used on all secondary pages of the site has been chosen because it contains a black background which white text can be applied over. This ensures text is legible and accessible across all pages and also provides consistent design.
+
+The navbar remains fixed to the top of the page across the site, this makes it easier for users to flick between pages without having to scroll all the way back up.
+
 # UI Design
 ## Application Features
 
 ### Navbar Prior To User Sign-In
 ![Navbar Prior To User Sign-In](/docs/screenshots/navbar.png)
-The default navbar, prior to a user signing in, displays nav-links for 'Home' and 'Cuisines' alongside the search bar.
+The default navbar, prior to a user signing in, displays nav-links for 'Home' and 'Cuisines' alongside the search bar. When each link is clicked, the user is redirected to the corresponding page.
 
 ### Navbar Post User Sign-In
 ![Navbar Post User Sign-In](/docs/screenshots/navbar_user.png)
-The navbar displayed after a user has signed in displays nav-links for 'Home', 'Cuisines', 'Add Recipe' and 'Sign Out' alongside the search bar.
+The navbar displayed after a user has signed in displays nav-links for 'Home', 'Cuisines', 'Add Recipe' and 'Sign Out' alongside the search bar. These links are displayed only after a user has signed in so that the form which handles adding recipes can retrieve the user id. The 'Sign Out' link clears the user from the database session.
 
 ### Home Page Prior To User Sign-In
 ![Home Page Default](/docs/screenshots/home_default.png)
 
-The default Home Page, prior to a user signing in, displays a full-screen hero image of a kitchen counter with a Welcome message and the sign-in form.
+The default Home Page, prior to a user signing in, displays a full-screen hero image of a kitchen counter with a Welcome message and the sign-in form. Both the message and form have CSS background colours applied with additional transparency, this ensures the content is accessible and can still be read when viewed on different screen sizes. 
 
-The sign in form, when submitted, gets the data from the form where it is handled by the load session function and the page will redirect to the Home Page for post user sign in.
+The sign in form, when submitted, gets the data from the form where it is handled by the load session function, adding the user's id to the session. The page will then redirect to the Home Page for post user sign in.
 
 ### Home Page Post User Sign-In
 ![Home Page Post User Sign-In](/docs/screenshots/home_user.png)
 The Home page for when a user has signed in is displayed using a Jinja conditional check of {% if g.user %} to check if there is a user signed in. 
-It displays a 50% viewport height hero image of vegetables with a Welcome message containing a Jinja template of {{ g.user.f_name }} displaying the user's first name.
+It displays a 50% viewport height hero image of vegetables with a Welcome message containing a Jinja template of {{ g.user.f_name }} displaying the user's first name. This adds a touch of personalisation and user ownership to the site.
 
 ### Search Results If Results Found
 ![Search Results If Results Found](/docs/screenshots/search_if_results.png)
-The search bar works as a form which upon submission, gets the user's input and queries the database for recipe names and descriptions that have a similar likeness to the user's inputted value. If a match has been found, it will display the results in a Bootstrap ordered list group. The results are displayed with the recipe name providing a hyperlink to the recipe based on that recipe's ID as well as the star rating and the cuisine type displayed in Bootstrap badges. The cuisine type badge is contained within a link tag to link to the cuisine paged based on that recipes cuisine type.
+The search bar works as a form which upon submission, gets the user's input and queries the database for recipe names and descriptions that have a similar likeness to the user's inputted value. If a match has been found, it will display the results in a Bootstrap ordered list group. The results are displayed with the recipe name providing a hyperlink to the recipe based on that recipe's ID as well as the star rating and the cuisine type displayed in Bootstrap badges. The cuisine type badge is contained within a link tag to link to the cuisine page based on that recipe's cuisine type.
 
 ### Search Results If No Results Found
 ![Search Results If No Results Found](/docs/screenshots/search_if_no_results.png)
@@ -714,7 +724,7 @@ When the add button is clicked, the add_category app route function gets the dat
 ### Rename Cuisine Category Modal
 ![Rename Cuisine Category Modal](/docs/screenshots/rename_cuisine.png)
 When a user is signed in and they own the category, they can rename it by clicking the rename button.
-This triggers a Bootstrap modal containing a form where users can input a new name. When the rename button is clicked, the edit_category app route function gets the data from the form and commits the new name to the Cuisine database for that cuisine_id, overwriting the previous name.
+This triggers a Bootstrap modal containing a form where users can input a new name. When the save changes button is clicked, the edit_category app route function gets the data from the form and commits the new name to the Cuisine database for that cuisine_id, overwriting the previous name.
 
 ### Delete Cuisine Category Modal
 ![Delete Cuisine Category Modal](/docs/screenshots/delete_cuisine.png)
@@ -743,7 +753,7 @@ When a user is signed in and owns the recipe, the edit and delete buttons are di
 
 ### Edit Recipe Modal
 ![Edit Recipe Modal](/docs/screenshots/edit_recipe.jpg)
-When the edit button is clicked, a Bootstrap modal appears with the same form used to add recipes only routed to the edit_recipe app route function. When submitted, it commits the new data to the Recipe database overwriting the previous entry for the recipe with that recipe_id primary key.
+When the edit button is clicked, a Bootstrap modal appears with the same form used to add recipes only this time, routed to the edit_recipe app route function. When submitted, it commits the new data to the Recipe database, overwriting the previous entry for the recipe with that recipe_id primary key.
 
 ### Delete Recipe Modal
 ![Delete Recipe Modal](/docs/screenshots/delete_recipe.png)
@@ -751,13 +761,13 @@ When the delete button is clicked, a Bootstrap modal appears asking the user if 
 
 ### Recipe Page
 ![Recipe Page](/docs/screenshots/recipe.png)
-The Recipe page displays a recipe based off the recipe_id primary key. This is so that when a user clicks the 'View' button on the recipes page, they are redirected to the recipe page with the data for that specific recipe inserted into the template via Jinja. The template features the recipe name, it's image, information about when it was posted and by who. If the recipe is *not* owned by the current user logged in, the rate recipes form is displayed via a Jinja conditional check to see if the user logged in is not the user who created the recipe.
+The Recipe page displays a recipe based off the recipe_id primary key. This is so that when a user clicks the 'View' button on the recipes page, they are redirected to the recipe page with the data for that specific recipe inserted into the template via Jinja. The template features the recipe name, it's image, information about when it was posted and by who. If the recipe is *not* owned by the current user logged in, the rate recipes form is displayed via a Jinja conditional check to see if the user logged in is not the user who created the recipe. This prevents users from rating their own recipes.
 
 ### Rate Recipe Form
 ![Rate Recipe Form](/docs/screenshots/rate_recipe.png)
 
 The Rate Recipe form allows users to rate other users' recipes out of 5 stars.
-The form works by using Bootstrap 'btn-check' styled radio inputs with FontAwesome star icons each assigned a corresponding value 1-5. Custom CSS and JavaScript allow for user feedback and interactivity. When the stars are hovered over or selected, they turn yellow (Bootstrap variable: 'warning'). Users can reselect these inputs before submitting in case they change their mind and their changes are displayed instantly.
+The form works by using Bootstrap 'btn-check' styled radio inputs with FontAwesome star icons each assigned a corresponding value: 1-5. Custom CSS and JavaScript provide user feedback and interactivity. When the stars are hovered over or selected, they turn yellow (Bootstrap variable: 'warning'). Users can reselect these inputs before submitting in case they change their mind and their changes are displayed instantly.
 
 The 'Rate!' button gets the value selected from the form and posts it to the rating column in the Recipe database. Each time the form is submitted, a new integer is added onto the rating array. This creates a list of numbers. A function queries this array and calculates the mean average. This average is then posted to the average_rating column in the Recipe database as a float.
 
@@ -791,8 +801,6 @@ See documentation of the manual testing process below:
         <td></td>
     </tr>
 </table>
-
-## Automated Testing with Selenium.dev
 
 # Deployment
 *NB- The steps taken to deploy via ElephantSQL and Heroku may have changed since this deployment. Please refer to the relevant documentation below:*
