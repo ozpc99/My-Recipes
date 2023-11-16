@@ -30,6 +30,7 @@
       "Jinja",
       "Lucidchart",
       "Mockups",
+      "Procfile",
       "Psycopg",
       "Werkzeug",
       "backref",
@@ -43,7 +44,11 @@
       "rawpixel",
       "selectattr",
       "sqlalchemy",
+      "startswith",
       "tagline",
       "todays"
+   ],
+   "cSpell.words": [
+      "Heroku"
    ]
 }

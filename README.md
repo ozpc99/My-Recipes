@@ -775,6 +775,146 @@ See documentation of the manual testing process below:
 ## Automated Testing with Selenium.dev
 
 # Deployment
+*NB- The steps taken to deploy via ElephantSQL and Heroku may have changed since this deployment. Please refer to the relevant documentation below:*
+
+- *ElephantSQL*: https://www.elephantsql.com/docs/index.html
+
+- *Heroku*: https://devcenter.heroku.com/
+
+The steps taken to deploy this application are as follows:
+
+## Creating a Database Instance with ElephantSQL
+
+1. Navigate to [ElephantSQL.com](https://www.elephantsql.com/) and click "Get a managed database today".
+
+![ElephantSQL](/docs/screenshots/deployment/elephantsql_1.png)
+
+2. Select the 'Tiny Turtle' 'Try now for FREE' option.
+
+![Tiny Turtle](/docs/screenshots/deployment/elephantsql_2.png)
+
+3. At the sign-in page, select 'Sign In With GitHub'
+
+![Sign In With GitHub](/docs/screenshots/deployment/elephantsql_3.png)
+
+4. If this is your first time signing up to ElephantSQL, you will need to create a new team.
+
+    In the 'Create new team' form:
+    
+    I. Add a team name (you can use your own name).
+
+    II. Read and agree to the terms of service.
+
+    III. Select 'Yes' for GDPR.
+
+    IV. Enter your email address.
+
+    V. Click 'Create Team'.
+
+    ![Create Team](/docs/screenshots/deployment/elephantsql_5.png)
+
+    VI. Your account is now created successfully.
+
+    ![Account Created](/docs/screenshots/deployment/elephantsql_6.png)
+
+
+5. From the Instances Dashboard, click 'Create New Instance'
+
+![Create New Instance](/docs/screenshots/deployment/elephantsql_7.png)
+
+6. Set Up Your Plan
+
+    I. Give your plan a name (this can be the project or application name).
+
+    II. Select the 'Tiny Turtle' (Free) plan.
+
+    III. The 'Tags' field can be left blank for now.
+
+    ![Select Plan](/docs/screenshots/deployment/elephantsql_8.png)
+
+    IV. Click the 'Select Region' button.
+
+    ![Select Region Button](/docs/screenshots/deployment/elephantsql_9.png)
+
+    V. Select the Data Center nearest to you. In this case it is EU-West-1 (Ireland).
+
+    ![Select Data Center](/docs/screenshots/deployment/elephantsql_10.png)
+
+    VI. Then click the 'Review' Button
+
+    ![Review Button](/docs/screenshots/deployment/elephantsql_11.png)
+
+    VII. Check the details are correct, then click the 'Create Instance' button.
+
+    ![Create Instance](/docs/screenshots/deployment/elephantsql_12.png)
+
+    VIII. You will be redirected back to the Instances Dashboard and will receive this notification:
+
+    ![Instance Created](/docs/screenshots/deployment/elephantsql_13.png)
+
+7. In the Instances Dashboard, click in the database instance name for your project.
+
+![Database Instance Name](/docs/screenshots/deployment/elephantsql_14.png)
+
+8. In the URL section, click the clipboard icon to copy the database URL to your clipboard.
+Keep this tab open, you will refer back to it later.
+
+![Database URL](/docs/screenshots/deployment/elephantsql_15.png)
+
+
+## Preparing The Code For Deployment
+Before the application can be deployed, you will need to create some new files that Heroku will need in order for the application to run. Open your IDE and follow these steps:
+
+### 1. requirements.txt
+
+Generate a requirements.txt file by typing the following command in the terminal:
+
+    pip freeze --local > requirements.txt
+
+### 2. Procfile
+
+I. Inside the root directory, create a new file called: 'Procfile'. Remember to name it with a capital 'P' otherwise Heroku won't recognise it.
+
+II. Inside the file, add the following command:
+
+    web: python run.py
+
+Do not add a blank line to the end of the file, this can cause problems for deployment.
+
+<h3>3. __init__.py</h3>
+
+I. Within the init file, add an __if__ statement before the line setting the
+__SQLALCHEMY_DATABASE_URI__ and in the __else__, set the value to reference a new variable:
+__DATABASE_URL__
+
+Your code should look like this:
+
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    if os.environ.get("DEVELOPMENT") == "True":
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+    else:
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+
+II. To ensure that SQLAlchemy can also read the external database, its URL needs to start with "postgresql://", but this should not be changed in the environment variable. Instead, make an addition to the __else__ statement from the previous step to adjust the DATABASE_URL in case it starts with "postgres://"
+
+Your code should look like this:
+
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    if os.environ.get("DEVELOPMENT") == "True":
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+    else:
+        uri = os.environ.get("DATABASE_URL")
+        if uri.startswith("postgres://"):
+            uri = uri.replace("postgres://", "postgresql://", 1)
+        app.config["SQLALCHEMY_DATABASE_URI"] = uri
+
+III. Save all files then add, commit and push your changes to GitHub.
+
+## Connecting the Database to Heroku
+
+
 
 # Acknowledgements
 ## Assets
