@@ -1221,7 +1221,7 @@ See documentation of the manual testing process below:
     </tr>
     <tr>
         <td>__init__.py</td>
-        <td>Y</td>
+        <td>E402 module level import not at top of file</td>
     </tr>
     <tr>
         <td>run.py</td>
