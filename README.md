@@ -901,132 +901,214 @@ See documentation of the manual testing process below:
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>Top Rated Recipes Carousel</td>
         <td>
-            .
+            Recipes with average rating of > 5 will be displayed in a carousel in bootstrap cards.
+            Carousel will function correctly and display cards in row of 4 columns.
         </td>
         <td>
-            .
+            Rated some recipes and loaded home page.
         </td>
         <td>
-            .
-        </td>
-        <td>Y</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            .
-        </td>
-        <td>
-            .
-        </td>
-        <td>
-            .
+            Recipes rated > 5 were displayed in carousel in cards in row of 4 columns.
+            Carousel controls slide the carousel forwards/back.
         </td>
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>Browse Cuisines Button</td>
         <td>
-            .
+            Should redirect to the recipes page displaying cuisine type associated with the cuisine_id selected.
         </td>
         <td>
-            .
+            Clicked button for each category.
         </td>
         <td>
-            .
-        </td>
-        <td>Y</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            .
-        </td>
-        <td>
-            .
-        </td>
-        <td>
-            .
+            Was redirected to recipes page for cuisine type I selected.
         </td>
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>View Recipe Button</td>
         <td>
-            .
+            Should redirect to the recipe page template displaying recipe associated with recipe_id selected.
         </td>
         <td>
-            .
+            Clicked button for each recipe.
         </td>
         <td>
-            .
-        </td>
-        <td>Y</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            .
-        </td>
-        <td>
-            .
-        </td>
-        <td>
-            .
+            Was redirected to recipe page for recipe I selected.
         </td>
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>Rate Recipe Form</td>
         <td>
-            .
+            Should only display if user is not recipe owner.
+            CSS and Scripts should change colour of stars on hover/click and update according to user input.
+            Form should get value and post it to Recipe database.
+            Function should calculate average and post it to the average_rating column in the Recipe database.
         </td>
         <td>
-            .
+            Viewed form while logged in as recipe owner and logged in as different user.
+            Clicked star icon radio buttons for each value. Viewed rating where displayed across site.
         </td>
         <td>
-            .
-        </td>
-        <td>Y</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            .
-        </td>
-        <td>
-            .
-        </td>
-        <td>
-            .
+            Icon radio buttons changed colour on hover and on click. Colour updates correctly depending on user selection.
+            Terminal displayed POST success message.
+            Average ratings were displayed across site as expected.
         </td>
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>Add Cuisine Modal</td>
         <td>
-            .
+            Button to trigger should only be displayed if a user is signed in.
+            When Add Category button is clicked, it should launch a bootstrap modal containing the add category form.
         </td>
         <td>
-            .
+            Viewed cuisine page while logged out and when logged in.
+            Clicked button
         </td>
         <td>
-            .
+            Button only displayed when logged in.
+            Button launched bootstrap modal containing form.
         </td>
         <td>Y</td>
     </tr>
     <tr>
-        <td></td>
+        <td>Add Cuisine Form</td>
         <td>
-            .
+            Form will gather data and post it to Cuisine database.
         </td>
         <td>
-            .
+            Filled out and submitted the form
         </td>
         <td>
-            .
+            Form posted data to Cuisine database.
+            POST success message displayed in terminal.
+            Category appeared on cuisines page.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Rename Cuisine Modal</td>
+        <td>
+            Button to trigger should only be displayed if user signed in matches category owner.
+            When Rename button is clicked, it should launch a bootstrap modal containing the edit category form.
+        </td>
+        <td>
+            Viewed cuisine page as category owner and as different user.
+            Clicked Rename button
+        </td>
+        <td>
+            Button only appeared on categories which user logged in was category owner.
+            Modal appeared with edit cuisine form.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Rename Cuisine Form</td>
+        <td>
+            Form will gather data and post it to Cuisine database.
+        </td>
+        <td>
+            Filled out and submitted the form.
+        </td>
+        <td>
+            Terminal displayed POST success message.
+            Category name was updated on cuisines page.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Delete Cuisine Modal</td>
+        <td>
+            Button to trigger should only be displayed if user logged in matches category owner.
+            When clicked, it should launch a bootstrap modal with an 'Are you sure?' message and a button to delete the category.
+        </td>
+        <td>
+            Viewed cuisine page as category owner and as different user.
+            Clicked button to trigger modal.
+        </td>
+        <td>
+            Button only appeared on categories which user logged in was category owner.
+            Modal appeared with 'Are you sure?' message and delete button
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Delete Cuisine Button</td>
+        <td>
+            Button will delete cuisine category from Cuisine database.
+        </td>
+        <td>
+            Viewed cuisine page as category owner and as different user.
+            Clicked button.
+        </td>
+        <td>
+            Terminal displayed DELETE message.
+            Category disappeared from cuisine page.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Edit Recipe Modal</td>
+        <td>
+            Button to trigger should only be displayed if user logged in matches recipe owner.
+            When clicked, it should launch a bootstrap modal with a form to edit the recipe.
+        </td>
+        <td>
+            Viewed cuisine page as recipe owner and as different user.
+            Clicked button.
+        </td>
+        <td>
+            Button only appeared on recipes the user I was logged in as owned.
+            Modal appeared
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Edit Recipe Form</td>
+        <td>
+            Form will gather data and post it to Recipe database.
+        </td>
+        <td>
+            Filled out and submitted form.
+        </td>
+        <td>
+            Terminal displayed POST success message.
+            Recipe was displayed on recipes page with new data.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Delete Recipe Modal</td>
+        <td>
+            Button to trigger should only be displayed if user logged in matches recipe owner.
+            When clicked, it should launch a bootstrap modal with an 'Are you sure?' message and a button to delete the recipe.
+        </td>
+        <td>
+            Viewed recipes page as recipe owner and as different user.
+            Clicked button.
+        </td>
+        <td>
+            Button only appeared on recipes the user I was logged in as owned.
+            Modal appeared.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Delete Recipe Button</td>
+        <td>
+            Button will delete recipe from Recipe database.
+        </td>
+        <td>
+            Clicked button.
+        </td>
+        <td>
+            Terminal displayed DELETE message.
+            Recipe disappeared from recipes page.
         </td>
         <td>Y</td>
     </tr>
