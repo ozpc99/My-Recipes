@@ -38,61 +38,61 @@
                     </div>
                     <!-- Recipe Rating -->
                     <div>
-                    {% if recipe.average_rating is none or recipe.average_rating == 0 %}
-                    <span class="d-none">No Rating</span>
-                    {% else %}
+                        {% if recipe.average_rating is none or recipe.average_rating == 0 %}
+                        <span class="d-none">No Rating</span>
+                        {% else %}
                         <!-- Display Average Rating As Stars -->
                         {% if recipe.average_rating == 1 %}
-                            <!-- 1 Star -->
-                            <i class="fa-solid fa-star"></i>
-                        {% elif 1 < recipe.average_rating < 2 %}
-                            <!-- 1.5 Stars -->
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 1 Star -->
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 1 &lt; recipe.average_rating &lt; 2 %}
+                        <!-- 1.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
                         {% elif recipe.average_rating == 2 %}
-                            <!-- 2 Stars -->
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        {% elif 2 < recipe.average_rating < 3 %}
-                            <!-- 2.5 Stars -->
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 2 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 2 &lt; recipe.average_rating &lt; 3 %}
+                        <!-- 2.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
                         {% elif recipe.average_rating == 3 %}
-                            <!-- 3 Stars -->
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        {% elif 3 < recipe.average_rating < 4 %}
-                            <!-- 3.5 Stars -->
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <!-- 4 Stars -->
+                        <!-- 3 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        {% elif 3 &lt; recipe.average_rating &lt; 4 %}
+                        <!-- 3.5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 4 Stars -->
                         {% elif recipe.average_rating == 4 %}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <!-- 4.5 Stars -->
-                        {% elif 4 < recipe.average_rating < 5 %}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <!-- 5 Stars -->
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <!-- 4.5 Stars -->
+                        {% elif 4 &lt; recipe.average_rating &lt; 5 %}
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <!-- 5 Stars -->
                         {% elif recipe.average_rating == 5 %}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
                         {% endif %}
                         <!-- Display Average Rating As Float, rounded to 1 decimal place-->
                         {{ recipe.average_rating|round(1) }}
-                    {% endif %}
+                        {% endif %}
                     </div>
 
                     <!-- Cuisine Category -->
@@ -104,7 +104,8 @@
                 <h5>Serves: {{ recipe.recipe_serves }}</h5>
                 <!-- Recipe Image -->
                 <figure class="mb-4">
-                    <img class="img-fluid rounded" height="400" width="900" src="{{ recipe.recipe_img }}" alt="Image for '{{ recipe.recipe_name }}' Recipe">
+                    <img class="img-fluid rounded" height="400" width="900" src="{{ recipe.recipe_img }}"
+                        alt="Image for '{{ recipe.recipe_name }}' Recipe">
                 </figure>
                 <!-- Recipe About Description -->
                 <section class="mb-5">
@@ -142,40 +143,35 @@
                     <form method="POST" action="{{ url_for('rate_recipe', id=recipe.id) }}">
                         <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
                         <div class="rating mb-3">
-                            <input type="radio" class="btn-check" name="recipe_rating" id="option1" value="1"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option1" value="1">
                             <label class="btn" for="option1">
                                 <span class="icon">
                                     <i class="fa-solid fa-star"></i>
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="recipe_rating" id="option2" value="2"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option2" value="2">
                             <label class="btn" for="option2">
                                 <span class="icon">
                                     <i class="fa-solid fa-star"></i>
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="recipe_rating" id="option3" value="3"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option3" value="3">
                             <label class="btn" for="option3">
                                 <span class="icon">
                                     <i class="fa-solid fa-star"></i>
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="recipe_rating" id="option4" value="4"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option4" value="4">
                             <label class="btn" for="option4">
                                 <span class="icon">
                                     <i class="fa-solid fa-star"></i>
                                 </span>
                             </label>
 
-                            <input type="radio" class="btn-check" name="recipe_rating" id="option5" value="5"
-                                autocomplete="off">
+                            <input type="radio" class="btn-check" name="recipe_rating" id="option5" value="5">
                             <label class="btn" for="option5">
                                 <span class="icon">
                                     <i class="fa-solid fa-star"></i>

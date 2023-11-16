@@ -794,10 +794,437 @@ See documentation of the manual testing process below:
         <th>Passed?</th>
     </tr>
     <tr>
+        <td>Nav-Bar</td>
+        <td>
+            All links should work by redirecting to the corresponding page
+        </td>
+        <td>
+            Clicked all links in turn
+        </td>
+        <td>
+            All links redirected to the correct corresponding page
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Search Bar</td>
+        <td>
+            Query database to provide matching results.
+            Redirect to results page
+            If results found, display in a bootstrap ordered list group.
+            If no results found, display flash message in bootstrap alert.
+        </td>
+        <td>
+            Searched for recipes I know are already on the site.
+            Searched for random value.
+        </td>
+        <td>
+            Was redirected to results page.
+            Recipe I searched for was displayed in bootstrap ordered list group.
+            Random value I entered returned the alert flash message.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Sign Up Button</td>
+        <td>
+            Redirect to Sign Up page
+        </td>
+        <td>
+            Clicked button
+        </td>
+        <td>
+            Was redirected to sign up page
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Sign Up Form</td>
+        <td>
+            Get data from form and post to User db.
+            Redirect to home page on submit. 
+        </td>
+        <td>
+            Filled out and submitted form.
+        </td>
+        <td>
+            Was redirected to home page.
+            Terminal displayed POST success message.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Sign In Form</td>
+        <td>
+            Get data from form and create user session.
+            Redirect to home page for post user sign in with welcome message and user's name.
+        </td>
+        <td>
+            Filled out and submitted the form.
+        </td>
+        <td>
+            Was redirected to home page for post user sign in.
+            Terminal displayed load user session message with username.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Reset Password Link</td>
+        <td>
+            Redirect to reset password page.
+        </td>
+        <td>
+            Clicked link
+        </td>
+        <td>
+            Was redirected to reset password page.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>Reset Password Form</td>
+        <td>
+            Get data from form and overwrite previous user password.
+            Redirect to home page
+        </td>
+        <td>
+            Filled out and submitted the form.
+            Tried to log in with old password.
+            Logged in again with new password.
+        </td>
+        <td>
+            Was redirected back to home page.
+            Terminal displayed POST success message.
+            Did not allow me to log in with old password.
+            Successfully logged in with with new password.
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
         <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
         <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
         <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
         <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>
+            .
+        </td>
+        <td>Y</td>
+    </tr>
+</table>
+
+## Code Validation
+### W3C HTML Markup Validation
+<table>
+    <tr>
+        <th>Document</th>
+        <th>Passed?</th>
+    </tr>
+    <tr>
+        <td>base.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>results.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>sign_up.html</td>
+        <td>
+        Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>reset_password.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>add_recipe.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>cuisine.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>recipes.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+    <tr>
+        <td>recipe.html</td>
+        <td>
+            Bad value Error:
+            'Illegal character in path segment: '{' is not allowed.'
+            <br>
+            Cannot remove this character due to Jinja templating.
+            <br>
+            <br>
+            Error: Non-space characters found without seeing a doctype first.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            Error: Element head is missing a required instance of child element title.
+            This is because it extends base.html which already has this declared.
+            <br>
+            <br>
+            No fatal errors found.
+        </td>
+    </tr>
+</table>
+
+### W3C CSS Jigsaw Validation
+<table>
+    <tr>
+        <th>Document</th>
+        <th>Passed?</th>
+    </tr>
+    <tr>
+        <td>style.css</td>
+        <td>Y</td>
+    </tr>
+</table>
+
+### Python3 PEP8 Compliance
+<table>
+    <tr>
+        <th>Document</th>
+        <th>Passed?</th>
+    </tr>
+    <tr>
+        <td>routes.py</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>models.py</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>__init__.py</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>env.py</td>
         <td></td>
     </tr>
 </table>

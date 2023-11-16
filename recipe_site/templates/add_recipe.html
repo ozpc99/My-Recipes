@@ -169,7 +169,7 @@
         <label for="recipe_img">
             <i class="fa-solid fa-camera"></i> Image of Dish:
         </label>
-        <div id="recipe_ingredientsHelp" class="form-text">
+        <div id="recipe_ingredientsHelp1" class="form-text">
             Please select a good quality image of your dish.
             <br>
             You must ensure you have permission to use this image.
@@ -181,8 +181,8 @@
             </a>
         </div>
         <div class="mb-3">
-            <input type="text" name="recipe_img" id="recipe_img" placeholder="Image URL"
-                aria-placeholder="Recipe Image URL" aria-label="Recipe Image URL" class="form-control" required>
+            <input type="text" name="recipe_img" id="recipe_img" placeholder="Image URL" aria-label="Recipe Image URL"
+                class="form-control" required>
         </div>
         <!-- Method Info Modal -->
         <div class="modal fade" id="image-modal" tabindex="-1" aria-labelledby="image-modal" aria-hidden="true">
@@ -194,7 +194,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <i class="fa-solid fa-triangle-exclamation"></i> <em>Currently, myRecipes can only accept image uploads via URL.</em>
+                            <i class="fa-solid fa-triangle-exclamation"></i> <em>Currently, myRecipes can only accept
+                                image uploads via URL.</em>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         <p>
@@ -225,11 +226,7 @@
             </div>
         </div>
 
-        <!-- Post Date --
-        -- Date updates automatically via JS to display today's date. --
-        -- Date input is hidden because the user doesn't need to fill out this field. 
-        -- Attributes: 'readonly' and 'required' and Style: 'pointer-events: none;' 
-        --- are included in case Bootstrap fails to load or that it is decided to include this input field on the form later. -->
+        <!-- Post Date -->
         <div class="mb-3 d-none">
             <label for="post_date" class="form-label"><i class="fa-solid fa-calendar-day"></i> Post Date:</label>
             <input type="date" class="form-control" name="post_date" id="post_date" readonly required
