@@ -8,7 +8,7 @@ It is a recipe database platform which allows users to search for recipes, brows
 Users can use the search bar to search for a particular recipe or browse by cuisine category as well as rate other user's recipes out of 5 stars without an account.
 If they sign up for an account, they can create cuisine categories and post their own recipes as well as being able to edit, or delete their entries.
 
-The site works off a PostgreSQL relational database which stores data in tables for 'Cuisine', 'Recipe' and 'User'. This data is called upon using SQLAlchemy, Psycopg2 and Flask imported into Python. The data is displayed in the front-end via the 'routes.py' file and Jinja templating within the HTML.
+The site works off a PostgreSQL relational database which stores data in tables for 'Cuisine', 'Recipe' and 'User'. This data is called upon using SQLAlchemy, Psycopg2 and Flask imported into Python. The data is displayed in the front-end via functions within the 'routes.py' file and Jinja templating within the HTML.
 
 The site achieves full CRUD (Create, Read, Update, Delete) functionality via SQLAlchemy and Psycopg2 to allow users to create cuisine categories or recipes, view them on the page, update/edit their entries and delete them.
 
@@ -403,7 +403,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 
 # UX Design
 ## Application Goals
-### 1. Implement a Relational Database to Store Site Data
+### 1. Implement a Relational Database to Store Site Data which allows for User Interaction
 <ol type="I">
     <h4>
         <li>
@@ -420,7 +420,13 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
         </ul>
     </li>
     <li>
-        Think carefully about the relationships between these types of data. Using 'backref' and dot notation appropriately. 
+        Think carefully about the relationships between these types of data.
+        <ul>
+            <li>The Recipe table will have to relate to the Cuisine table so that the correct cuisine id is assigned to each recipe.
+            </li>
+            <li>Both the Cuisine and Recipe table will have to relate to the User table so that the correct user id is assigned to each cuisine category or recipe the user creates.
+            </li>
+        </ul>
     </li>
     </ul>
     <h4>
@@ -511,7 +517,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
             All links must redirect to the correct address and provide the corresponding content the user has selected to view.
         </li>
         <li>
-            All forms on the site should provide user feedback in the form of flash messages within dismissible Bootstrap alerts. Appropriate error handling must be included to provide helpful messages in the event of user or server error.
+            Forms should provide user feedback in the form of flash messages within dismissible Bootstrap alerts. Appropriate error handling must be included to provide helpful messages in the event of user or server error.
         </li>
     </ul>
     <h4>
@@ -557,8 +563,22 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 - Rate others' recipes to provide feedback for other users.
 
 #### As the Site Administrator, I Want To...
-- Provide a platform for users to share recipes.
-
+- Provide a platform which allows users to search for recipes and browse by category in a way that is intuitive and the desired data is easy to find.
+- Allow for full user interaction based on CRUD functionality to allow users to:
+    - Sign up for an account
+    - Sign out of their account
+    - Reset their password in case they have forgotten it
+    - Create their own cuisine categories
+    - Rename their own cuisine categories
+    - Delete their own cuisine categories
+    - Post their own recipes assigned to a cuisine category
+    - Edit their own recipes
+    - Delete their own recipes
+    - Rate other users' recipes
+- Securely store user data within the database
+- In the future:
+    - Automate the mailing list to send out relevant emails to users who have signed up.
+    - Display sponsors/advertising relevant to cooking (this could be user-targeted) or implement a pay wall/subscription service to generate income from the site. 
 
 # The Design Phase
 ## Back-End
