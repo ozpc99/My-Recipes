@@ -42,6 +42,7 @@
       "ilike",
       "itsdangerous",
       "jcomp",
+      "ondelete",
       "rawpixel",
       "selectattr",
       "setdefault",

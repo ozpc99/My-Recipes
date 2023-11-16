@@ -1,4 +1,12 @@
-from flask import render_template, request, redirect, url_for, abort, g, session, flash
+from flask import (
+    render_template,
+    request,
+    redirect,
+    url_for,
+    abort,
+    g,
+    session,
+    flash)
 from functools import wraps
 from sqlalchemy import func, or_
 from sqlalchemy.orm.attributes import flag_modified
@@ -21,7 +29,7 @@ def load_user():
     print(f"load_user - g.user: {g.user}")
 
 
-# === Home Page === 
+# === Home Page ===
 # (renders template: 'base.html' + home page block content)
 @app.route("/")
 def home():
@@ -37,13 +45,15 @@ def home():
 @app.route("/results", methods=["GET"])
 def results():
     search_value = request.args.get('search_value')
-    matching_recipes = Recipe.query.filter(or_(Recipe.recipe_name.ilike(f"%{search_value}%"), Recipe.recipe_description.ilike(f"%{search_value}%"))).all()
+    matching_recipes = Recipe.query.filter(
+        or_(Recipe.recipe_name.ilike(f"%{search_value}%"),
+            Recipe.recipe_description.ilike(f"%{search_value}%"))).all()
     if not matching_recipes:
         flash("Sorry, we couldn't find what you were looking for", "secondary")
     return render_template("results.html", recipes=matching_recipes)
 
 
-# === Sign Up Form === 
+# === Sign Up Form ===
 # (renders template: 'sign_up.html')
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
@@ -75,7 +85,7 @@ def sign_up():
         db.session.commit()
         # flash("Account created successfully! You can now log in.", "success")
         return redirect(url_for("home"))
-    return render_template("sign_up.html")  
+    return render_template("sign_up.html")
 
 
 # === Sign In Form ===
@@ -84,7 +94,9 @@ def sign_in():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = User.query.filter_by(username=username, password=password).first()
+        user = User.query.filter_by(
+            username=username,
+            password=password).first()
 
         if user:
             session["user_id"] = user.id
@@ -95,7 +107,6 @@ def sign_in():
         else:
             # flash("Invalid username or password", "error")
             return redirect(url_for("home"))
-            
     return redirect(url_for("home"))
 
 
@@ -121,7 +132,8 @@ def reset_password():
             return redirect(url_for("reset_password"))
 
         # Find the user by email or username
-        user = User.query.filter((User.email == email) | (User.username == username)).first()
+        user = User.query.filter(
+            (User.email == email) | (User.username == username)).first()
 
         if user:
             # Update the user's password
@@ -131,7 +143,6 @@ def reset_password():
             # flash("Password successfully reset", "success")
         # else:
             # flash("Username or email does not match our records", "error")
-    
     return render_template("reset_password.html")
 
 
@@ -150,8 +161,7 @@ def add_cuisine():
         cuisine = Cuisine(
             cuisine_type=request.form.get("cuisine_type"),
             cuisine_img=request.form.get("cuisine_img"),
-            user_id = session.get("user_id")
-        )
+            user_id=session.get("user_id"))
         db.session.add(cuisine)
         db.session.commit()
         return redirect(url_for("cuisine"))
@@ -183,7 +193,8 @@ def delete_cuisine(cuisine_id):
 def recipes():
     cuisine_id = request.args.get("cuisine_id")
     if cuisine_id:
-        recipes = Recipe.query.filter_by(cuisine_id=cuisine_id).order_by(Recipe.id).all()
+        recipes = Recipe.query.filter_by(
+            cuisine_id=cuisine_id).order_by(Recipe.id).all()
         cuisine = Cuisine.query.get(cuisine_id)
         cuisine_type = cuisine.cuisine_type
     else:
@@ -191,7 +202,11 @@ def recipes():
         cuisine_type = "All Cuisines"
 
     cuisines = list(Cuisine.query.order_by(Cuisine.cuisine_type).all())
-    return render_template("recipes.html", recipes=recipes, cuisines=cuisines, cuisine_type=cuisine_type)
+    return render_template(
+        "recipes.html",
+        recipes=recipes,
+        cuisines=cuisines,
+        cuisine_type=cuisine_type)
 
 
 # === Recipe ===
@@ -218,7 +233,6 @@ def add_recipe():
         recipe_img = request.form.get("recipe_img")
         user_id = session.get("user_id")
         post_date = get_todays_date()
-        
         recipe = Recipe(
             recipe_name=recipe_name,
             cuisine_id=cuisine_id,
@@ -230,13 +244,9 @@ def add_recipe():
             user_id=user_id,
             post_date=post_date
         )
-        
         db.session.add(recipe)
         db.session.commit()
-        
-        # redirects to the recipes page and displays only the recipes matching the cuisine_id
         return redirect(url_for("recipes", cuisine_id=cuisine_id))
-        
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
@@ -258,22 +268,19 @@ def edit_recipe(recipe_id):
         recipe.post_date = get_todays_date()
 
         db.session.commit()
+        return redirect(url_for("recipes",
+                                cuisine_id=recipe.cuisine_id))
 
-        # redirects to the recipes page and displays only the recipes matching the cuisine_id
-        return redirect(url_for("recipes", cuisine_id=recipe.cuisine_id))
-
-    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
+    return render_template("edit_recipe.html",
+                           recipe=recipe, cuisines=cuisines)
 
 
 @app.route("/delete_recipe/<int:recipe_id>")
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    cuisine_id = recipe.cuisine_id 
-
+    cuisine_id = recipe.cuisine_id
     db.session.delete(recipe)
     db.session.commit()
-
-    # redirects to the recipes page and displays only the recipes matching the cuisine_id
     return redirect(url_for("recipes", cuisine_id=cuisine_id))
 
 
@@ -289,11 +296,9 @@ def rate_recipe(id):
                 recipe.rating = [rating]
             else:
                 recipe.rating.append(rating)
-            # updates the 'rating' column with the modified array so that each time the form is submitted, the array is modified accordingly.
             flag_modified(recipe, "rating")
             db.session.commit()
             if recipe.rating:
-                # calculates the mean average of all values in the 'rating' array and updates the value in the'average_rating' column.
                 average_rating = sum(recipe.rating) / len(recipe.rating)
                 recipe.average_rating = average_rating
             else:

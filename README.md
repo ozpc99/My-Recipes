@@ -1213,19 +1213,23 @@ See documentation of the manual testing process below:
     </tr>
     <tr>
         <td>routes.py</td>
-        <td></td>
+        <td>Y</td>
     </tr>
     <tr>
         <td>models.py</td>
-        <td></td>
+        <td>Y</td>
     </tr>
     <tr>
         <td>__init__.py</td>
-        <td></td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>run.py</td>
+        <td>Y</td>
     </tr>
     <tr>
         <td>env.py</td>
-        <td></td>
+        <td>Y</td>
     </tr>
 </table>
 
