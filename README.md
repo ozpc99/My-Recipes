@@ -481,10 +481,10 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
             Ensure all links and buttons on the site work correctly and correspond to the correct page.
         </li>
         <li>
-            It would be good practice to prove user feedback such as when a button/link is hovered over or clicked, it changes colour or becomes underlined. This could be achieved using Bootstrap classes or custom CSS.
+            It would be good practice to provide user feedback such as when a button/link is hovered over or clicked, it changes colour or becomes underlined. This could be achieved using Bootstrap classes or custom CSS.
         </li>
         <li>
-            Any external links should open in a new tab so the user does not lose their place on the current page and their attention is not diverted away from the site.
+            Any external links (if included) should open in a new tab so the user does not lose their place on the current page and their attention is not diverted away from the site.
         </li>
     </ul>
     <h4>
@@ -497,7 +497,8 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
             The user must be in control at all times, the site should not do anything unless the user has requested it to do so or interacted with its content.
         </li>
         <li>
-            The site must not do anything unintended, uninitiated or unexpected. Testing and de-bugging on a range of web browsers and devices will commence prior to deployment to prevent this. Werkzeug will be used for debugging Python files.
+            The site must not do anything unintended, uninitiated or unexpected. Testing and de-bugging on a range of web browsers and devices will commence prior to deployment to prevent this.
+            Werkzeug will be used for debugging Python files.
             The testing process will be well planned out and documented for future reference.
         </li>
         <li>
@@ -517,7 +518,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
             All links must redirect to the correct address and provide the corresponding content the user has selected to view.
         </li>
         <li>
-            Forms should provide user feedback in the form of flash messages within dismissible Bootstrap alerts. Appropriate error handling must be included to provide helpful messages in the event of user or server error.
+            Forms should provide user feedback in the form of flash messages within dismissible Bootstrap alerts. Appropriate error handling should be taken into consideration to provide helpful messages in the event of user or server error.
         </li>
     </ul>
     <h4>
@@ -533,7 +534,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
             Background colours must be chosen carefully to ensure that text in front of it remains legible against the contrast of colours.
         </li>
         <li>
-            Images must be of appropriate size and quality and contain descriptive alt attributes for the benefit of visually impaired users and/or should the image fail to load.
+            Images must be of appropriate size and quality and ought to contain descriptive alt attributes for the benefit of visually impaired users and/or should the image fail to load.
         </li>
         <li>
             ARIA roles can be incorporated to allow dynamic content to be more accessible.
@@ -547,7 +548,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 ### 3. Meet the Briefs of the User Stories:
 ### User Stories
 #### As a User, I Want To...
-- Search for recipes using an intuitive search bar that provides the results I need or in the case of no results found, provides an appropriate error message.
+- Search for recipes using an intuitive search bar that provides the results I need or in the case of no results found, provides an appropriate error message with helpful hints.
 - Browse for recipes based on cuisine category if I'm not sure on the exact recipe I want and I'm just looking for ideas on what to cook.
 - See descriptive images, attributes and ratings of the recipes so I can quickly and intuitively find what I'm looking for and know if the recipe is worth trying.
     - These attributes should include:
@@ -559,6 +560,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
         - Who posted it
         - A rating out of 5 stars
 - Create an account with the site so I can post my own recipes.
+- Be able to reset my password at any time in case I have forgotten it.
 - Edit/update and delete any data for any cuisine categories or recipes I create.
 - Rate others' recipes to provide feedback for other users.
 
@@ -576,9 +578,19 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
     - Delete their own recipes
     - Rate other users' recipes
 - Securely store user data within the database
-- In the future:
-    - Automate the mailing list to send out relevant emails to users who have signed up.
-    - Display sponsors/advertising relevant to cooking (this could be user-targeted) or implement a pay wall/subscription service to generate revenue from the site. 
+- In the future I would like to:
+    - Automate the mailing list to send out relevant emails to users who have signed up. A HTML email template will be made for this purpose and emails will be sent out each month featuring new recipes, sponsored content and site updates.
+    - Generate revenue from the site by displaying sponsors/advertising relevant to cooking (this could be user-targeted) or implement a pay wall/subscription service in order to view without ads. 
+    - Have dedicated admin sign in credentials which load to an admin dashboard displaying analytics such as site traffic, most viewed/rated recipes and user demographics. The data collected can be used for marketing purposes as well as targeting content tailored to the user in the form of a 'Recommended' or 'For You' page/section displaying similar recipes based on what the user has been viewing or has rated before.
+        - Enable power-user/administrator functionality to allow admins to log into their dashboard and make changes to the site via this GUI instead of a command line. They will be able to have full control over all user's on the site, meaning they can blacklist a user or delete/edit their recipes if the content violates the site's terms and conditions/community guidelines.
+        - Admins will be able to provide user support in the event of a problem or error. This could be achieved using an email form or even a live chat.
+    - Create a user dashboard/profile page so they can amend settings, customise their experience with profile pictures/themes, as well as review/amend their info.
+        - This will also allow for users to follow/friend request/block other users.
+        - Quickly and intuitively view all their recipes/cuisine categories at once, expand each of them and make amendments or deletions, meaning they won't have to search for them one by one if and when the site becomes more populated with data.
+            - This dashboard will also contain analytics such as:
+                - The user's most liked/rated recipes
+                - How long they have been a member
+                - Badges/achievements earned. These are awarded based on how long they have been a member and how many recipes they've posted or reviewed. This could also pave way for user vetting/verification to make the site more secure and ensure users are genuine.
 
 # The Design Phase
 ## Back-End
@@ -649,15 +661,29 @@ A PDF version of the wireframes can be accessed:
 ![Recipe Page Displaying Recipe Based Off ID](/docs/wireframes/Recipe.png)
 
 # Design Choices
-The site has been built using Bootstrap, a framework for responsive design. StartBootstrap templates have been used for ease of development.
+## Bootstrap
+The site has been built using Bootstrap, a framework for responsive design. StartBootstrap templates have been used for ease of development. The StartBootstrap Clean Blog template was used as it provides a good template for the recipes page and allows for consistent design across the site.
 
-The default Bootstrap theme colours have been left default as the black navbar provides a modern look and ensures the content is accessible. 
+The default Bootstrap theme colours have been left default as the black navbar provides a modern look and ensures the content meets accessibility criteria.
 
+
+## Hero Images
 The hero images all have a fixed background. When the page is scrolled, the content scrolls with it while the image remains static. This provides a sleek and modern appearance to the site.
 
 The hero_2.jpg image of vegetables used on all secondary pages of the site has been chosen because it contains a black background which white text can be applied over. This ensures text is legible and accessible across all pages and also provides consistent design.
-
+## Nav-Bar
 The navbar remains fixed to the top of the page across the site, this makes it easier for users to flick between pages without having to scroll all the way back up.
+
+## Bootstrap Cards
+The cuisine categories and recipes are displayed in Bootstrap cards, laid out on a Bootstrap grid layout where each row displays four columns (each column containing one card) on desktop and one column per row on mobile.
+The cards provide the perfect template for displaying cuisine category and recipe previews. Each card contains the category/recipe image, it's name and a button to view the category/recipe.
+The recipe cards also display metadata such as the author's username and the date it was posted to the site.
+Where applicable, i.e. when the user signed in is the user who created the category/recipe, the edit and delete buttons are displayed.
+
+## Bootstrap Modals
+The functionality to add a cuisine category is accessed via the button in the cuisine page header. The edit/delete cuisine categories/recipes functionality is accessed via the buttons displayed in the cards. The buttons trigger a Bootstrap modal. The decision to use modals instead of separate, dedicated pages ensures the user is not taken away from the current page.
+The add category button is only displayed when a user is logged in, ensuring that the category created is assigned a user id. The modal triggered by the button is styled in Bootstrap's blue 'primary' class indicating to the user a new entry is being made.
+The edit/delete buttons are only displayed if the user logged in matches the user who created the category/recipe. For edit, the modal is styled in Bootstrap's green 'success' class indicating to the user that they are about to make a change. The delete modal is styled in Bootstrap's 'danger' red class indicating to the user that the decision being made can not be reverted.
 
 # UI Design
 ## Application Features
@@ -681,6 +707,17 @@ The sign in form, when submitted, gets the data from the form where it is handle
 ![Home Page Post User Sign-In](/docs/screenshots/home_user.png)
 The Home page for when a user has signed in is displayed using a Jinja conditional check of {% if g.user %} to check if there is a user signed in. 
 It displays a 50% viewport height hero image of vegetables with a Welcome message containing a Jinja template of {{ g.user.f_name }} displaying the user's first name. This adds a touch of personalisation and user ownership to the site.
+
+### Top Rated Recipes Carousel
+![Top Rated Recipes Carousel](/docs/screenshots/top_rated.png)
+Top Rated recipes are displayed in a Bootstrap Carousel. This was chosen because it can a lot of content at once and provides a visual and interactive showcase of the best recipes the site has to offer.
+The carousel is set to auto-slide which automatically moves the carousel to the next slide after a set interval. This allows the site to showcase numerous recipes at once to the user. The user can initiate control over the carousel by clicking the next and previous arrow buttons to move forwards and backwards at will.
+
+Any recipe with an average rating of 4 and above is displayed here in the carousel in the form of Bootstrap cards. This is achieved using a Jinja conditional check to query all recipes with an average rating of > 4 and render this content if true.
+
+The recipe image contains Bootstrap badges for cuisine category and average rating. The cuisine category has a FontAwesome hashtag icon before it, indicating to the user that this is the 'tag' for that category. When this badge is clicked, the user is redirected to the recipes page where recipes assigned to that cuisine type are displayed.
+
+The star rating badge displays that recipe's average rating in the form of FontAwesome star and star-half-stroke icons, rendered using Jinja conditional checks to decide which and how many icons to display. This provides an intuitive and visual representation of the recipe's rating. The float value of the average rating is displayed next to this, rounded to one decimal place (via Jinja template) to tell the user the exact rating and allow them to compare it against the ratings of other recipes.
 
 ### Search Results If Results Found
 ![Search Results If Results Found](/docs/screenshots/search_if_results.png)
