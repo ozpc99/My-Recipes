@@ -67,11 +67,9 @@ def sign_up():
         mailing_list = request.form.get("mailing_list") == "on"
         # checks if 'password' matches 'confirm_password'
         if password != confirm_password:
-            # flash("Passwords must match", "error")
             return redirect(url_for("sign_up"))
         # checks if the username is already taken
         if User.query.filter_by(username=username).first():
-            # flash("Username already taken, please choose another.", "error")
             return redirect(url_for("sign_up"))
         user = User(
             f_name=f_name,
@@ -83,7 +81,6 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        # flash("Account created successfully! You can now log in.", "success")
         return redirect(url_for("home"))
     return render_template("sign_up.html")
 
@@ -102,10 +99,8 @@ def sign_in():
             session["user_id"] = user.id
             g.user = user
             print(f"sign_in - g.user: {g.user}")
-            # flash("Login successful!", "success")
             return redirect(url_for("home"))
         else:
-            # flash("Invalid username or password", "error")
             return redirect(url_for("home"))
     return redirect(url_for("home"))
 
@@ -128,7 +123,6 @@ def reset_password():
 
         # Check if passwords match
         if new_password != confirm_password:
-            # flash("Passwords do not match", "error")
             return redirect(url_for("reset_password"))
 
         # Find the user by email or username
@@ -140,9 +134,7 @@ def reset_password():
             user.password = new_password
             db.session.commit()
             return redirect(url_for("home"))
-            # flash("Password successfully reset", "success")
         # else:
-            # flash("Username or email does not match our records", "error")
     return render_template("reset_password.html")
 
 
