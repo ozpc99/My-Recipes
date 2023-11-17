@@ -133,7 +133,6 @@
         <!-- Side Widgets -->
         <div class="col-lg-4 py-5">
             <!-- Rate This Recipe -->
-            <!-- DEV COMMENT: Ensure rate recipe widget is hidden/moved to bottom of page on mobile screens -->
             {% if recipe.user != g.user %}
             <div class="card mb-4">
                 <div class="card-header">Rate This Recipe</div>
@@ -186,7 +185,6 @@
             {% endif %}
 
             <!-- Ingredients -->
-            <!-- DEV COMMENT: Ensure Ingredients widget is hidden on mobile screens -->
             <div class="card mb-4">
                 <div class="card-header">Ingredients</div>
                 <div class="recipe card-body">
