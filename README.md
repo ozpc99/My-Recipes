@@ -578,7 +578,7 @@ Once your workspace is set up successfully and you're happy to push to GitHub:
 - Securely store user data within the database
 - In the future:
     - Automate the mailing list to send out relevant emails to users who have signed up.
-    - Display sponsors/advertising relevant to cooking (this could be user-targeted) or implement a pay wall/subscription service to generate income from the site. 
+    - Display sponsors/advertising relevant to cooking (this could be user-targeted) or implement a pay wall/subscription service to generate revenue from the site. 
 
 # The Design Phase
 ## Back-End
